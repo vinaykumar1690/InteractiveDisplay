@@ -7,7 +7,7 @@ var connection = new autobahn.Connection({
 
 connection.onopen = function (session, details) 
 {
-   document.write("Connected in realm[" + session.realm + "]");
+   console.log("Connected in realm[" + session.realm + "]");
    
    console.log("Calling RPC");
    
