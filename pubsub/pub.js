@@ -4,14 +4,50 @@ var connection = new autobahn.Connection({
    realm: "realm1"
 });
 
+var counter = 0;
+
+var pub = (function() {
+      
+      var count = 0;
+      
+      return function(x) {
+         x.publish('com.myapp.oncounter', [count]);
+         count++;
+      }
+
+      })();
+      
 connection.onopen = function (session, details) {
 
    console.log("Connected");
-   t1 = setInterval(function () {
-      session.publish('com.myapp.oncounter', ["hello"]);
-      console.log("published to topic 'com.myapp.oncounter'");
-   }, 1000);
+
+   // var counter = (function () {
+   //    var value = 0;
+
+   //    return {
+   //       increment: function(inc) {
+   //          value += typeof inc === 'number' ? inc : 1;
+   //       },
+   //       getValue : function() {
+   //          return value;
+   //       }
+   //    }
+   // }());
    
+
+   /*
+   t1 = setInterval(function () {
+      session.publish('com.myapp.oncounter', [counter]);
+      console.log("published to topic 'com.myapp.oncounter'");
+      ++counter;
+   }, 1000);
+   */
+
+
+   t1 = setInterval(function () {
+         pub(session);
+   }, 1000);
+
 };
 
 
