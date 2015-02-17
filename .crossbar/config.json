@@ -42,6 +42,18 @@
                }
             }
          ]
+      },
+      {
+         "type": "guest",
+         "executable": "node",
+         "arguments": ["backend.js"],
+         "options": {
+            "workdir": "../poll/node",
+            "watch": {
+               "directories": ["../poll/node"],
+               "action": "restart"
+            }
+         }
       }
    ]
 }
