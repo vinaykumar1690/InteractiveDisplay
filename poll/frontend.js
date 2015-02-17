@@ -14,8 +14,9 @@ connection.onopen = function(session){
 
 	var onNewQuestion = function(args) {
 		question = args[0];
-		console.log("Q#" + question.seq + ":" + question.question);
-		console.log("Opt1:" + question.options[0] + "\tOpt2:" + question.options[1]);
+		// console.log("Q#" + question.seq + ":" + question.question);
+		// console.log("Opt1:" + question.options[0] + "\tOpt2:" + question.options[1]);
+		console.log(question);
 	}
 
 
@@ -25,15 +26,16 @@ connection.onopen = function(session){
       },
       function (err) {
          console.log('failed to subscribe to topic', err);
-      }
-   );
+      });
 
-	var submitAnswer = function() {
+	var formAnswer = function(qSEQ, optNum) {
 		var answer = {
-			qSEQ : question.seq,
-			opt  : 0,  
+			qSEQ: qSEQ,
+			opt: optNum, 
 		}
-
+		return answer;
+	}
+	var submitAnswer = function(answer) {
 		session.call('edu.cmu.ipd.onpoll', [answer]).then(
 			function (res) {
 				console.log("successfully submit answer");
@@ -41,7 +43,7 @@ connection.onopen = function(session){
 		);
 	}
 
-	setTimeout(submitAnswer, 5000);
+	setTimeout(function() {submitAnswer(formAnswer(0, 1))}, 5000);
 	
 }
 

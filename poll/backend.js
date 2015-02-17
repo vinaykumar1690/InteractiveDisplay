@@ -9,16 +9,33 @@ var connection = new autobahn.Connection({
 connection.onopen = function(session){
 
 	console.log("backend connected.");
+	
+	var questionCounter = 0;
+
 
 	var handler = {
 		session: session,
 	}
 
-	var question = {
-		seq: 1,
-		question: 'Hello world!',
-		options: ["Yes", "No"], 
+	var question0 = {
+		seq: 0,
+		question: 'When was cmu founded?',
+		options: ["1900", "1905"], 
 	}
+
+	var question1 = {
+		seq: 1,
+		question: 'Where is the main campus of CMU?',
+		options: ['Pittsburgh, PA', 'Mountain View, CA', 'Guangzhou, China']
+	}
+
+	var question2 = {
+		seq: 2,
+		question: "Who did Vinay date with on Feb 17?",
+		options: ["Venkey", "Megha"]
+	}
+
+	var questions = [question0, question1, question2];
 
 	var submitAnswer = function(args) {
 		var answer = args[0];
@@ -35,11 +52,13 @@ connection.onopen = function(session){
    );
 	
 	var issueQuestion = function() {
-		session.publish('edu.cmu.ipd.questions', [question]);
-		question.seq += 1;
+		var i = questionCounter%3;
+		questionCounter += 1;
+		console.log(questions[i]);
+		session.publish('edu.cmu.ipd.questions', [questions[i]]);
 	}
 
-	t1 = setInterval(issueQuestion, 3000);
+	t1 = setInterval(issueQuestion, 5000);
 }
 
 connection.open();
