@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <link rel="shortcut icon" href="img/favicon.ico">
+   <title>Vote</title>
+   <link rel="stylesheet" href="css/poll.css">
+</head>
+<body>
+
+   <header>
+    <script
+         src="https://autobahn.s3.amazonaws.com/autobahnjs/latest/autobahn.min.jgz">
+      </script>
+      <div id="header_inner">
+         <div id="demo_title">
+            <span>Poll</span>
+         </div>
+         <!--<a class="navbar-brand" href="/">
+            <img src="../../../img/gen/crossbar_icon_inverted.svg" alt="crossbar logo inverted" width="60" height="60">
+            <img src="../../../img/gen/crossbar_demos_text_paths.svg" alt="crossbar logo inverted" width="248" height="60">
+         </a>-->
+      </div>
+
+   </header>
+
+   <div id="demo_body">
+      <h4>Read the question and pick an answer!</h4>
+      <p id="questionText" seqno = "" >
+        [Post question text here]
+      </p>
+      <div id="pollContainer" align="center">
+         <div>
+            <!--<img src="img/banana_small.png" alt="CC attribution license, Evan-Amos/EABanner">-->
+            <span>
+               Choice A
+            </span>
+            <div>
+               <!--<input type="text" id="answerA" disabled>
+                answer adsfhdkjjhkdf
+               </input>-->
+                <p id="choiceTextA">
+                    [Post choiceA text here]
+                </p>
+               <input type="text" id="pollsA" disabled>
+               </input>
+            </div>         
+            <button id="A">
+               Choose
+            </button>
+         </div>
+         <div>
+            <!--<img src="img/chocolate_small.png" alt="CC attribution license, John Loo, http://www.flickr.com/photos/johnloo/">-->
+            <span>
+               Choice B
+            </span>
+            <p id="choiceTextB">
+                [Post choiceB text here]
+            </p>
+            <div>
+               <input type="text" id="pollsB" disabled>
+               </input>
+            </div>
+            <br>
+            <button id="B">
+               Choose
+            </button>
+         </div>
+         <div>
+            <!--<img src="img/lemon_small.png" alt="CC attribution license, Lauren Silverman / Healing and Eating, http://www.flickr.com/photos/healingandeating/">-->
+            <span>
+               Choice C
+            </span>
+             <p id="choiceTextC">
+                [Post choiceC text here]
+            </p>
+            <div>
+               <input type="text" id="pollsB" disabled>
+               </input>
+            </div>
+            <br>
+            <button id="C">
+               Choose
+            </button>
+         </div>
+      </div>
+       <br>
+      <!--<div id="resetVotesContainer">
+         <button id="resetVotes">
+            Reset Votes
+         </button>
+      </div>-->
+   </div>
+
+   <!--<div id="codeFrame">
+      <iframe src="votecode.html" width="100%" height="100%"></iframe>
+   </div>-->
+
+   <script>AUTOBAHN_DEBUG = true;</script>
+   
+   <script src="js/frontend.js"></script>
+
+</body>
+</html>
