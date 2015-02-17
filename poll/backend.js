@@ -26,7 +26,7 @@ connection.onopen = function(session){
 	var question1 = {
 		seq: 1,
 		question: 'Where is the main campus of CMU?',
-		options: ['Pittsburgh, PA', 'Mountain View, CA', 'Guangzhou, China']
+		options: ['Pittsburgh, PA', 'Mountain View, CA']
 	}
 
 	var question2 = {
@@ -36,10 +36,20 @@ connection.onopen = function(session){
 	}
 
 	var questions = [question0, question1, question2];
+	var answers = [];
 
 	var submitAnswer = function(args) {
 		var answer = args[0];
-		console.log("Recv an answer of Q" + answer.qSEQ + " with choice " + answer.opt);
+		if (answers[answer.qSEQ] === undefined) {
+			answers[answer.qSEQ] = {
+				seq: answer.qSEQ,
+				optsCounter:[0, 0]
+			}
+		}
+		answers[answer.qSEQ].optsCounter[answer.opt] += 1;
+		for(i = 0; i < answers.length; i++) {
+			console.log(answers[i]);
+		}
 	}
 
 	session.register('edu.cmu.ipd.onpoll', submitAnswer).then(
