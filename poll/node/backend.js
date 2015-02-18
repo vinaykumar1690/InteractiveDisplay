@@ -13,6 +13,10 @@ connection.onopen = function(session){
 	/* Current question counter */
 	var questionCounter = 0;
 
+	/* Answer collections */
+	var answers = [];
+
+
 	/* Question pool */
 	var question0 = {
 		seq: 0,
@@ -33,9 +37,6 @@ connection.onopen = function(session){
 	}
 
 	var questions = [question0, question1, question2];
-
-	/* Answer collections */
-	var answers = [];
 
 	/* Register RPC call. This RPC is called by client to submit answer */
 	var submitAnswer = function(args) {
@@ -66,25 +67,30 @@ connection.onopen = function(session){
 
 	/* Periodically generate questions and push to client */
 	var issueQuestion = function() {
-		var i = questionCounter % 3;
-		questionCounter += 1;
-		session.publish('edu.cmu.ipd.questions', [questions[i]]);
+		i = ++questionCounter % 3;
+		question = questions[i];
+		answer   = answers[i] === undefined ? 
+			[0, 0, 0] : answers[i].optsCounter;
+		session.publish('edu.cmu.ipd.questions', [question, answer]);
 	}
 
 	t1 = setInterval(issueQuestion, 5000);
 
 
-	var getQuestion = function() {
-		var i = questionCounter % 3;
-		return [questions[i]];
+	/* This RPC is called when webpage loaded */
+	var loadQuestion = function() {
+		var retQ = questions[questionCounter % 3];
+		var retAnswerOpts = answers[questionCounter % 3] === undefined ? 
+			[0, 0, 0] : answers[questionCounter % 3].optsCounter;
+		return [retQ, retAnswerOpts];
 	}
 
-	session.register("edu.cmu.ipd.getquestion", getQuestion).then(
+	session.register("edu.cmu.ipd.loadquestion", loadQuestion).then(
 		function(reg) {
-			console.log("succeed to register .getquestion");
+			console.log("succeed to register .loadquestion");
 		},
 		function(err) {
-			console.log("fail to register .getquestion");
+			console.log("fail to register .loadquestion");
 		});
 }
 

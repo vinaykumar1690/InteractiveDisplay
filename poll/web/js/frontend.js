@@ -15,13 +15,18 @@ connection.onopen = function(session){
 	/* Subscribe to .questions channel. This message is published
 	   when a new round of game starts. */
 	var onNewQuestion = function(args) {
-		question = args[0];
+		question       = args[0];
+		ansOptsCounter = args[1];
 		console.log(question.question);
 		document.getElementById("questionText").innerHTML = question.question;
 		document.getElementById("questionText").setAttribute("seqno",question.seq);
 		document.getElementById("choiceTextA").innerHTML = question.options[0];
 		document.getElementById("choiceTextB").innerHTML = question.options[1];
 		document.getElementById("choiceTextC").innerHTML = question.options[2];
+
+		document.getElementById("pollsA").value = ansOptsCounter[0];
+		document.getElementById("pollsB").value = ansOptsCounter[1];
+		document.getElementById("pollsC").value = ansOptsCounter[2];
 	}
 
 
@@ -88,7 +93,7 @@ connection.onopen = function(session){
 
 
 	/* Retrieve the current question. This is only called only once upon loading the page */
-	session.call("edu.cmu.ipd.getquestion", [0]).then(
+	session.call("edu.cmu.ipd.loadquestion", [0]).then(
 		function(res) {
 			onNewQuestion(res);
 		});
