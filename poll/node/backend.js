@@ -10,13 +10,10 @@ connection.onopen = function(session){
 
 	console.log("backend connected.");
 	
+	/* Current question counter */
 	var questionCounter = 0;
 
-
-	var handler = {
-		session: session,
-	}
-
+	/* Question pool */
 	var question0 = {
 		seq: 0,
 		question: 'When was cmu founded?',
@@ -36,8 +33,11 @@ connection.onopen = function(session){
 	}
 
 	var questions = [question0, question1, question2];
+
+	/* Answer collections */
 	var answers = [];
 
+	/* Register RPC call. This RPC is called by client to submit answer */
 	var submitAnswer = function(args) {
 		var answer = args[0];
 		if (answers[answer.qSEQ] === undefined) {
@@ -61,11 +61,12 @@ connection.onopen = function(session){
       },
       function (err) {
          console.log('failed to register submitAnswer', err);
-      }
-   );
+      });
 	
+
+	/* Periodically generate questions and push to client */
 	var issueQuestion = function() {
-		var i = questionCounter%3;
+		var i = questionCounter % 3;
 		questionCounter += 1;
 		session.publish('edu.cmu.ipd.questions', [questions[i]]);
 	}
