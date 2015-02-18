@@ -34,7 +34,7 @@
                "paths": {
                   "/": {
                      "type": "static",
-                     "directory": ".."
+                     "directory": "../poll/web"
                   },
                   "ws": {
                      "type": "websocket"
