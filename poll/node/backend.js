@@ -47,9 +47,12 @@ connection.onopen = function(session){
 			}
 		}
 		answers[answer.qSEQ].optsCounter[answer.opt] += 1;
-		for(i = 0; i < answers.length; i++) {
-			console.log(answers[i]);
+		var update = {
+			optSEQ : answer.opt,
+			value  : answers[answer.qSEQ].optsCounter[answer.opt]
 		}
+		console.log(update);
+		session.publish("edu.cmu.ipd.onvote", [update]);
 	}
 
 	session.register('edu.cmu.ipd.onpoll', submitAnswer).then(
@@ -64,7 +67,6 @@ connection.onopen = function(session){
 	var issueQuestion = function() {
 		var i = questionCounter%3;
 		questionCounter += 1;
-		// console.log(questions[i]);
 		session.publish('edu.cmu.ipd.questions', [questions[i]]);
 	}
 
