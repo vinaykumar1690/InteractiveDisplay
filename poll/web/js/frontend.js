@@ -87,6 +87,12 @@ connection.onopen = function(session){
 	}
 
 
+	/* Retrieve the current question. This is only called only once upon loading the page */
+	session.call("edu.cmu.ipd.getquestion", [0]).then(
+		function(res) {
+			onNewQuestion(res);
+		});
+
 
 
 	

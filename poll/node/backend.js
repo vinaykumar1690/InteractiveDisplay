@@ -72,6 +72,20 @@ connection.onopen = function(session){
 	}
 
 	t1 = setInterval(issueQuestion, 5000);
+
+
+	var getQuestion = function() {
+		var i = questionCounter % 3;
+		return [questions[i]];
+	}
+
+	session.register("edu.cmu.ipd.getquestion", getQuestion).then(
+		function(reg) {
+			console.log("succeed to register .getquestion");
+		},
+		function(err) {
+			console.log("fail to register .getquestion");
+		});
 }
 
 connection.open();
