@@ -34,7 +34,7 @@
                "paths": {
                   "/": {
                      "type": "static",
-                     "directory": "../poll/web"
+                     "directory": "../youtube_game/web"
                   },
                   "ws": {
                      "type": "websocket"
@@ -48,9 +48,9 @@
          "executable": "node",
          "arguments": ["backend.js"],
          "options": {
-            "workdir": "../poll/node",
+            "workdir": "../youtube_game/node",
             "watch": {
-               "directories": ["../poll/node"],
+               "directories": ["../youtube_game/node"],
                "action": "restart"
             }
          }
