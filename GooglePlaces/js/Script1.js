@@ -1,5 +1,8 @@
 // JavaScript source code
 //https://developers.google.com/maps/documentation/javascript/examples/place-search
+/* NOTE:
+ * This code need to be optimized so it's not so replicaive(same functions repeated for map_left and map_right)
+ */
 
 var map_left;
 var city_left;
@@ -8,7 +11,7 @@ var map_right;
 var city_right;
 
 
-var infowindow;
+//var infowindow;
 
 function initialize() {
 
@@ -26,12 +29,13 @@ function initialize() {
         mapOptions_left);
     document.getElementById('city-left').innerHTML = city_left;
 
+    // A search request for PlacesService.nearbySearch
     var request_left = {
         location: location_left,
         radius: 1000, // In meters, 1 kilometer
-        types: ['bar']
+        types: ['bar'] // Types of place to search
     }
-
+    // Run the request
     var svrs_left = new google.maps.places.PlacesService(map_left);
     svrs_left.nearbySearch(request_left, callback_left);
 
@@ -49,21 +53,23 @@ function initialize() {
         mapOptions_right);
     document.getElementById('city-right').innerHTML = city_right;
 
+    // A search request for PlacesService.nearbySearch
     var request_right = {
         location: location_right,
         radius: 1000, // In meters, 1 kilometer
-        types: ['bar']
+        types: ['bar'] // Types of place to search
     }
-
+    // Run the request
     var svrs_right = new google.maps.places.PlacesService(map_right);
     svrs_right.nearbySearch(request_right, callback_right);
 
 
-    infowindow = new google.maps.InfoWindow();
+    // infowindow = new google.maps.InfoWindow();
 
 }
 
 // result is of type <google.maps.places.PlaceResult>
+// A callback function for nearbySearch
 function callback_left(res, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < res.length; i++) {
@@ -71,6 +77,7 @@ function callback_left(res, status) {
         }
     }
 }
+// Create the location marker for each place.
 function createMarker_left(place) {
     var loc = place.geometry.location;
     var marker = new google.maps.Marker({
@@ -78,6 +85,7 @@ function createMarker_left(place) {
         position: loc
     });
 }
+
 function callback_right(res, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < res.length; i++) {
@@ -93,13 +101,6 @@ function createMarker_right(place) {
     });
 }
 
-//function createMarker(place) {
-//    var loc = place.geometry.location;
-//    var marker = new google.maps.Marker({
-//        map: currentmap,
-//        position: loc
-//    });
-
 //google.maps.event.addListener(marker, 'click', setInfo);
 
 //var content = "<b>Name</b>:" + place.name +
@@ -110,4 +111,5 @@ function createMarker_right(place) {
 //    infowindow.open(map_left, this);
 //};
 
+// Call initialize function.
 google.maps.event.addDomListener(window, 'load', initialize);
