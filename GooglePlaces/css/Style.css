@@ -1,0 +1,58 @@
+﻿html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+h2 {
+    color: orange;
+    text-align: center;
+}
+h3 {
+    color: aquamarine;
+    text-align:center;
+    font-size: medium;
+}
+
+.container_left {
+    position: absolute;
+    height: inherit;
+    width: 48%;
+    left: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.container_right {
+    position: absolute;
+    height: inherit;
+    width: 48%;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+#map-canvas-left {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#map-canvas-right {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    margin: 0;
+    padding: 0;
+}
+
+img.GoogleLogo {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
