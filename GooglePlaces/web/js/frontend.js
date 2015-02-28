@@ -10,6 +10,7 @@ var city_left;
 var map_right;
 var city_right;
 
+var place_type;
 
 //var infowindow;
 
@@ -33,7 +34,7 @@ function initialize() {
     var request_left = {
         location: location_left,
         radius: 1000, // In meters, 1 kilometer
-        types: ['bar'] // Types of place to search
+        types: [place_type] // Types of place to search
     }
     // Run the request
     var svrs_left = new google.maps.places.PlacesService(map_left);
@@ -57,7 +58,7 @@ function initialize() {
     var request_right = {
         location: location_right,
         radius: 1000, // In meters, 1 kilometer
-        types: ['bar'] // Types of place to search
+        types: [place_type] // Types of place to search
     }
     // Run the request
     var svrs_right = new google.maps.places.PlacesService(map_right);
