@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <title>Vote</title>
+    <link rel="stylesheet" href="css/poll.css">
+  </head>
+
+  <body>
+    <header>
+      <script src="js/autobahn.min.jgz"></script>
+      <div id="header_inner">
+        <div id="demo_title"><span>Poll</span></div>
+      </div>
+    </header>
+
+    <div id="demo_body">
+      <!-- <h4>Read the question and pick an answer!</h4>
+      <p id="questionText" seqno = "" >[Post question text here]</p> -->
+      <div id="pollContainer" align="center">
+        <div class="part">
+          <div class="part_span"><span id = "choiceTextA">Choice A</span></div>   <br/>  
+          <button id="A" iscorrect = "" >Choose</button>
+        </div>
+        <div class="part">
+          <div class="part_span"><span id="choiceTextB">Choice B</span></div>     <br/>
+          <button id="B" iscorrect = "" >Choose</button>
+        </div>
+        <div class='part'>
+          <input type="text" id="score" disabled style="
+            width: 4em;     text-align: center;     border: none;     background-color: #fafafa;     font-size: 4em;     padding: 20px 0 30px;      transition: all 0.3s ease;     text-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+          ">
+          </input>
+        </div>
+
+      </div>
+      <div>
+          <p id="result"></p>
+      </div>
+      <br>
+
+    </div>
+    <script>AUTOBAHN_DEBUG = true;</script>
+    <script src="js/frontend.client.js"></script>
+  </body>
+</html>

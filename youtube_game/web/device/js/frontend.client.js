@@ -5,6 +5,34 @@ var connection = new autobahn.Connection({
 	realm: 'realm1'
 })
 
+var bundle;
+
+var buttonA = document.getElementById("pollContainer").getElementsByTagName("button")[0];
+var buttonB = document.getElementById("pollContainer").getElementsByTagName("button")[1];
+
+buttonA.onclick = function(evt) {
+	if (buttonA.getAttribute("iscorrect") === "true") {
+		document.getElementById('result').innerHTML = 'Congratulations!';
+		document.getElementById('score').value = document.getElementById('score').value * 1 + 1;
+	} else {
+		document.getElementById('result').innerHTML = 'Sorry!';
+	}
+	buttonA.disabled = true;
+	buttonB.disabled = true;
+}
+
+buttonB.onclick = function(evt) {
+	if (buttonB.getAttribute("iscorrect") === "true") {
+		document.getElementById('result').innerHTML = 'Congratulations!';
+		document.getElementById('score').value = document.getElementById('score').value * 1 + 1;
+	} else {
+		document.getElementById('result').innerHTML = 'Sorry!';
+	}
+	buttonA.disabled = true;
+	buttonB.disabled = true;
+}
+
+document.getElementById('score').value = 50;
 
 connection.onopen = function(session){
 
@@ -14,23 +42,30 @@ connection.onopen = function(session){
 
 	/* Subscribe to .questions channel. This message is published
 	   when a new round of game starts. */
-	var onNewQuestion = function(args) {
-		question       = args[0];
-		ansOptsCounter = args[1];
-		console.log(question.question);
-		document.getElementById("questionText").innerHTML = question.question;
-		document.getElementById("questionText").setAttribute("seqno",question.seq);
-		document.getElementById("choiceTextA").innerHTML = question.options[0];
-		document.getElementById("choiceTextB").innerHTML = question.options[1];
-		document.getElementById("choiceTextC").innerHTML = question.options[2];
+	var onNewChoice = function(args) {
+		
+		bundle = args[0];
+		if (Math.random() >= 0.5) {
+			document.getElementById("choiceTextA").innerHTML = bundle.answer;
+			buttonA.setAttribute("iscorrect", "true");
+			document.getElementById("choiceTextB").innerHTML = bundle.alternative;
+			buttonB.setAttribute("iscorrect", "false");
+		} else {
+			document.getElementById("choiceTextB").innerHTML = bundle.answer;
+			buttonB.setAttribute("iscorrect", "true");
+			document.getElementById("choiceTextA").innerHTML = bundle.alternative;
+			buttonA.setAttribute("iscorrect", "false");
+		}
 
-		document.getElementById("pollsA").value = ansOptsCounter[0];
-		document.getElementById("pollsB").value = ansOptsCounter[1];
-		document.getElementById("pollsC").value = ansOptsCounter[2];
+		buttonA.disabled = false;
+		buttonB.disabled = false;
+		document.getElementById('result').innerHTML = '';
+		// document.getElementById("pollsA").value = ansOptsCounter[0];
+		// document.getElementById("pollsB").value = ansOptsCounter[1];
 	}
 
 
-	session.subscribe("edu.cmu.ipd.questions", onNewQuestion).then(
+	session.subscribe("edu.cmu.ipd.device.choice.next", onNewChoice).then(
       function (sub) {
          console.log('subscribed to .questions');
       },
@@ -38,68 +73,15 @@ connection.onopen = function(session){
          console.log('failed to subscribe to .questions', err);
       });
 
-
-
-	/* Subscribe to .onvote channel. This message is published
-	   when any client submit an answer */
-	var onNewVote = function(args) {
-		
-		var update = args[0];
-		var opt = update.optSEQ === 0 ? 'A' : (update.optSEQ === 1 ? 'B' : 'C');
-		document.getElementById("polls" + opt).value = update.value;
-	}
-
-	session.subscribe("edu.cmu.ipd.onvote", onNewVote).then(
-		function(sub) {
-			console.log("subscribe to .onvote");
+	session.call('edu.cmu.ipd.device.bundle', []).then(
+		function(response) {
+			console.log("device.front: ");
+			console.log(response);
+			onNewChoice([response]);
 		},
 		function(err) {
-			console.log("fail to subscribe to .onvote");
+			console.log('failed to call device.bundle: ' + err);
 		});
-
-
-
-	/* Add oncClick listener to each button. Once a choice is clicked, it call RPC to backend */
-	
-	var formAnswer = function(qSEQ, optNum) {
-		var answer = {
-			qSEQ: qSEQ,
-			opt: optNum, 
-		}
-		return answer;
-	}
-
-	var submitAnswer = function(answer) {
-		session.call('edu.cmu.ipd.onpoll', [answer]).then(
-			function (res) {
-				console.log("successfully submit answer");
-			}
-		);
-	}
-
-	var choiceButtons = document.getElementById("pollContainer").
-		getElementsByTagName("button");
-	
-	for (var i = 0; i < choiceButtons.length; i++) {
-		choiceButtons[i].onclick = function(evt) {
-			var qSEQ = document.getElementById("questionText").getAttribute("seqno");
-			var choiceId = evt.target.id;
-			var optNum = choiceId === "A" ? 0 : (choiceId === "B" ? 1 : 2);
-			var ans = formAnswer(qSEQ, optNum);
-			submitAnswer(ans);
-			console.log("target.id: " + optNum + "/" + choiceId + "   Q#:" + qSEQ);
-		}
-	}
-
-
-	/* Retrieve the current question. This is only called only once upon loading the page */
-	session.call("edu.cmu.ipd.loadquestion", [0]).then(
-		function(res) {
-			onNewQuestion(res);
-		});
-
-
-
 	
 }
 
