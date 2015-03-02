@@ -1,7 +1,7 @@
 // var autobahn = require('autobahn');
 
 var connection = new autobahn.Connection({
-	url: 'ws://127.0.0.1:80/ws',
+	url: 'ws://ec2-52-1-120-183.compute-1.amazonaws.com:80/ws',
 	realm: 'realm1'
 })
 
