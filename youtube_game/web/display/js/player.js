@@ -5,7 +5,7 @@ function loadPlayer() {
   player = new YT.Player('player', {
     height: '390',
     width: '640',
-    // playerVars: { 'controls': 0 },
+    playerVars: { 'controls': 0 },
     // videoId: 'Atds2P1cPwM',
     events: {
       'onReady': onPlayerReady,
