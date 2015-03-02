@@ -134,11 +134,19 @@ function parseVideoResponse(response, videoID, questionOffset) {
   if (questionOffset === 0) {
     var answer = response.items[0].statistics.likeCount
     bundle.answer = response.items[0].statistics.likeCount + ' likes';
-    bundle.alternative = alternativeValue(answer) + ' likes';
+    var alternativeVal = alternativeValue(answer);
+    while(alternativeVal === answer) {
+      alternativeVal = alternativeValue(answer);
+    }
+    bundle.alternative = alternativeVal + ' likes';
   } else {
     var answer = convertDuration(response.items[0].contentDetails.duration);
     bundle.answer = answer + ' sec';
-    bundle.alternative = alternativeValue(answer) + ' sec';
+    var alternativeVal = alternativeValue(answer);
+    while(alternativeVal === answer) {
+      alternativeVal = alternativeValue(answer);
+    }
+    bundle.alternative = alternativeVal + ' sec';
   }
   return bundle;
 }
