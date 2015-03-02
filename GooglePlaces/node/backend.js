@@ -11,7 +11,7 @@ connection.onopen = function(session) {
     console.log("backend connected.");
 
     Array.prototype.getRandom = ( function() {
-        var previous = "random";
+        var previous = "bar";
         return function() {
             if (this.length == 0) {
                 return;
@@ -31,7 +31,7 @@ connection.onopen = function(session) {
     /* Supported place search */
     var types = [
         "airport", "amusement_park", "aquarium", "art_gallery",
-        "atm, bakery", "bank", "bar", "beauty_salon",
+        "atm", "bakery", "bank", "bar", "beauty_salon",
         "bicycle_store", "book_store", "bowling_alley", "bus_station, cafe",
         "campground", "car_dealer", "car_rental", "car_repair", "car_wash",
         "casino", "city_hall", "clothing_store",
@@ -51,11 +51,36 @@ connection.onopen = function(session) {
         "taxi_stand", "train_station", "travel_agency", "university",
         "veterinary_care", "zoo"
     ];
-
+/*
     var issueType = function() {
         session.publish('edu.cmu.ipd.types', [types.getRandom()]);
     }
-    types_timer = setInterval(issueType, 5000);
+*/
+
+    var requestResult = function(args) {
+        //typeTimer = setTimeout(issueType, 5000);
+        var result = {};
+    }
+
+    var requestQuestion = function(args) {
+        session.publish('edu.cmu.ipd.types', [types.getRandom()]);
+    }
+
+    session.subscribe("edu.cmu.ipd.reqQuestion", requestQuestion).then(
+      function (sub) {
+         console.log('subscribed to .reqQuestion');
+      },
+      function (err) {
+         console.log('failed to subscribe to .reqQuestion', err);
+      });
+
+    session.register('edu.cmu.ipd.reqResult', requestResult).then(
+    function (reg) {
+       console.log('reqResult registered');
+    },
+    function (err) {
+       console.log('failed to register reqResult', err);
+    });
 
 }
 
