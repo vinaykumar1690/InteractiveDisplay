@@ -10,24 +10,31 @@ var bundle;
 var buttonA = document.getElementById("pollContainer").getElementsByTagName("button")[0];
 var buttonB = document.getElementById("pollContainer").getElementsByTagName("button")[1];
 
+var chosenButton;
+
+var onload = true;
+
 buttonA.onclick = function(evt) {
-	if (buttonA.getAttribute("iscorrect") === "true") {
-		document.getElementById('result').innerHTML = 'Congratulations!';
-		document.getElementById('score').value = document.getElementById('score').value * 1 + 1;
-	} else {
-		document.getElementById('result').innerHTML = 'Sorry!';
-	}
+	// if (buttonA.getAttribute("iscorrect") === "true") {
+	// 	document.getElementById('result').innerHTML = 'Congratulations!';
+	// 	document.getElementById('score').value = document.getElementById('score').value * 1 + 1;
+	// } else {
+	// 	document.getElementById('result').innerHTML = 'Sorry!';
+	// }
+
+	chosenButton = buttonA;
 	buttonA.disabled = true;
 	buttonB.disabled = true;
 }
 
 buttonB.onclick = function(evt) {
-	if (buttonB.getAttribute("iscorrect") === "true") {
-		document.getElementById('result').innerHTML = 'Congratulations!';
-		document.getElementById('score').value = document.getElementById('score').value * 1 + 1;
-	} else {
-		document.getElementById('result').innerHTML = 'Sorry!';
-	}
+	// if (buttonB.getAttribute("iscorrect") === "true") {
+	// 	document.getElementById('result').innerHTML = 'Congratulations!';
+	// 	document.getElementById('score').value = document.getElementById('score').value * 1 + 1;
+	// } else {
+	// 	document.getElementById('result').innerHTML = 'Sorry!';
+	// }
+	chosenButton = buttonB;
 	buttonA.disabled = true;
 	buttonB.disabled = true;
 }
@@ -43,8 +50,22 @@ connection.onopen = function(session){
 	/* Subscribe to .questions channel. This message is published
 	   when a new round of game starts. */
 	var onNewChoice = function(args) {
-		
-		bundle = args[0];
+		if (onload) {
+			loadNewChoice(args[0]);
+			onload = false;
+		} else {
+			setTimeout(function(){loadNewChoice(args[0])}, 3000);
+			
+			if (chosenButton.getAttribute("iscorrect") === "true") {
+				document.getElementById('result').innerHTML = 'Congratulations!';
+				document.getElementById('score').value = document.getElementById('score').value * 1 + 1;
+			} else {
+				document.getElementById('result').innerHTML = 'Sorry!';
+			}
+		}
+	}
+
+	function loadNewChoice(bundle) {
 		if (Math.random() >= 0.5) {
 			document.getElementById("choiceTextA").innerHTML = bundle.answer;
 			buttonA.setAttribute("iscorrect", "true");
@@ -60,8 +81,6 @@ connection.onopen = function(session){
 		buttonA.disabled = false;
 		buttonB.disabled = false;
 		document.getElementById('result').innerHTML = '';
-		// document.getElementById("pollsA").value = ansOptsCounter[0];
-		// document.getElementById("pollsB").value = ansOptsCounter[1];
 	}
 
 
