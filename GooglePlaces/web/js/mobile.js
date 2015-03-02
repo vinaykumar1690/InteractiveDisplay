@@ -28,6 +28,7 @@ connection.onopen = function (session) {
         document.getElementById("questionText").innerHTML = "Which city has more " + type;
         console.log('Updating place_type to ', type);
         document.getElementById("result").innerHTML = "";
+        answer_submitted = undefined;
     }
     session.subscribe("edu.cmu.ipd.types", onNewQuestion).then(
       function (sub) {
@@ -48,6 +49,7 @@ connection.onopen = function (session) {
                 console.log("Answer submission failed.", err);
             }
         );
+        document.getElementById("result").innerHTML = 'Your selection is '+answer;
     }
     document.getElementById("city-left").onclick = function (event) {
         answer_submitted = city_left;
@@ -72,12 +74,12 @@ connection.onopen = function (session) {
             // If answer is correct
             if (answer_submitted == city_correctAnswer)
             {
-                document.getElementById("result").innerHTML = "Correct!";
+                document.getElementById("result").innerHTML = answer_submitted+ " is Correct! ";
                 document.getElementById("result").style.color = "#3CB371"; // MediumSeaGreen 
             }
             else
             {
-                document.getElementById("result").innerHTML = "Nope...";
+                document.getElementById("result").innerHTML = "Nope... " +answer_submitted+ " is the wrong answer";
                 document.getElementById("result").style.color = "#B22222"; // FireBrick red
             }
         }
