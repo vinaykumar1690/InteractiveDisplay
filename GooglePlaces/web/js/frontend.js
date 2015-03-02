@@ -108,5 +108,6 @@ function createMarker_right(place) {
 function onNewType(args) {
     place_type = args[0];
     document.getElementById("question").innerHTML = place_type;
+    console.log('Updating place_type to ', place_type);
 }
 connection.open();
