@@ -89,6 +89,11 @@ connection.onopen = function(session) {
             else
                 winner = city_right;
             session.publish('edu.cmu.ipd.winner', [winner]);
+
+            document.getElementById("question").innerHTML = winner+ ' has more ' +place_type+ '!!';
+            document.getElementById('city-left').innerHTML = city_left+ ' : ' +left_res;
+            document.getElementById('city-right').innerHTML = city_right+ ' : ' +right_res;
+
             left_res = 0;
             right_res = 0;
             left_done = false;
@@ -155,15 +160,13 @@ connection.onopen = function(session) {
         document.getElementById("question").innerHTML = 'Which place has more <u>'+ place_type +'s</u>. <u>' +city_left+ '</u> or <u>' +city_right+ '</u>?';
         console.log('Updating place_type to ', place_type);
         setTimeout(requestResult, 15000);
+        document.getElementById('city-left').innerHTML = city_left;
+        document.getElementById('city-right').innerHTML = city_right;
     }
 
     /* Called only once to set the first question */
     onNewType([place_type]);
 
 }
-
-
-
-
 
 connection.open();
