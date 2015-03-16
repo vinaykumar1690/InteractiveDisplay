@@ -12,30 +12,46 @@ body
    position: relative;
 }
 
-div.part{
-  display: inline-block;
+/*#score {
+  width: 100%;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  font-size: 15vmin;
+  padding: 20px 0 30px;
+  transition: all 1s ease;
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
 }
 
-div.part_span {
-  margin-bottom: 4em;
-  font-size: 1.5em;
-}
+#score:hover {
+  background-color: #aaaaaa;
+}*/
+
 
 
 #pollContainer
 {
-
-   text-align: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
 }
+
+
+
+#pollContainer > div:first-child
+{
+  margin-top: 20vh;
+  width: 100%;
+  display: inline-block;
+}
+
 #pollContainer > div
 {
-   display: inline-block;
-   width: 16em;
+  margin-top: 5vh;
+  width: 100%;
+  display: inline-block;
 }
-/*#pollContainer > div > img
-{
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.3);
-}*/
+
 
 #pollContainer > div > span
 {
@@ -67,23 +83,22 @@ div.part_span {
 }
 
 
-#pollContainer > div > button
-{
-
-}
 
 button
 {
     background-color: #D4D0C8;
-
-    border: 1px solid rgb(196, 191, 181);
+    width: 60%;
+    height:4em;
+    border: 1vmin solid rgb(196, 191, 181);
+    border-radius: 4vmin;
     padding: 0.5em 1em;
     font-size: 20px;
     font-weight: normal;
     font-family: 'open_sansregular', sans-serif;
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.3), -1px 0 1px rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.3);
+    opacity: 0.94;
 }
+
 button:hover
 {
     background-color: rgb(196, 188, 173);
@@ -100,8 +115,16 @@ button:hover
 
 #demo_body
 {
-   width: 823px;
-   text-align: center;
+  width: 100%;
+  text-align: center;
+  height: 60%;
+  margin: 3vmin auto;
+  position: relative;
+  background-image: url("../image/embed-places-icon.png");
+  background-size: 89% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position-y: 3vh;
 }
 
 #codeFrame
@@ -217,8 +240,7 @@ web font */
 
 html {
    /*overflow-y: scroll;*/
-   min-height: 100%;
-   /*height: 100%;*/
+   height: 100%;
    width: 100%;
 }
 
@@ -292,35 +314,75 @@ header {
 
 #header_inner
 {
-   position: relative;
-   min-width: 960px;
-   max-width: 64%;
-   height: 100%;
-   margin:auto;
-   padding: 0;
-   color: #666;
-   text-align: right;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  color: #666;
 }
 
 #demo_title
 {
-   font-size: 27px;
-   font-weight: bold;
-   color: rgb(95, 95, 95);
-   display: inline-block;
-   text-align: right;
-   line-height: 11px;
-   padding-top: 32px;
+  font-weight: bold;
+  color: rgb(95, 95, 95);
+  display: inline-block;
+  line-height: 11px;
+  width: 100%;
+  height: 100%;
 }
-#demo_title > span
+
+#demo_title > #api_title
 {
-   display: block;
+  display: inline-block;
+  font-size: 2em;
+  margin-left: 4vw;
+  padding-top: 7vh;
+  font-size: 2em;
 }
-#demo_title > span:first-child
+
+
+#demo_title > #field
 {
-   font-size: 45px;
-   line-height: 38px;
+  display: inline-block;
+  position: absolute;
+  right: 4vw;
+  width: 40vw;
+  line-height: 4vh;
+  text-align: left;
+  padding-top: 4.5vh;
 }
+
+#demo_title > #field > div
+{
+  display: inline-block;
+  font-size: 3vh;
+  line-height: 3vh;
+  text-align: left;
+}
+
+/*#user_name_field
+{
+  position: absolute;
+  right:0vw;
+}
+
+#score_field
+{
+  position: absolute;
+  right:0vw;
+}
+
+#user_name_value
+{
+  position: absolute;
+  left:0vw;
+}
+
+#score_value
+{
+  position: absolute;
+  left:0vw;
+}*/
+
 
 .navbar-brand {
     position: absolute;
@@ -347,29 +409,6 @@ header {
 .navbar-brand > span > span:last-of-type {
   font-family: 'Play', sans-serif;
   color: rgb(240, 240, 240);
-}
-
-.demo_links
-{
-   text-align: center;
-}
-.demo_links > div > a
-{
-   padding: 0 2em 0 0;
-   font-size: 19px;
-   text-decoration: none;
-   color: #f60;
-   color: #d0b800;
-}
-
-
-#demo_body,
-.demo_links
-{
-   width: 850px;
-   height: 100%;
-   margin: 4em auto;
-   position: relative;
 }
 
 .notextselect {
