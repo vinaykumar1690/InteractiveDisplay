@@ -5,10 +5,10 @@ var connection = new autobahn.Connection({
 	realm: 'realm1'
 })
 
-var city_left = "Mountain View";
-var city_right = "Palo Alto";
-var location_left = new google.maps.LatLng(37.3944, -122.0759); // Mountain View
-var location_right = new google.maps.LatLng(37.4292, -122.1381); // Palo Alto
+var city_left = "Beijing";
+var city_right = "New York";
+var location_left = new google.maps.LatLng(39.9053, 116.3709); // Mountain View
+var location_right = new google.maps.LatLng(40.7033, -73.9796); // Palo Alto
 var map_left;
 var map_right;
 var left_res = 0;
