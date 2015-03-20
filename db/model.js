@@ -1,6 +1,8 @@
 var dbdriver = require('./dbdriver');
 
 
+// Create a new user profile in CouchDB.
+// If the userName is duplicate, a random number is appended.
 exports.createUser = function(userName) {
 
 	var obj = JSON.stringify({
@@ -11,7 +13,8 @@ exports.createUser = function(userName) {
 		if (res.statusCode === 201) {
 			console.log("Create a new user");
 		} else if (res.statusCode === 409) { //Conflict
-			dbdriver.transaction('users', userName + Math.floor((Math.random() * 100) + 1), 'PUT', obj, onResponse, onReqError);
+			dbdriver.transaction('users', userName + Math.floor((Math.random() * 100) + 1),
+			 'PUT', obj, onResponse, onReqError);
 		}
 	}
 

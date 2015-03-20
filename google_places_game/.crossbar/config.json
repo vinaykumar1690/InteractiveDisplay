@@ -29,7 +29,7 @@
                "type": "web",
                "endpoint": {
                   "type": "tcp",
-                  "port": 8080
+                  "port": 80
                },
                "paths": {
                   "/": {
@@ -44,16 +44,16 @@
          ]
       },
       {
-          "type": "guest",
-          "executable": "node",
-          "arguments": ["backend.js"],
-          "options": {
-              "workdir": "../node",
-              "watch": {
-                  "directories": ["../node"],
-                  "action": "restart"
-              }
-          }
+         "type": "guest",
+         "executable": "node",
+         "arguments": ["backend.js"],
+         "options": {
+            "workdir": "../node",
+            "watch": {
+               "directories": ["../node"],
+               "action": "restart"
+            }
+         }
       }
    ]
 }
