@@ -4,7 +4,7 @@
 
 body
 {
-   font-family: 'Open Sans', sans-serif;  
+   font-family: 'Comic Sans MS', cursive, sans-serif;  
    font-size: 14px;
    padding: 0;
    margin: 0;
@@ -133,9 +133,9 @@ button
     border: 1vmin solid rgb(196, 191, 181);
     border-radius: 4vmin;
     padding: 0.5em 1em;
-    font-size: 20px;
+    font-size: 2em;
     font-weight: normal;
-    font-family: 'open_sansregular', sans-serif;
+    font-family: 'Comic Sans MS', cursive, sans-serif;  
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.3), -1px 0 1px rgba(255, 255, 255, 0.5);
     opacity: 0.94;
 }
@@ -280,7 +280,7 @@ body {
    background-repeat: no-repeat;
    background-attachment: fixed;
 
-   font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+   font-family: 'Comic Sans MS', cursive, sans-serif;  
    font-size: 16px;
    line-height: 1.428571429;
    background-color: #fcfcfc;
@@ -387,11 +387,12 @@ header {
   text-align: left;
 }
 
-#login
+#login 
 {
-  height:2em; 
+  height: 9vmax;
   border: 1vmin solid rgb(196, 191, 181);
   border-radius: 4vmin;
+  font-size: 6vw;
 }
 
 /*#user_name_field
@@ -532,6 +533,7 @@ input[type=text]
   font-size: 5vmin;
   width: 100%;
   opacity: 0.94;
+  font-family: 'Comic Sans MS', cursive, sans-serif;  
 }
 
 input[type=text]:focus 
