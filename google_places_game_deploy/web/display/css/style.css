@@ -64,15 +64,6 @@ img.qr_code {
     font-weight: bold;
 }
 
-div.map_canvas {
-    position: absolute;
-    display: inline-block;
-    height: 100%;
-    width: 60%;
-    margin: 0;
-    padding: 0;
-}
-
 img.GoogleLogo {
     position: absolute;
     bottom: 0px;
@@ -104,7 +95,14 @@ div#right_panel {
     margin: 0;
     padding: 0;
 }
-
+div#map_canvas {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 60%;
+    margin: 0;
+    padding: 0;
+}
 div.panel_banner {
     background-color: #fddf71;
     text-align: center;
