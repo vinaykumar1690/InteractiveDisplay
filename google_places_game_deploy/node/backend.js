@@ -31,19 +31,24 @@ connection.onopen = function(session){
  */
 var createUser = function(session) {
 	
-	var onCreatedUser = function(appliedUserName) {
-		session.publish('edu.cmu.ipd.users.onCreatedUser', [appliedUserName]);
+	var onCreatedUser = function(token) {
+		var userNameToken = token;
+		return function(appliedUserName) {
+			session.publish('edu.cmu.ipd.users.onCreatedUser', [userNameToken, appliedUserName]);
+		}
 	}
 
+	var userToken = 0;
 	return function (args) {
+		userToken++;
 		console.log('[backend] createUser: called');
 		try {
-			model.createUser(args[0], onCreatedUser);
+			model.createUser(args[0], onCreatedUser(userToken));
 		} catch (err) {
 			console.log(err.message);
 		}
 		console.log('[backend] createUser: finished');
-		return [1];
+		return [userToken];
 	}
 }
 
