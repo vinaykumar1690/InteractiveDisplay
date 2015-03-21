@@ -1,45 +1,47 @@
-var autobahn = require('autobahn');
+//var autobahn = require('autobahn');
 
 var connection = new autobahn.Connection({
-	url: 'ws://127.0.0.1:8080/ws',
-	realm: 'realm1'
+    url: 'ws://127.0.0.1:8080/ws',
+    realm: 'realm1'
 })
 
+var map;
+var city1 = "Beijing";
+var city2 = "New York";
+var loc1  = new google.maps.LatLng(39.9388, 116.3974); // Beijing
+var loc2  = new google.maps.LatLng(40.7033, -73.9796); // New York
 
-
+var marker1 = new google.maps.Marker({
+    position: loc1
+});
+var marker2 = new google.maps.Marker({
+    position: loc2
+});
+var info1 = new google.maps.InfoWindow({
+    content: "Beijing"
+});
+var info2 = new google.maps.InfoWindow({
+    content: "New York"
+});
+var place_type = "bar";
 
 function initialize() {
-	var city_left = "Beijing";
-	var city_right = "New York";
+    var location = new google.maps.LatLng(45, 0);
 
-	var map;
-	var location = new google.maps.LatLng(0,0); // Mountain View
-	// var location_right = new google.maps.LatLng(40.7033, -73.9796); // Palo Alto
-	// var map_left;
-	// var map_right;
-
-	var left_res = 0;
-	var right_res = 0;
-	var left_done = false;
-	var right_done = false;
-	var place_type = "bar";
-	var marker_right = [];
-	var marker_left = [];
-
- 	// MAP
- 	var mapOptions = {
- 	center: location,
- 	zoom: 2
- }
+    // MAP
+    var mapOptions = {
+        center: location,
+        zoom: 2
+    }
 
     // Show the map HTML
     map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-    	map: map,
-    	position: place.geometry.location
-    });
+    marker1.setMap(map);
+    marker2.setMap(map);
+
+    info1.open(map, marker1);
+    info2.open(map, marker2);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
