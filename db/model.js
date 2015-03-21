@@ -12,7 +12,7 @@ exports.createUser = function(userName, callback) {
 	var appliedUserName = userName;
 	var onResponse = function(res) {
 		if (res.statusCode === 201) {
-			// console.log("Create a new user: " + appliedUserName);
+			console.log("Create a new user: " + appliedUserName);
 			callback(appliedUserName);
 		} else if (res.statusCode === 409) { //Conflict
 			appliedUserName = userName + (Math.floor(Math.random() * 100)+1);

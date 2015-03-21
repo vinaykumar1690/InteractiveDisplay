@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="img/favicon.ico">
-    <title>Game</title>
+    <title>Log in</title>
     <link rel="stylesheet" href="css/device.css">
     <script src="js/autobahn.min.jgz"></script>
   </head>
@@ -16,10 +16,6 @@
         <!-- <div id="demo_title"><span>Quiz</span></div> -->
         <div id="demo_title">
           <div id = "api_title">Game</div>
-          <div id = "field">
-            <div id = "user_name">Player: Jeremy</div>
-            <div id = "score">Score: 50</div>
-          </div>
         </div>
       </div>
     </header>
@@ -27,11 +23,11 @@
     <div id="demo_body" >
       <div id="pollContainer" align="center">
         <div class="part">  
-          <button id="A" iscorrect = "" >Choose</button>
+          <input type="text" id="username" placeholder="Your name"></input>
         </div>
 
         <div class="part">
-          <button id="B" iscorrect = "" >Choose</button>
+          <button id="login">Join</button>
         </div>
         
 
@@ -40,6 +36,6 @@
 
     </div>
     <script>AUTOBAHN_DEBUG = true;</script>
-    <script src="js/frontend.client.js"></script>
+    <script src="js/device.js"></script>
   </body>
 </html>
