@@ -5,6 +5,8 @@ var when = require('when');
 
 var model = require('../../db/model.js');
 
+var question = require('./cities_and_types.js');
+
 var connection = new autobahn.Connection({
 	url: 'ws://127.0.0.1:80/ws',
 	realm: 'realm1'
@@ -51,5 +53,35 @@ var createUser = function(session) {
 		return [userToken];
 	}
 }
+
+/*
+Generate a question and publish to frontend (display)
+*/
+   
+    // Publish the question
+    var requestQuestion = function(args) {
+        // session.publish('edu.cmu.ipd.types', [types.getRandom()]);
+        session.publish('edu.cmu.ipd.question', [question.getQuestion()]);
+    }
+
+    session.subscribe("edu.cmu.ipd.reqQuestion", requestQuestion).then(
+      function (sub) {
+         console.log('subscribed to .reqQuestion');
+      },
+      function (err) {
+         console.log('failed to subscribe to .reqQuestion', err);
+      });
+    
+ 	var requestResult = function(args) {
+        //typeTimer = setTimeout(issueType, 5000);
+        var result = {};
+    }
+    session.register('edu.cmu.ipd.reqResult', requestResult).then(
+    function (reg) {
+       console.log('reqResult registered');
+    },
+    function (err) {
+       console.log('failed to register reqResult', err);
+    });
 
 connection.open();
