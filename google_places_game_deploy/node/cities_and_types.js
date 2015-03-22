@@ -22,12 +22,12 @@ var cities = [
 {name: "Tokyo", lat: 35.6833, lng: 139.6833},
 {name: "Delhi", lat: 28.6139, lng: 77.2090},
 {name: "Shanghai", lat: 31.2000, lng: 121.5000},
-{name: "New York", lat: 40.7127, lng: -74.0059},
+{name: "New York City", lat: 40.7127, lng: -74.0059},
 {name: "Chicago", lat: 41.8369, lng: -87.6847},
 {name: "Paris", lat: 48.8567, lng: 2.3508},
 {name: "Mumbai", lat: 18.9750, lng: 72.8258},
-{name: "Sydney", lat: 33.8667, lng: 151.2000},
-{name: "Sao Paulo", lat: 23.5500, lng: -46.6333},
+{name: "Sydney", lat: -33.8667, lng: 151.2094},
+{name: "Sao Paulo", lat: -23.5500, lng: -46.6333},
 {name: "Rome", lat: 41.9000, lng: 12.5000},
 ];
 /* Supported place search */
