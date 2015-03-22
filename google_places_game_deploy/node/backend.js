@@ -54,14 +54,16 @@ var createUser = function(session) {
 	}
 }
 
+
+
+
 /*
-Generate a question and publish to frontend (display)
-*/
+ * Generate a question and publish to frontend (display)
+ */
    
     // Publish the question
     var requestQuestion = function(args) {
         // session.publish('edu.cmu.ipd.types', [types.getRandom()]);
-        session.publish('edu.cmu.ipd.question', [question.getQuestion()]);
     }
 
     session.subscribe("edu.cmu.ipd.reqQuestion", requestQuestion).then(

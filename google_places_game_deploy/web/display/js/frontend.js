@@ -26,6 +26,7 @@ var info2 = new google.maps.InfoWindow({
 var place_type = "bar";
 
 function initialize() {
+    
     var location = new google.maps.LatLng(45, 0);
 
     // MAP
@@ -43,6 +44,7 @@ function initialize() {
     info1.open(map, marker1);
     info2.open(map, marker2);
 }
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
