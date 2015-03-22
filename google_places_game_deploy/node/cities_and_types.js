@@ -34,7 +34,7 @@ var cities = [
 var types = [
 "airport", "amusement_park", "aquarium", "art_gallery",
 "atm", "bakery", "bank", "bar", "beauty_salon",
-"bicycle_store", "book_store", "bowling_alley", "bus_station, cafe",
+"bicycle_store", "book_store", "bowling_alley", "bus_station", "cafe",
 "campground", "car_dealer", "car_rental", "car_repair", "car_wash",
 "casino", "city_hall", "clothing_store",
 "convenience_store", "dentist", "department_store",
