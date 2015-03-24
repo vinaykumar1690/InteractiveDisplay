@@ -1,4 +1,4 @@
-//var autobahn = require('autobahn');
+// var autobahn = require('autobahn');
 
 var connection = new autobahn.Connection({
     url: 'ws://127.0.0.1:80/ws',
@@ -18,6 +18,25 @@ var info2;
 var place_type;
 
 connection.onopen = function(session) {
+    var location = new google.maps.LatLng(40, 0);
+    // MAP
+    var mapOptions = {
+        center: location,
+        zoom: 2
+    }
+
+    // Show the map HTML
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+    var divCountdownClock = document.createElement('div');
+    divCountdownClock.id = 'Countdown_clock';
+
+    var spanNumberCountdown = document.createElement('span');
+    spanNumberCountdown.id = 'numberCountdown';
+    divCountdownClock.appendChild(spanNumberCountdown);
+
+    document.getElementById('map_canvas').appendChild(divCountdownClock);
+
     reqQA(session);
 }
 
@@ -32,15 +51,6 @@ function reqQA(session) {
 var showQuesion = function (args) {
     bundle = args[0];
     //var answer = args[1];
-    
-    var location = new google.maps.LatLng(40, 0);
-    // MAP
-    var mapOptions = {
-        center: location,
-        zoom: 2
-    }
-    // Show the map HTML
-    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
     var place_type = bundle.place_type;
     var city1 = bundle.options[0];
@@ -70,12 +80,30 @@ var showQuesion = function (args) {
 
     document.getElementById("question").innerHTML = 'Which place has more '+ place_type +'s ' +city1.name+ ' or ' +city2.name+ '?';
 
+    var coundownID = setInterval(startCountdown, 1000);
+    setTimeout(stopCountdown(coundownID), 5000);
+
 }
 
-var showAnswer = function(session) {
-    console.log('showAnswer');
-    setTimeout(reqQA, 5000, session);
+// var showAnswer = function(session) {
+//     console.log('showAnswer');
+//     setTimeout(reqQA, 5000, session);
+// };
+
+var g_iCount = 6;
+var startCountdown = function() {
+    if((g_iCount - 1) >= 0){
+       g_iCount = g_iCount - 1;
+       document.getElementById("numberCountdown").innerHTML = g_iCount;
+       // setTimeout('startCountdown()',1000);
+    }   
 };
+
+var stopCountdown = function(coundownID) {
+    return function() {
+        clearInterval(coundownID);
+    }
+}
 
 connection.open();
 
