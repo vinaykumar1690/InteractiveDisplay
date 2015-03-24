@@ -36,9 +36,17 @@ connection.onopen = function(session){
             console.log('error:', err.error, err.args, err.kwargs);
          });
    }
-
    document.getElementById('login').disabled = false;
 
+   session.subscribe("edu.cmu.ipd.rounds.newRound", onDisplayOptions).then(
+      function (sub) {
+         console.log('subscribed to topic');
+         subscribeHandler = sub;
+      },
+      function (err) {
+         console.log('failed to subscribe to topic', err);
+      }
+   );
 }
 
 /*
@@ -94,11 +102,24 @@ var onCreatedUser = function(args) {
             console.log('failed to unsubscribe .users.onCreatedUser');
          });
    }
-   
-
-
 }
 
+/*
+ * Display the options on device UI.
+ */
+var onDisplayOptions = function(args) {
+   var cities = args[0].options; 
+   var city1;
+   var city2;
+
+   if (cities.length == 2 ){
+      city1 = cities[0];
+      city2 = cities[1];
+   
+   document.getElementById("buttonA").innerHTML = city1;
+   document.getElementById("buttonB").innerHTML = city2;
+   }
+} // end onDisplayOptions
 
 
 connection.open();
