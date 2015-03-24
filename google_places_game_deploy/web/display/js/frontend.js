@@ -1,7 +1,7 @@
 //var autobahn = require('autobahn');
 
 var connection = new autobahn.Connection({
-    url: 'ws://127.0.0.1:8080/ws',
+    url: 'ws://127.0.0.1:80/ws',
     realm: 'realm1'
 })
 
@@ -11,201 +11,153 @@ var city2 = "New York";
 var loc1  = new google.maps.LatLng(39.9388, 116.3974); // Beijing
 var loc2  = new google.maps.LatLng(40.7033, -73.9796); // New York
 
-var marker1 = new google.maps.Marker({
-    position: loc1
-});
-var marker2 = new google.maps.Marker({
-    position: loc2
-});
-var info1 = new google.maps.InfoWindow({
-    content: "Beijing"
-});
-var info2 = new google.maps.InfoWindow({
-    content: "New York"
-});
-var place_type = "bar";
+var marker1;
+var marker2;
+var info1;
+var info2;
+var place_type;
 
-function initialize() {
-    
-    var location = new google.maps.LatLng(45, 0);
-
-    // MAP
-    var mapOptions = {
-        center: location,
-        zoom: 2
-    }
-
-    // Show the map HTML
-    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-
-    marker1.setMap(map);
-    marker2.setMap(map);
-
-    info1.open(map, marker1);
-    info2.open(map, marker2);
+connection.onopen = function(session) {
+    reqQA(session);
 }
 
+function reqQA(session) {
+    session.call("edu.cmu.ipd.game.reqQA", []).then(
+    function (args) {
+        var question = args[0];
+        //var answer = args[1];
+        
+        var location = new google.maps.LatLng(40, 0);
+        // MAP
+        var mapOptions = {
+            center: location,
+            zoom: 2
+        }
+        // Show the map HTML
+        map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-google.maps.event.addDomListener(window, 'load', initialize);
+        var place_type = question.place_type;
+        var city1 = question.city1;
+        var city2 = question.city2;
 
-// connection.onopen = function(session) {
+        var loc1  = new google.maps.LatLng(city1.lat, city1.lng); 
+        var loc2  = new google.maps.LatLng(city2.lat, city2.lng); 
+        
+        marker1 = new google.maps.Marker({
+            position: loc1
+        });
+        marker2 = new google.maps.Marker({
+            position: loc2
+        });
+        info1 = new google.maps.InfoWindow({
+            content: city1.name
+        });
+        info2 = new google.maps.InfoWindow({
+            content: city2.name
+        });
+        
+        marker1.setMap(map);
+        marker2.setMap(map);
 
-// 	console.log("frontend connected.");
+        info1.open(map, marker1);
+        info2.open(map, marker2);
 
-//     // MAP
-//     var mapOptions = {
-//         center: new google.maps.LatLng(0,0), //
-//         zoom: 15
-//     }
+        document.getElementById("question").innerHTML = 'Which place has more '+ place_type +'s ' +city1.name+ ' or ' +city2.name+ '?';
 
-//     // Show the map HTML
-//     map = new google.maps.Map(document.getElementById('map_canvas')), mapOptions);
+    },
+    function (err) {
+        console.log('err:' + err.message);
+    });
 
+    setTimeout(showAnswer, 10000, session);
+}
 
-//     // // MAP_LEFT
-//     // var mapOptions_left = {
-//     //     center: location_left,
-//     //     zoom: 15
-//     // };
+var showAnswer = function(session) {
+    console.log('showAnswer');
+    setTimeout(reqQA, 5000, session);
+};
 
-//     // // Show the map and header on HTML
-//     // map_left = new google.maps.Map(document.getElementById('map-canvas-left'),
-//     //     mapOptions_left);
-//     // document.getElementById('city-left').innerHTML = city_left;
+connection.open();
 
-//     // // MAP_RIGHT
-//     // var mapOptions_right = {
-//     //     center: location_right,
-//     //     zoom: 15
-//     // };
+/*
+    function testOnNewQuestion() {
 
-//     // // Show the map and header on HTML
-//     // map_right = new google.maps.Map(document.getElementById('map-canvas-right'),
-//     //     mapOptions_right);
-//     // document.getElementById('city-right').innerHTML = city_right;
+    var result1;
+    var result2;
+        var res1_done = false;
+        var res2_done = false;
 
-//     function requestResult() {
+        var city1 = {
+            name: 'New York',
+            lat: 40.7033,
+            lng: -73.9796
+        }
+        var city2 = {
+            name: 'Beijing',
+            lat: 39.9388,
+            lng: 116.3974
+        }
+        var question = {
+            place_type: 'bar',
+            city1: city1,
+            city2: city2
+        }
 
-//         // A search request for PlacesService.nearbySearch
-//         var request_left = {
-//           location: location_left,
-//           radius: 1000, // In meters, 1 kilometer
-//           types: [place_type] // Types of place to search
-//         }
-//         // Run the request
-//         var svrs_left = new google.maps.places.PlacesService(map_left);
-//         svrs_left.nearbySearch(request_left, callback_left);
+    // A search request for PlacesService.nearbySearch
+    var request1 = {
+      location: new google.maps.LatLng(city1.lat, city1.lng),
+      radius: 1000, // In meters, 1 kilometer
+      types: [place_type] // Types of place to search
+    }
+    // Run the request
+    var svrs1 = new google.maps.places.PlacesService(map);
+    svrs1.nearbySearch(request1, callback1);
 
-//         // A search request for PlacesService.nearbySearch
-//         var request_right = {
-//           location: location_right,
-//           radius: 1000, // In meters, 1 kilometer
-//           types: [place_type] // Types of place to search
-//         }
-//         // Run the request
-//         var svrs_right = new google.maps.places.PlacesService(map_right);
-//         svrs_right.nearbySearch(request_right, callback_right);
+    // result is of type <google.maps.places.PlaceResult>
+    // A callback function for nearbySearch
+    function callback1(res, status) {
+        res1_done = true;
+        result1 = res;
+    }
 
-//     }
+     // A search request for PlacesService.nearbySearch
+    var request2 = {
+      location: new google.maps.LatLng(city2.lat, city2.lng),
+      radius: 1000, // In meters, 1 kilometer
+      types: [place_type] // Types of place to search
+    }
+    // Run the request
+    var svrs2 = new google.maps.places.PlacesService(map);
+    svrs2.nearbySearch(request1, callback2);
 
-//     function requestQuestion() {
-//         session.publish('edu.cmu.ipd.reqQuestion', []);
-//         console.log('requested for a new question');
-//         /* delete all markers in the map */
-//         for (var i = 0; i < marker_left.length; i++) {
-//             marker_left[i].setMap(null);
-//         }
-//         for (var i = 0; i < marker_right.length; i++) {
-//             marker_right[i].setMap(null);
-//         }
-//     }
+    // result is of type <google.maps.places.PlaceResult>
+    // A callback function for nearbySearch
+    function callback2(res, status) {
+        res2_done = true;
+        result2 = res;
 
-//     function sendResult() {
-//         if (left_done && right_done) {
-//             var winner = "";
-//             if (left_res >= right_res)
-//                 winner = city_left;
-//             else
-//                 winner = city_right;
-//             session.publish('edu.cmu.ipd.winner', [winner]);
+    }
 
-//             document.getElementById("question").innerHTML = winner+ ' has more ' +place_type+ '!!';
-//             document.getElementById('city-left').innerHTML = city_left+ ' : ' +left_res;
-//             document.getElementById('city-right').innerHTML = city_right+ ' : ' +right_res;
+    while (res1_done && res2_done);
+    res1_done = false;
+    res2_done = false;
 
-//             left_res = 0;
-//             right_res = 0;
-//             left_done = false;
-//             right_done = false;
-//             setTimeout(requestQuestion, 5000);
-//         } else {
-//             console.log('Waiting for both results.');
-//         }
-//     }
+            if (result1.length > result2.length) {
+            answer = {
+                markers: result1,
+                city: city1
+            }
+        } else {
+            answer = {
+                markers: result2,
+                city: city2
+            }
+        } 
+            onNewQuestion([question, answer]);
+    
+    }
 
-//     // result is of type <google.maps.places.PlaceResult>
-//     // A callback function for nearbySearch
-//     function callback_left(res, status) {
-//         left_res = res.length;
-//         left_done = true;
-//         if (status == google.maps.places.PlacesServiceStatus.OK) {
-//             for (var i = 0; i < res.length; i++) {
-//                 createMarker_left(res[i]);
-//             }
-//         }
-//         sendResult();
-//     }
+    setTimeout(testOnNewQuestion, 10000);
 
-//     // Create the location marker for each place.
-//     function createMarker_left(place) {
-//         var loc = place.geometry.location;
-//         var marker = new google.maps.Marker({
-//             map: map_left,
-//             position: loc
-//         });
-//         marker_left.push(marker);
-//     }
-
-//     function callback_right(res, status) {
-//         right_res = res.length;
-//         right_done = true;
-//         if (status == google.maps.places.PlacesServiceStatus.OK) {
-//             for (var i = 0; i < res.length; i++) {
-//                 createMarker_right(res[i]);
-//             }
-//         }
-//         sendResult();
-//     }
-
-//     function createMarker_right(place) {
-//         var loc = place.geometry.location;
-//         var marker = new google.maps.Marker({
-//             map: map_right,
-//             position: loc
-//         });
-//         marker_right.push(marker);
-//     }
-
-//     session.subscribe("edu.cmu.ipd.types", onNewType).then(
-//       function (sub) {
-//          console.log('subscribed to .types');
-//       },
-//       function (err) {
-//          console.log('failed to subscribe to .types', err);
-//       });
-
-//     function onNewType(args) {
-//         place_type = args[0];
-//         document.getElementById("question").innerHTML = 'Which place has more <u>'+ place_type +'s</u>. <u>' +city_left+ '</u> or <u>' +city_right+ '</u>?';
-//         console.log('Updating place_type to ', place_type);
-//         setTimeout(requestResult, 15000);
-//         document.getElementById('city-left').innerHTML = city_left;
-//         document.getElementById('city-right').innerHTML = city_right;
-//     }
-
-//     /* Called only once to set the first question */
-//     onNewType([place_type]);
-
-// }
-
-// connection.open();
+}
+*/

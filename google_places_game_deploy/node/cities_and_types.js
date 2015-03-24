@@ -54,13 +54,13 @@ var types = [
 "veterinary_care", "zoo"
 ];
 
-/* Make a question */
-var question = {
-	city1: cities.getRandom(),
-	city2: cities.getRandom(),
-	type: types.getRandom()
-}
 
 exports.getQuestion = function(){
+    /* Make a question */
+    var question = {
+        city1: cities.getRandom(),
+        city2: cities.getRandom(),
+        place_type: types.getRandom()
+    }
 	return question;
 }
