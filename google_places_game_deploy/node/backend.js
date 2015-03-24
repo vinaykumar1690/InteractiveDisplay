@@ -99,7 +99,7 @@ var question = function(session) {
           
           var generateBundle = function(qBundle, apiResultBundle) {
             var ret = {};
-            ret.place_type = qBundle.place_type;
+            ret.place_type = qBundle.place_type.display_name;
             ret.options = [qBundle.city1, qBundle.city2];
             if (apiResultBundle.option0 < apiResultBundle.option1) {
               ret.answer = qBundle.city2.name;
@@ -165,8 +165,8 @@ var question = function(session) {
     }
     
     
-    answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.place_type, onResponse, onError, null);
-    answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.place_type, onResponse, onError, null);
+    answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
+    answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
   }
 }
 

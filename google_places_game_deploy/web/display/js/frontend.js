@@ -96,7 +96,7 @@ var showQuesion = function (args) {
     document.getElementById("question").innerHTML = 'Which place has more '+ place_type +'s ' +city1.name+ ' or ' +city2.name+ '?';
 
     setTimeout(function() {
-        coundownID = setInterval(startCountdown, 1000);
+        coundownID = setInterval(startCountdown(), 1000);
     }, 13000);
     setTimeout(stopCountdown(coundownID), 20000);
 
@@ -107,13 +107,17 @@ var showQuesion = function (args) {
 //     setTimeout(reqQA, 5000, session);
 // };
 
-var g_iCount = 6;
+
 var startCountdown = function() {
-    if((g_iCount - 1) >= 0){
-       g_iCount = g_iCount - 1;
-       document.getElementById("numberCountdown").innerHTML = g_iCount;
-       // setTimeout('startCountdown()',1000);
-    }   
+    
+    var g_iCount = 6;
+    
+    return function() {
+        if((g_iCount - 1) >= 0){
+           g_iCount = g_iCount - 1;
+           document.getElementById("numberCountdown").innerHTML = g_iCount;
+        }   
+    }
 };
 
 var stopCountdown = function(coundownID) {
