@@ -107,6 +107,24 @@ var onCreatedUser = function(args) {
          console.log("answer submitted: " + buttonB.innerHTML);
       }
 
+      var divAlert = document.createElement('div');
+      divAlert.className = 'alert alert-success';
+      divAlert.setAttribute('style', 'margin-top:1.5em');
+
+      var aHref = document.createElement('a');
+      aHref.setAttribute('href', '#');
+      aHref.className = 'close';
+      aHref.setAttribute('data-dismiss', 'alert'),
+      aHref.innerHTML = '&times;';
+
+      var strongTag =  document.createElement('strong');
+      strongTag.innerHTML = 'Success!';
+
+      divAlert.appendChild(aHref);
+      divAlert.appendChild(strongTag);
+      divAlert.innerHTML = divAlert.innerHTML + '  Your user name is ' + appliedUserName
+      document.getElementById('demo_body').appendChild(divAlert);
+
       sessionHandler.unsubscribe(subscribeHandler).then(
          function(res) {
             console.log('unsubscribe .users.onCreatedUser');
@@ -114,6 +132,10 @@ var onCreatedUser = function(args) {
          function(err) {
             console.log('failed to unsubscribe .users.onCreatedUser');
          });
+
+      setTimeout(function() {
+         document.getElementById('demo_body').removeChild(divAlert);
+      }, 5000);
    }
 }
 

@@ -164,7 +164,7 @@ var question = function(session) {
       console.log('err');
     }
     
-    
+    console.log('full name: ' + question.place_type.full_name);
     answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
     answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
   }
