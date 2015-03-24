@@ -101,6 +101,7 @@ var question = function(session) {
             var ret = {};
             ret.place_type = qBundle.place_type.display_name;
             ret.options = [qBundle.city1, qBundle.city2];
+            ret.statistics = [apiResultBundle.option0, apiResultBundle.option1];
             console.log('option0: ' + apiResultBundle.option0, 'option1: ' + apiResultBundle.option1);
             if (apiResultBundle.option0 < apiResultBundle.option1) {
               console.log('answer is option1');
