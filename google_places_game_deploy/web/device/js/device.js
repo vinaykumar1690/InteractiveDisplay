@@ -146,11 +146,50 @@ var onDisplayOptions = function(args) {
 
    if (answerSubmitted !== null && answerLastRound !== null) {
       if (answerSubmitted === answerLastRound){
-         alert('Congratulations!')
+         
+         var divAlert = document.createElement('div');
+         divAlert.className = 'alert alert-success';
+         divAlert.setAttribute('style', 'margin-top:1.5em');
+
+         var aHref = document.createElement('a');
+         aHref.setAttribute('href', '#');
+         aHref.className = 'close';
+         aHref.setAttribute('data-dismiss', 'alert'),
+         aHref.innerHTML = '&times;';
+
+         var strongTag =  document.createElement('strong');
+         strongTag.innerHTML = 'Congratulations!';
+
+         divAlert.appendChild(aHref);
+         divAlert.appendChild(strongTag);
+         // divAlert.innerHTML = divAlert.innerHTML + '  Your user name is ' + appliedUserName
+         document.getElementById('demo_body').appendChild(divAlert);
+         setTimeout(function() {
+         document.getElementById('demo_body').removeChild(divAlert);
+      }, 5000);
          answerSubmitted = null;
          score += 10;
       } else {
-         alert('Sorry. The correct answer is ' + answerLastRound);
+         var divAlert = document.createElement('div');
+         divAlert.className = 'alert alert-warning';
+         divAlert.setAttribute('style', 'margin-top:1.5em');
+
+         var aHref = document.createElement('a');
+         aHref.setAttribute('href', '#');
+         aHref.className = 'close';
+         aHref.setAttribute('data-dismiss', 'alert'),
+         aHref.innerHTML = '&times;';
+
+         var strongTag =  document.createElement('strong');
+         strongTag.innerHTML = 'Sorry!';
+
+         divAlert.appendChild(aHref);
+         divAlert.appendChild(strongTag);
+         divAlert.innerHTML = divAlert.innerHTML + '  The correct answer is ' + answerLastRound;
+         document.getElementById('demo_body').appendChild(divAlert);
+         setTimeout(function() {
+         document.getElementById('demo_body').removeChild(divAlert);
+      }, 5000);
          answerSubmitted = null;
          score = Math.max(0, score - 5);
       }

@@ -101,10 +101,13 @@ var question = function(session) {
             var ret = {};
             ret.place_type = qBundle.place_type.display_name;
             ret.options = [qBundle.city1, qBundle.city2];
+            console.log('option0: ' + apiResultBundle.option0, 'option1: ' + apiResultBundle.option1);
             if (apiResultBundle.option0 < apiResultBundle.option1) {
+              console.log('answer is option1');
               ret.answer = qBundle.city2.name;
             } else {
               ret.answer = qBundle.city1.name;
+              console.log('answer is option0');
             }
             return ret;
           }
@@ -125,8 +128,8 @@ var question = function(session) {
               responseBody = JSON.parse(responseBody);
             } catch (e) {
               console.log(e);
-              answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.place_type, onResponse, onError, null);
-              answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.place_type, onResponse, onError, null);
+              answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
+              answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
               return;
             }
             if (opt === 0) {
