@@ -52,9 +52,9 @@ var createUser = function(session) {
 	var userToken = 0;
 	return function (args) {
 		userToken++;
-		console.log('[backend] createUser: called');
+		console.log('[backend] createUser: called with input{' + args[0] + '}');
 		try {
-			model.createUser(args[0], onCreatedUser(userToken));
+			model.createUser(args[0].trim(), onCreatedUser(userToken));
 		} catch (err) {
 			console.log(err.message);
 		}
