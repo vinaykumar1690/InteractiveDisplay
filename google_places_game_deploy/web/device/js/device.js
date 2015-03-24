@@ -114,8 +114,8 @@ var onDisplayOptions = function(args) {
    var city2;
 
    if (cities.length === 2 ){
-      city1 = cities[0];
-      city2 = cities[1];
+      city1 = cities[0].name;
+      city2 = cities[1].name;
    
    document.getElementById("A").innerHTML = city1;
    document.getElementById("B").innerHTML = city2;

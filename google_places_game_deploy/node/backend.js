@@ -80,7 +80,7 @@ var question = function(session) {
           var generateBundle = function(qBundle, apiResultBundle) {
             var ret = {};
             ret.place_type = qBundle.place_type;
-            ret.options = [qBundle.city1.name, qBundle.city2.name];
+            ret.options = [qBundle.city1, qBundle.city2];
             if (apiResultBundle.option0 < apiResultBundle.option1) {
               ret.answer = qBundle.city2.name;
             } else {
