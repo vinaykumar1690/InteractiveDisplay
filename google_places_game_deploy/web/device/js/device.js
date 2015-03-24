@@ -8,6 +8,8 @@ document.getElementById('login').disabled = true;
 var sessionHandler;
 var userToken;
 var subscribeHandler;
+var answerSubmitted = null;
+var answerLastRound = null;
 
 connection.onopen = function(session){
 
@@ -93,6 +95,16 @@ var onCreatedUser = function(args) {
       partA.appendChild(buttonA);
       partB.appendChild(buttonB);
 
+      // Add OnClick events
+      document.getElementById("A").onclick = function (event) {
+         answerSubmitted = buttonA.innerHTML;
+         console.log("answer submitted: " + buttonA.innerHTML);
+      }
+      document.getElementById("B").onclick = function (event) {
+         answerSubmitted = buttonB.innerHTML;
+         console.log("answer submitted: " + buttonB.innerHTML);
+      }
+
       sessionHandler.unsubscribe(subscribeHandler).then(
          function(res) {
             console.log('unsubscribe .users.onCreatedUser');
@@ -107,11 +119,20 @@ var onCreatedUser = function(args) {
  * Display the options on device UI.
  */
 var onDisplayOptions = function(args) {
-   console.log('receive new question', args[0]);
-   console.log("args[0].options=" + args[0].options);
+
+   if (answerSubmitted !== null) {
+      if (answerSubmitted === answerLastRound){
+         
+      }
+   }
+
+   // City names to display on buttons
    var cities = args[0].options; 
    var city1;
    var city2;
+
+   // Answer
+   answerLastRound = args[0].answer;
 
    if (cities.length === 2 ){
       city1 = cities[0].name;
