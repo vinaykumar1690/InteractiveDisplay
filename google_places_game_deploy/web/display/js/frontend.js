@@ -30,6 +30,7 @@ connection.onopen = function(session) {
     // Show the map HTML
     map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
+    // Add Count Down div, dynamically
     var divCountdownClock = document.createElement('div');
     divCountdownClock.id = 'Countdown_clock';
 

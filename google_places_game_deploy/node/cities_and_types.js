@@ -30,8 +30,10 @@ var cities = [
 {name: "Sao Paulo", lat: -23.5500, lng: -46.6333},
 {name: "Rome", lat: 41.9000, lng: 12.5000},
 ];
+
+var types = [];
 /* Supported place search */
-var types = [
+var types_full = [
 "airport", "amusement_park", "aquarium", "art_gallery",
 "atm", "bakery", "bank", "bar", "beauty_salon",
 "bicycle_store", "book_store", "bowling_alley", "bus_station", "cafe",
@@ -54,6 +56,19 @@ var types = [
 "veterinary_care", "zoo"
 ];
 
+for (i = 0; i < types_full.length; i++){
+	if (types_full[i]){	
+		var fullName = types_full[i];
+		var displayName = fullName.replace(/_/g," "); // Eliminate of underscore("_")
+
+		var newType = {full_name: fullName, display_name: displayName};
+		types.push(newType); // Add new type element into array
+	}
+	else{
+		console.log('Type: NO DATA.');
+	}
+}
+console.log(types);
 
 exports.getQuestion = function(){
     /* Make a question */
