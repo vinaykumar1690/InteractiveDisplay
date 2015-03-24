@@ -25,7 +25,7 @@ connection.onopen = function(session) {
          console.log('./users.createUser failed in registration', err);
       });
 
-  setInterval(question(session), 20*1000);
+  setInterval(question(session), 2*1000);
 }
 
 /*
@@ -64,6 +64,8 @@ var question = function(session) {
 
   return function() {
     
+    question = questions.getQuestion();
+
     var onResponse = function() {
 
       var bundle = {
@@ -74,6 +76,19 @@ var question = function(session) {
       return function (opt) {
         
         return function(res) {
+          
+          var generateBundle = function(qBundle, apiResultBundle) {
+            var ret = {};
+            ret.place_type = qBundle.place_type;
+            ret.options = [qBundle.city1.name, qBundle.city2.name];
+            if (apiResultBundle.option0 < apiResultBundle.option1) {
+              ret.answer = qBundle.city2;
+            } else {
+              ret.answer = qBundle.city1;
+            }
+            return ret;
+          }
+
           res.setEncoding('utf8');
 
           responseBody = "";
@@ -87,12 +102,14 @@ var question = function(session) {
             if (opt === 0) {
               bundle.option0 = responseBody.results.length;
               if (bundle.option1 !== null) {
-                console.log('from opt0: ' + bundle);
+                var pubData = generateBundle(question, bundle);
+                session.publish('edu.cmu.ipd.rounds.newRound', [pubData]);
               }
             } else if (opt === 1) {
               bundle.option1 = responseBody.results.length;
               if (bundle.option0 !== null) {
-                console.log('from opt1: ' + bundle);
+                var pubData = generateBundle(question, bundle);
+                session.publish('edu.cmu.ipd.rounds.newRound', [pubData]);
               }
             }
           });
@@ -104,7 +121,7 @@ var question = function(session) {
       console.log('err');
     }
     
-    question = questions.getQuestion();
+    
     answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.type, onResponse, onError, null);
     answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.type, onResponse, onError, null);
   }

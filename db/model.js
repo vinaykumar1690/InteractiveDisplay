@@ -28,11 +28,6 @@ exports.createUser = function(userName, callback) {
 }
 
 exports.updateScore = function(userName, score) {
-
-	// var obj = JSON.stringify({
-	// 	_id : userName,
-	// 	score : score,
-	// });
 	
 	var onPutResponse = function(res) {
 		body = "";
