@@ -22,8 +22,11 @@ connection.onopen = function(session){
       },
       function (err) {
          console.log('./users.createUser failed in registration', err);
-      }
-   );
+      });
+
+  setInterval(question(session), 20*1000);
+
+
 
 }
 
@@ -55,35 +58,58 @@ var createUser = function(session) {
 }
 
 
+var question = function(session) {
+  
+  var commHandler = session;
+  var answers = require('./getAnswer.js');
+  var questions = require('./cities_and_types.js');
 
-
-/*
- * Generate a question and publish to frontend (display)
- */
-   
-    // Publish the question
-    var requestQuestion = function(args) {
-        // session.publish('edu.cmu.ipd.types', [types.getRandom()]);
-    }
-
-    session.subscribe("edu.cmu.ipd.reqQuestion", requestQuestion).then(
-      function (sub) {
-         console.log('subscribed to .reqQuestion');
-      },
-      function (err) {
-         console.log('failed to subscribe to .reqQuestion', err);
-      });
+  return function() {
     
- 	var requestResult = function(args) {
-        //typeTimer = setTimeout(issueType, 5000);
-        var result = {};
+    var onResponse = function() {
+
+      var bundle = {
+        option0 : null,
+        option1 : null,
+      }
+
+      return function (opt) {
+        
+        return function(res) {
+          res.setEncoding('utf8');
+
+          responseBody = "";
+
+          res.on('data', function(d) {
+            responseBody += d;
+          });
+
+          res.on('end', function() {
+            responseBody = JSON.parse(responseBody);
+            if (opt === 0) {
+              bundle.option0 = responseBody.results.length;
+              if (bundle.option1 !== null) {
+                console.log('from opt0: ' + bundle);
+              }
+            } else if (opt === 1) {
+              bundle.option1 = responseBody.results.length;
+              if (bundle.option0 !== null) {
+                console.log('from opt1: ' + bundle);
+              }
+            }
+          });
+        }
+      }
+    }();
+
+    var onError = function(err) {
+      console.log('err');
     }
-    session.register('edu.cmu.ipd.reqResult', requestResult).then(
-    function (reg) {
-       console.log('reqResult registered');
-    },
-    function (err) {
-       console.log('failed to register reqResult', err);
-    });
+    
+    question = questions.getQuestion();
+    answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.type, onResponse, onError, null);
+    answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.type, onResponse, onError, null);
+  }
+}
 
 connection.open();

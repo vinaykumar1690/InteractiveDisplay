@@ -6,7 +6,7 @@ var dbdriver = require('./dbdriver');
 exports.createUser = function(userName, callback) {
 
 	var obj = JSON.stringify({
-		'score' : 0,
+		score : 0,
 	});
 
 	var appliedUserName = userName;
@@ -25,6 +25,52 @@ exports.createUser = function(userName, callback) {
 	};
 
 	dbdriver.transaction('users', userName, 'PUT', obj, onResponse, onReqError);
+}
 
+exports.updateScore = function(userName, score) {
+
+	// var obj = JSON.stringify({
+	// 	_id : userName,
+	// 	score : score,
+	// });
+	
+	var onPutResponse = function(res) {
+		body = "";
+		res.on('data', function(data) {
+			body += data;
+		});
+		res.on('end', function() {
+			console.log(body);
+		})
+	}
+
+
+	var onGetResponse = function(res) {
+		
+		body = "";
+		res.on('data', function(data) {
+			body += data;
+		});
+		
+
+		res.on('end', function() {
+			
+			var seq = JSON.parse(body)._rev;
+			
+			var data = JSON.stringify({
+				score : score,
+				_rev  : seq,
+			});
+			
+			dbdriver.transaction('users', userName, 'PUT', data, onPutResponse, onReqError);
+
+		});
+	};
+
+	var onReqError = function(err) {
+		console.log('Update user[' + userName + '] score error:' + err.message);
+	};
+
+	dbdriver.transaction('users', userName, 'GET', null, onGetResponse, onReqError);
 }
 

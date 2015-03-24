@@ -5,10 +5,11 @@ exports.transaction = function(table, uuid, method, object, onResponse, onError)
 	var options = {
 		host: "localhost", 
 		port: "5984",
-		path: "/" + table + "/" + uuid,
+		path: "/" + table + '/' + uuid,
 		method: method, 
 		headers: {
-			accept: 'application/json',
+			'Content-Type' : 'application/json',
+			'Accept': 'application/json',
 		},
 	}
 
