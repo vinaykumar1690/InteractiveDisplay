@@ -26,12 +26,6 @@ connection.onopen = function(session) {
       });
 
   setInterval(question(session), 20*1000);
-
-
-var sendQA = function() {
-    question = places_question.getQuestion();
-    //answer = places_answer.getAnswer();
-    return [question];
 }
 
 /*
@@ -117,4 +111,3 @@ var question = function(session) {
 }
 
 connection.open();
-
