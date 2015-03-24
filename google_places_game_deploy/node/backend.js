@@ -25,7 +25,7 @@ connection.onopen = function(session) {
          console.log('./users.createUser failed in registration', err);
       });
 
-  setInterval(question(session), 2*1000);
+  setInterval(question(session), 10*1000);
 }
 
 /*
@@ -98,18 +98,41 @@ var question = function(session) {
           });
 
           res.on('end', function() {
-            responseBody = JSON.parse(responseBody);
+            
+            // console.log(responseBody);
+
+            try {
+              responseBody = JSON.parse(responseBody);
+            } catch (e) {
+              console.log(e);
+              answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.place_type, onResponse, onError, null);
+              answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.place_type, onResponse, onError, null);
+              return;
+            }
             if (opt === 0) {
               bundle.option0 = responseBody.results.length;
               if (bundle.option1 !== null) {
                 var pubData = generateBundle(question, bundle);
-                session.publish('edu.cmu.ipd.rounds.newRound', [pubData]);
+                session.publish('edu.cmu.ipd.rounds.newRound', [pubData], {}, { acknowledge: true}).then(
+                  function(publication) {
+                    console.log("published, publication ID is ", publication);
+                  },
+                  function(error) {
+                    console.log("publication error", error);
+                  });
+                
               }
             } else if (opt === 1) {
               bundle.option1 = responseBody.results.length;
               if (bundle.option0 !== null) {
                 var pubData = generateBundle(question, bundle);
-                session.publish('edu.cmu.ipd.rounds.newRound', [pubData]);
+                session.publish('edu.cmu.ipd.rounds.newRound', [pubData], {}, { acknowledge: true}).then(
+                  function(publication) {
+                    console.log("published, publication ID is ", publication);
+                  },
+                  function(error) {
+                    console.log("publication error", error);
+                  });
               }
             }
           });
@@ -122,8 +145,8 @@ var question = function(session) {
     }
     
     
-    answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.type, onResponse, onError, null);
-    answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.type, onResponse, onError, null);
+    answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.place_type, onResponse, onError, null);
+    answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.place_type, onResponse, onError, null);
   }
 }
 

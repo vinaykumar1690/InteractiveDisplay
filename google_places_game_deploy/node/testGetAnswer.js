@@ -22,16 +22,17 @@ var onResponse = function() {
 
 			res.on('end', function() {
 				responseBody = JSON.parse(responseBody);
+				console.log("opt" + opt + " updated: " + responseBody.results.length);
 				if (opt === 0) {
 					bundle.option0 = responseBody.results.length;
 					if (bundle.option1 !== null) {
-						console.log('from opt0: ' + bundle);
+						console.log('from opt0: ', bundle.option0, bundle.option1);
 					}
 
 				} else if (opt === 1) {
 					bundle.option1 = responseBody.results.length;
 					if (bundle.option0 !== null) {
-						console.log('from opt1: ' + bundle);
+						console.log('from opt1: ', bundle.option0, bundle.option1);
 					}
 				}
 			});
@@ -46,5 +47,5 @@ var onError = function(err) {
 
 question = questions.getQuestion();
 
-getAnswer.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.type, onResponse, onError, null);
-getAnswer.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.type, onResponse, onError, null);
+getAnswer.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.place_type, onResponse, onError, null);
+getAnswer.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.place_type, onResponse, onError, null);

@@ -41,7 +41,6 @@ connection.onopen = function(session){
    session.subscribe("edu.cmu.ipd.rounds.newRound", onDisplayOptions).then(
       function (sub) {
          console.log('subscribed to topic');
-         subscribeHandler = sub;
       },
       function (err) {
          console.log('failed to subscribe to topic', err);
@@ -108,16 +107,18 @@ var onCreatedUser = function(args) {
  * Display the options on device UI.
  */
 var onDisplayOptions = function(args) {
+   console.log('receive new question', args[0]);
+   console.log("args[0].options=" + args[0].options);
    var cities = args[0].options; 
    var city1;
    var city2;
 
-   if (cities.length == 2 ){
+   if (cities.length === 2 ){
       city1 = cities[0];
       city2 = cities[1];
    
-   document.getElementById("buttonA").innerHTML = city1;
-   document.getElementById("buttonB").innerHTML = city2;
+   document.getElementById("A").innerHTML = city1;
+   document.getElementById("B").innerHTML = city2;
    }
 } // end onDisplayOptions
 

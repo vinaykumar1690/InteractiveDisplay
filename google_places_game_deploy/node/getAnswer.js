@@ -17,32 +17,13 @@ exports.getAnswer = function(opt, latitude, longitude, radius, placeType, onResp
 		options.path = options.path + '&pagetoken=' + pageToken;
 	}
 
-	// console.log("url:" + "https://" + options.hostname + options.path);
+	console.log("url:" + "https://" + options.hostname + options.path);
 
 	var req = https.request(options, onResponse(opt));
 
 	req.on('error', onError);
 
 	req.end();  
-}
-
-var onResponse = function(prev) {
-	console.log('construct: ' + prev);
-	var counts = prev;
-
-	return function(res) {
-		res.setEncoding('utf8');
-		responseBody = "";
-		res.on('data', function(d) {
-			responseBody += d;
-		});
-		res.on('end', function() {
-			responseBody = JSON.parse(responseBody);
-			console.log(responseBody.results.length);
-            return results;
-		});
-	}
-
 }
 
 var onError = function(err) {
