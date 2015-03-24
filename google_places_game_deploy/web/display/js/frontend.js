@@ -17,35 +17,24 @@ var info1;
 var info2;
 var place_type;
 
-function initialize() {
-    var location = new google.maps.LatLng(40, 0);
-
-    // MAP
-    var mapOptions = {
-        center: location,
-        zoom: 2
-    }
-
-    // Show the map HTML
-    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-
+connection.onopen = function(session) {
+    reqQA(session);
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
-
-connection.onopen = function(session) {
-
-    session.subscribe("edu.cmu.ipd.question", onNewQuestion).then(
-        function (sub) {
-            console.log('subscribed to .question');
-        },
-        function (err) {
-            console.log('failed to subscribe to .question', err);
-        });
-
-    function onNewQuestion(args) {
-    var question = args[0];
-    var answer = args[1];
+function reqQA(session) {
+    session.call("edu.cmu.ipd.game.reqQA", []).then(
+    function (args) {
+        var question = args[0];
+        //var answer = args[1];
+        
+        var location = new google.maps.LatLng(40, 0);
+        // MAP
+        var mapOptions = {
+            center: location,
+            zoom: 2
+        }
+        // Show the map HTML
+        map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
         var place_type = question.place_type;
         var city1 = question.city1;
@@ -75,13 +64,22 @@ connection.onopen = function(session) {
 
         document.getElementById("question").innerHTML = 'Which place has more '+ place_type +'s ' +city1.name+ ' or ' +city2.name+ '?';
 
-        function showAnswer() {
-        document.getElementById("question").innerHTML = answer.city.name+ ' WINS!!';
-        }
+    },
+    function (err) {
+        console.log('err:' + err.message);
+    });
 
-    setTimeout(showAnswer, 10000);
-    }
+    setTimeout(showAnswer, 10000, session);
+}
 
+var showAnswer = function(session) {
+    console.log('showAnswer');
+    setTimeout(reqQA, 5000, session);
+};
+
+connection.open();
+
+/*
     function testOnNewQuestion() {
 
     var result1;
@@ -162,5 +160,4 @@ connection.onopen = function(session) {
     setTimeout(testOnNewQuestion, 10000);
 
 }
-
-connection.open();
+*/

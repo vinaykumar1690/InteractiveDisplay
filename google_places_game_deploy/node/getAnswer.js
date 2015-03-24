@@ -1,6 +1,6 @@
 var https = require('https');
 
-exports.getAnswer = function(latitude, longitude, radius, placeType, onResponse, onError, pageToken) {
+exports.getApiAnswer = function(latitude, longitude, radius, placeType, onResponse, onError, pageToken) {
 	
 	var options = {
 		hostname: 'maps.googleapis.com',
@@ -34,4 +34,25 @@ exports.getAnswer = function(latitude, longitude, radius, placeType, onResponse,
 	// https.get(url, onResponse).on('error', onError);
 }
 
+var onResponse = function(prev) {
+	console.log('construct: ' + prev);
+	var counts = prev;
 
+	return function(res) {
+		res.setEncoding('utf8');
+		responseBody = "";
+		res.on('data', function(d) {
+			responseBody += d;
+		});
+		res.on('end', function() {
+			responseBody = JSON.parse(responseBody);
+			console.log(responseBody.results.length);
+            return results;
+		});
+	}
+
+}
+
+var onError = function(err) {
+    console.log('err');
+}

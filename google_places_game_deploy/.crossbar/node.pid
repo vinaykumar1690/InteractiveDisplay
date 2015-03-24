@@ -1,13 +1,13 @@
 {
-   "pid": 90665,
+   "pid": 14293,
    "options": {
-      "reactor": null,
       "loglevel": "info",
-      "command": "start",
       "logdir": null,
-      "debug": false,
-      "config": "/Users/JeremyFu/Development/workspace-js/autobanh-tutorial/google_places_game_deploy/.crossbar/config.json",
-      "cbdir": "/Users/JeremyFu/Development/workspace-js/autobanh-tutorial/google_places_game_deploy/.crossbar"
+      "config": "/home/vinaykumar/s15-mobile-pervasive-computing/InteractiveDisplay/google_places_game_deploy/.crossbar/config.json",
+      "cbdir": "/home/vinaykumar/s15-mobile-pervasive-computing/InteractiveDisplay/google_places_game_deploy/.crossbar",
+      "command": "start",
+      "reactor": null,
+      "debug": false
    },
    "argv": [
       "/usr/local/bin/crossbar",

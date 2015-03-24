@@ -5,26 +5,41 @@ var when = require('when');
 
 var model = require('../../db/model.js');
 
-var question = require('./cities_and_types.js');
+var places_question = require('./cities_and_types.js');
+var places_answer = require('./getAnswer.js');
 
 var connection = new autobahn.Connection({
 	url: 'ws://127.0.0.1:80/ws',
 	realm: 'realm1'
 });
 
-connection.onopen = function(session){
-
+connection.onopen = function(session) {
 	console.log('google places node connected.');
 
 	session.register('edu.cmu.ipd.users.createUser', createUser(session)).then(
-      function (reg) {
-         console.log('./users.createUser registered');
-      },
-      function (err) {
-         console.log('./users.createUser failed in registration', err);
-      }
-   );
+        function (reg) {
+            console.log('./users.createUser registered');
+        },
+        function (err) {
+            console.log('./users.createUser failed in registration', err);
+        }
+    );
 
+    session.register('edu.cmu.ipd.game.reqQA', sendQA).then(
+        function (reg) {
+            console.log('./game.reqQuestion registered');
+        },
+        function (err) {
+            console.log('./game.reqQuestion failed in registration', err);
+        }
+    );
+
+}
+
+var sendQA = function() {
+    question = places_question.getQuestion();
+    //answer = places_answer.getAnswer();
+    return [question];
 }
 
 /*
@@ -53,37 +68,4 @@ var createUser = function(session) {
 		return [userToken];
 	}
 }
-
-
-
-
-/*
- * Generate a question and publish to frontend (display)
- */
-   
-    // Publish the question
-    var requestQuestion = function(args) {
-        // session.publish('edu.cmu.ipd.types', [types.getRandom()]);
-    }
-
-    session.subscribe("edu.cmu.ipd.reqQuestion", requestQuestion).then(
-      function (sub) {
-         console.log('subscribed to .reqQuestion');
-      },
-      function (err) {
-         console.log('failed to subscribe to .reqQuestion', err);
-      });
-    
- 	var requestResult = function(args) {
-        //typeTimer = setTimeout(issueType, 5000);
-        var result = {};
-    }
-    session.register('edu.cmu.ipd.reqResult', requestResult).then(
-    function (reg) {
-       console.log('reqResult registered');
-    },
-    function (err) {
-       console.log('failed to register reqResult', err);
-    });
-
 connection.open();
