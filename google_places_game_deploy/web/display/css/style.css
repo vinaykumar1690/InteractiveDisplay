@@ -101,7 +101,7 @@ div#map_canvas {
     height: 100%;
     width: 60%;
     margin: 0;
-    opacity: 0.6;
+    z-index: 0;
     padding: 0;
 }
 div.panel_banner {
@@ -112,9 +112,14 @@ div.panel_banner {
 }
 
 #Countdown_clock {
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+    width: 60%;
+    margin-top: 0.4em;
+    z-index: 1;
+    opacity: 0.5;
+    padding: 0;
     text-align: center;
-    font-weight: bold;
-    font-size: 100px;
-    color: #cccccc;
-    opacity: 0.6;
+    font-size: 10em;
 }

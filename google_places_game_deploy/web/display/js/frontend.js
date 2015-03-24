@@ -11,11 +11,13 @@ var city2 = "New York";
 var loc1  = new google.maps.LatLng(39.9388, 116.3974); // Beijing
 var loc2  = new google.maps.LatLng(40.7033, -73.9796); // New York
 
-var marker1;
-var marker2;
+var marker1 = null;
+var marker2 = null;
 var info1;
 var info2;
 var place_type;
+
+var coundownID;
 
 connection.onopen = function(session) {
     var location = new google.maps.LatLng(40, 0);
@@ -35,7 +37,8 @@ connection.onopen = function(session) {
     spanNumberCountdown.id = 'numberCountdown';
     divCountdownClock.appendChild(spanNumberCountdown);
 
-    document.getElementById('map_canvas').appendChild(divCountdownClock);
+    var divMapCanvas = document.getElementById('Game_Body');
+    divMapCanvas.insertBefore(divCountdownClock, divMapCanvas.childNodes[2]);
 
     reqQA(session);
 }
@@ -59,6 +62,17 @@ var showQuesion = function (args) {
     var loc1  = new google.maps.LatLng(city1.lat, city1.lng); 
     var loc2  = new google.maps.LatLng(city2.lat, city2.lng); 
     
+    if (marker1 !== null) {
+        console.log('dismiss marker1 called');
+        marker1.setMap(null);
+        maker1 = null;
+    }
+
+    if (marker2 !== null) {
+        console.log('dismiss marker2 called');
+        marker2.setMap(null);
+    }
+
     marker1 = new google.maps.Marker({
         position: loc1
     });
@@ -80,8 +94,10 @@ var showQuesion = function (args) {
 
     document.getElementById("question").innerHTML = 'Which place has more '+ place_type +'s ' +city1.name+ ' or ' +city2.name+ '?';
 
-    var coundownID = setInterval(startCountdown, 1000);
-    setTimeout(stopCountdown(coundownID), 5000);
+    setTimeout(function() {
+        coundownID = setInterval(startCountdown, 1000);
+    }, 13000);
+    setTimeout(stopCountdown(coundownID), 20000);
 
 }
 
@@ -102,6 +118,7 @@ var startCountdown = function() {
 var stopCountdown = function(coundownID) {
     return function() {
         clearInterval(coundownID);
+        document.getElementById("numberCountdown").innerHTML = "";
     }
 }
 

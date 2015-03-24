@@ -33,7 +33,7 @@ connection.onopen = function(session) {
          console.log('./.users.updateScore failed in registration', err);
       });
 
-  setInterval(question(session), 10*1000);
+  setInterval(question(session), 20*1000);
 }
 
 /*
