@@ -1,5 +1,5 @@
 var connection = new autobahn.Connection({
-	url: 'ws://127.0.0.1:80/ws',
+	url: 'ws://10.0.17.206:80/ws',
 	realm: 'realm1'
 });
 
@@ -122,7 +122,9 @@ var onDisplayOptions = function(args) {
 
    if (answerSubmitted !== null) {
       if (answerSubmitted === answerLastRound){
-         
+         alert('Congratulations!')
+      } else {
+         alert('Sorry. The correct answer is ' + answerLastRound);
       }
    }
 
@@ -135,6 +137,7 @@ var onDisplayOptions = function(args) {
    answerLastRound = args[0].answer;
 
    if (cities.length === 2 ){
+      
       city1 = cities[0].name;
       city2 = cities[1].name;
    

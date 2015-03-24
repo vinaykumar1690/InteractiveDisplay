@@ -4,7 +4,7 @@
 
 body
 {
-   font-family: 'Comic Sans MS', cursive, sans-serif;  
+   font-family: 'Open Sans', sans-serif;  
    font-size: 14px;
    padding: 0;
    margin: 0;
@@ -135,7 +135,7 @@ button
     padding: 0.5em 1em;
     font-size: 2em;
     font-weight: normal;
-    font-family: 'Comic Sans MS', cursive, sans-serif;  
+    font-family: 'Open Sans', sans-serif;  
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.3), -1px 0 1px rgba(255, 255, 255, 0.5);
     opacity: 0.94;
 }
@@ -280,7 +280,7 @@ body {
    background-repeat: no-repeat;
    background-attachment: fixed;
 
-   font-family: 'Comic Sans MS', cursive, sans-serif;  
+   font-family: 'Open Sans', sans-serif;  
    font-size: 16px;
    line-height: 1.428571429;
    background-color: #fcfcfc;
@@ -437,13 +437,13 @@ header {
 }
 
 .navbar-brand > span > span:first-of-type {
-  font-family: 'Play', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: bold;
   color: rgb(162, 162, 162);
   padding: 0 0 0 6px;
 }
 .navbar-brand > span > span:last-of-type {
-  font-family: 'Play', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: rgb(240, 240, 240);
 }
 
@@ -533,7 +533,7 @@ input[type=text]
   font-size: 5vmin;
   width: 100%;
   opacity: 0.94;
-  font-family: 'Comic Sans MS', cursive, sans-serif;  
+  font-family: 'Open Sans', sans-serif;  
 }
 
 input[type=text]:focus 
