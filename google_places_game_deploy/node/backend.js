@@ -82,9 +82,9 @@ var question = function(session) {
             ret.place_type = qBundle.place_type;
             ret.options = [qBundle.city1.name, qBundle.city2.name];
             if (apiResultBundle.option0 < apiResultBundle.option1) {
-              ret.answer = qBundle.city2;
+              ret.answer = qBundle.city2.name;
             } else {
-              ret.answer = qBundle.city1;
+              ret.answer = qBundle.city1.name;
             }
             return ret;
           }
