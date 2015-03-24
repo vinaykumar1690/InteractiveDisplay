@@ -140,12 +140,12 @@ button
     opacity: 0.94;
 }
 
-button:hover
+/*button:hover
 {
     background-color: rgb(196, 88, 173);
 
     box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.4);
-}
+}*/
 
 #resetVotesContainer
 {

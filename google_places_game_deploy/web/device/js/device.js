@@ -65,47 +65,7 @@ var onCreatedUser = function(args) {
 
    if (userToken === appliedToken) {
       //Overwrite the header part
-      var divField = document.createElement('div');
-      divField.id = 'field';
-      var divUserName = document.createElement('div');
-      divUserName.id = 'user_name';
-      divUserName.innerHTML = 'Player: ' + shortenDisplayName(appliedUserName);
-      var divScore = document.createElement('div');
-      divScore.id = 'score';
-      divScore.innerHTML = 'Score: ' + score;
-      divField.appendChild(divUserName);
-      divField.appendChild(divScore);
-
-      var divDemoTitle = document.getElementById('demo_title');
-      divDemoTitle.appendChild(divField);
-
-      //Overwrite the button
-
-      var buttonA = document.createElement('button');
-      buttonA.id = 'A';
-      buttonA.innerHTML = 'Choose';
-
-      var buttonB = document.createElement('button');
-      buttonB.id = 'B';
-      buttonB.innerHTML = 'Choose';
-
-      var parts = document.getElementsByClassName('part');
-      var partA = parts[0];
-      var partB = parts[1];
-      partA.removeChild(partA.children[0]);
-      partB.removeChild(partB.children[0]);
-      partA.appendChild(buttonA);
-      partB.appendChild(buttonB);
-
-      // Add OnClick events
-      document.getElementById("A").onclick = function (event) {
-         answerSubmitted = buttonA.innerHTML;
-         console.log("answer submitted: " + buttonA.innerHTML);
-      }
-      document.getElementById("B").onclick = function (event) {
-         answerSubmitted = buttonB.innerHTML;
-         console.log("answer submitted: " + buttonB.innerHTML);
-      }
+      addButton();
 
       var divAlert = document.createElement('div');
       divAlert.className = 'alert alert-success';
@@ -227,6 +187,54 @@ var shortenDisplayName = function(appliedUserName) {
       return appliedUserName.substring(0, 6) + "...";
    } else {
       return appliedUserName
+   }
+}
+
+var addButton = function() {
+   var divField = document.createElement('div');
+   divField.id = 'field';
+   var divUserName = document.createElement('div');
+   divUserName.id = 'user_name';
+   divUserName.innerHTML = 'Player: ' + shortenDisplayName(appliedUserName);
+   var divScore = document.createElement('div');
+   divScore.id = 'score';
+   divScore.innerHTML = 'Score: ' + score;
+   divField.appendChild(divUserName);
+   divField.appendChild(divScore);
+
+   var divDemoTitle = document.getElementById('demo_title');
+   divDemoTitle.appendChild(divField);
+
+   //Overwrite the button
+
+   var buttonA = document.createElement('button');
+   buttonA.id = 'A';
+   buttonA.innerHTML = 'Choose';
+
+   var buttonB = document.createElement('button');
+   buttonB.id = 'B';
+   buttonB.innerHTML = 'Choose';
+
+   var parts = document.getElementsByClassName('part');
+   var partA = parts[0];
+   var partB = parts[1];
+   partA.removeChild(partA.children[0]);
+   partB.removeChild(partB.children[0]);
+   partA.appendChild(buttonA);
+   partB.appendChild(buttonB);
+
+   // Add OnClick events
+   document.getElementById("A").onclick = function (event) {
+      answerSubmitted = buttonA.innerHTML;
+      document.getElementById('A').style.backgroundColor = 'rgb(196, 88, 173)';
+      document.getElementById('B').style.backgroundColor = '#D4D0C8';
+      console.log("answer submitted: " + buttonA.innerHTML);
+   }
+   document.getElementById("B").onclick = function (event) {
+      answerSubmitted = buttonB.innerHTML;
+      document.getElementById('B').style.backgroundColor = 'rgb(196, 88, 173)';
+      document.getElementById('A').style.backgroundColor = '#D4D0C8';
+      console.log("answer submitted: " + buttonB.innerHTML);
    }
 }
 
