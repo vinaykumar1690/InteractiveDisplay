@@ -29,6 +29,7 @@ exports.createUser = function(userName, callback) {
 
 exports.updateScore = function(userName, score) {
 	
+	console.log('model.updateScore: userName = ' + userName + '   score = ' + score);
 	var onPutResponse = function(res) {
 		body = "";
 		res.on('data', function(data) {

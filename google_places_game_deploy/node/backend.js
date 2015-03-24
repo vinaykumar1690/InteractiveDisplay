@@ -19,10 +19,18 @@ connection.onopen = function(session) {
 	session.register('edu.cmu.ipd.users.createUser', createUser(session)).then(
 
       function (reg) {
-         console.log('./users.createUser registered');
+         console.log('./.users.createUser registered');
       },
       function (err) {
-         console.log('./users.createUser failed in registration', err);
+         console.log('./.users.createUser failed in registration', err);
+      });
+
+  session.register('edu.cmu.ipd.users.updateScore', updateScore).then(
+      function (reg) {
+         console.log('./.users.updateScore registered');
+      },
+      function (err) {
+         console.log('./.users.updateScore failed in registration', err);
       });
 
   setInterval(question(session), 10*1000);
@@ -53,6 +61,18 @@ var createUser = function(session) {
 		console.log('[backend] createUser: finished');
 		return [userToken];
 	}
+}
+
+var updateScore = function(args) {
+  
+  var userName = args[0];
+  var score    = args[1];
+  try {
+    model.updateScore(userName, score);
+  } catch (err) {
+    console.log('updateScore exception: ' + err.message);
+  } 
+  return [];
 }
 
 

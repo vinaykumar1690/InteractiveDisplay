@@ -7,9 +7,11 @@ document.getElementById('login').disabled = true;
 
 var sessionHandler;
 var userToken;
+var appliedUserName;
 var subscribeHandler;
 var answerSubmitted = null;
 var answerLastRound = null;
+var score = 0;
 
 connection.onopen = function(session){
 
@@ -58,7 +60,7 @@ var onCreatedUser = function(args) {
 	
    console.log('[client] onCreatedUser: applied username: ' + args[1] +  ' appliedToken:' + args[0]);
 
-   var appliedUserName = args[1];
+   appliedUserName = args[1];
    var appliedToken = args[0];
 
    if (userToken === appliedToken) {
@@ -67,10 +69,10 @@ var onCreatedUser = function(args) {
       divField.id = 'field';
       var divUserName = document.createElement('div');
       divUserName.id = 'user_name';
-      divUserName.innerHTML = 'Player: ' + args[0];
+      divUserName.innerHTML = 'Player: ' + shortenDisplayName(appliedUserName);
       var divScore = document.createElement('div');
       divScore.id = 'score';
-      divScore.innerHTML = 'Score: 0';
+      divScore.innerHTML = 'Score: ' + score;
       divField.appendChild(divUserName);
       divField.appendChild(divScore);
 
@@ -120,12 +122,25 @@ var onCreatedUser = function(args) {
  */
 var onDisplayOptions = function(args) {
 
-   if (answerSubmitted !== null) {
+   if (answerSubmitted !== null && answerLastRound !== null) {
       if (answerSubmitted === answerLastRound){
          alert('Congratulations!')
+         answerSubmitted = null;
+         score += 10;
       } else {
          alert('Sorry. The correct answer is ' + answerLastRound);
+         answerSubmitted = null;
+         score = Math.max(0, score - 5);
       }
+
+      sessionHandler.call('edu.cmu.ipd.users.updateScore', [appliedUserName, score]).then(
+         function(res) {
+            console.log('Updated score at the backend.');
+         },
+         function(err) {
+            console.log('Failed to update score at the backend', err);
+         });
+      document.getElementById('score').innerHTML = 'Score: ' + score;
    }
 
    // City names to display on buttons
@@ -146,5 +161,12 @@ var onDisplayOptions = function(args) {
    }
 } // end onDisplayOptions
 
+var shortenDisplayName = function(appliedUserName) {
+   if (appliedUserName.length > 6) {
+      return appliedUserName.substring(0, 6) + "...";
+   } else {
+      return appliedUserName
+   }
+}
 
 connection.open();
