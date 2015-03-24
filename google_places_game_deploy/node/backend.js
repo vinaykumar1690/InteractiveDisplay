@@ -13,25 +13,37 @@ var connection = new autobahn.Connection({
 	realm: 'realm1'
 });
 
+
+var currBundle = null;
+
 connection.onopen = function(session) {
 	console.log('google places node connected.');
 
 	session.register('edu.cmu.ipd.users.createUser', createUser(session)).then(
 
       function (reg) {
-         console.log('./.users.createUser registered');
+         console.log('.users.createUser registered');
       },
       function (err) {
-         console.log('./.users.createUser failed in registration', err);
+         console.log('.users.createUser failed in registration', err);
       });
 
   session.register('edu.cmu.ipd.users.updateScore', updateScore).then(
       function (reg) {
-         console.log('./.users.updateScore registered');
+         console.log('.users.updateScore registered');
       },
       function (err) {
-         console.log('./.users.updateScore failed in registration', err);
+         console.log('.users.updateScore failed in registration', err);
       });
+
+  session.register('edu.cmu.ipd.rounds.currentRound', getCurrentRound).then(
+      function(reg) {
+        console.log('.rounds.currentRound registered');
+      },
+      function(err) {
+        console.log('.rounds.currentRound failed in registration', err);
+      }
+  )
 
   setInterval(question(session), 20*1000);
 }
@@ -104,11 +116,9 @@ var question = function(session) {
             ret.statistics = [apiResultBundle.option0, apiResultBundle.option1];
             console.log('option0: ' + apiResultBundle.option0, 'option1: ' + apiResultBundle.option1);
             if (apiResultBundle.option0 < apiResultBundle.option1) {
-              console.log('answer is option1');
               ret.answer = qBundle.city2.name;
             } else {
               ret.answer = qBundle.city1.name;
-              console.log('answer is option0');
             }
             return ret;
           }
@@ -137,6 +147,7 @@ var question = function(session) {
               bundle.option0 = responseBody.results.length;
               if (bundle.option1 !== null) {
                 var pubData = generateBundle(question, bundle);
+                currBundle = pubData;
                 session.publish('edu.cmu.ipd.rounds.newRound', [pubData], {}, { acknowledge: true}).then(
                   function(publication) {
                     console.log("published, publication ID is ", publication);
@@ -150,6 +161,7 @@ var question = function(session) {
               bundle.option1 = responseBody.results.length;
               if (bundle.option0 !== null) {
                 var pubData = generateBundle(question, bundle);
+                currBundle = pubData;
                 session.publish('edu.cmu.ipd.rounds.newRound', [pubData], {}, { acknowledge: true}).then(
                   function(publication) {
                     console.log("published, publication ID is ", publication);
@@ -172,6 +184,10 @@ var question = function(session) {
     answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
     answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
   }
+}
+
+var getCurrentRound = function(args){
+  return [currBundle]
 }
 
 connection.open();
