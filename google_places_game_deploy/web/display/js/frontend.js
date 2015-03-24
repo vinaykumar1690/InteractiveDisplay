@@ -21,55 +21,55 @@ connection.onopen = function(session) {
     reqQA(session);
 }
 
+var bundle = null;
+
 function reqQA(session) {
-    session.call("edu.cmu.ipd.game.reqQA", []).then(
-    function (args) {
-        var question = args[0];
-        //var answer = args[1];
-        
-        var location = new google.maps.LatLng(40, 0);
-        // MAP
-        var mapOptions = {
-            center: location,
-            zoom: 2
-        }
-        // Show the map HTML
-        map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    
+    session.subscribe("edu.cmu.ipd.rounds.newRound", showQuesion);
 
-        var place_type = question.place_type;
-        var city1 = question.city1;
-        var city2 = question.city2;
+}
 
-        var loc1  = new google.maps.LatLng(city1.lat, city1.lng); 
-        var loc2  = new google.maps.LatLng(city2.lat, city2.lng); 
-        
-        marker1 = new google.maps.Marker({
-            position: loc1
-        });
-        marker2 = new google.maps.Marker({
-            position: loc2
-        });
-        info1 = new google.maps.InfoWindow({
-            content: city1.name
-        });
-        info2 = new google.maps.InfoWindow({
-            content: city2.name
-        });
-        
-        marker1.setMap(map);
-        marker2.setMap(map);
+var showQuesion = function (args) {
+    bundle = args[0];
+    //var answer = args[1];
+    
+    var location = new google.maps.LatLng(40, 0);
+    // MAP
+    var mapOptions = {
+        center: location,
+        zoom: 2
+    }
+    // Show the map HTML
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-        info1.open(map, marker1);
-        info2.open(map, marker2);
+    var place_type = bundle.place_type;
+    var city1 = bundle.options[0];
+    var city2 = bundle.options[1];
 
-        document.getElementById("question").innerHTML = 'Which place has more '+ place_type +'s ' +city1.name+ ' or ' +city2.name+ '?';
-
-    },
-    function (err) {
-        console.log('err:' + err.message);
+    var loc1  = new google.maps.LatLng(city1.lat, city1.lng); 
+    var loc2  = new google.maps.LatLng(city2.lat, city2.lng); 
+    
+    marker1 = new google.maps.Marker({
+        position: loc1
     });
+    marker2 = new google.maps.Marker({
+        position: loc2
+    });
+    info1 = new google.maps.InfoWindow({
+        content: city1.name
+    });
+    info2 = new google.maps.InfoWindow({
+        content: city2.name
+    });
+    
+    marker1.setMap(map);
+    marker2.setMap(map);
 
-    setTimeout(showAnswer, 10000, session);
+    info1.open(map, marker1);
+    info2.open(map, marker2);
+
+    document.getElementById("question").innerHTML = 'Which place has more '+ place_type +'s ' +city1.name+ ' or ' +city2.name+ '?';
+
 }
 
 var showAnswer = function(session) {
