@@ -96,6 +96,11 @@ var onCreatedUser = function(args) {
       setTimeout(function() {
          document.getElementById('demo_body').removeChild(divAlert);
       }, 5000);
+
+      sessionHandler.call('edu.cmu.ipd.rounds.currentRound', []).then(onDisplayOptions, 
+         function(err) {
+            console.log('[device]\tFailed to call .rounds.currentRound.');
+         });
    }
 }
 
@@ -103,6 +108,10 @@ var onCreatedUser = function(args) {
  * Display the options on device UI.
  */
 var onDisplayOptions = function(args) {
+
+   if (args[0] === null) {
+      return;
+   }
 
    if (answerSubmitted !== null && answerLastRound !== null) {
       if (answerSubmitted === answerLastRound){
@@ -184,9 +193,10 @@ var onDisplayOptions = function(args) {
 
 var shortenDisplayName = function(appliedUserName) {
    if (appliedUserName.length > 6) {
-      return appliedUserName.substring(0, 6) + "...";
+      return appliedUserName.substring(0, 3) + "..." 
+         + appliedUserName.substring(appliedUserName.length-3, appliedUserName.length);
    } else {
-      return appliedUserName
+      return appliedUserName;
    }
 }
 
@@ -209,11 +219,11 @@ var addButton = function() {
 
    var buttonA = document.createElement('button');
    buttonA.id = 'A';
-   buttonA.innerHTML = 'Choose';
+   buttonA.innerHTML = 'Loading';
 
    var buttonB = document.createElement('button');
    buttonB.id = 'B';
-   buttonB.innerHTML = 'Choose';
+   buttonB.innerHTML = 'Loading';
 
    var parts = document.getElementsByClassName('part');
    var partA = parts[0];

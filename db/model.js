@@ -7,6 +7,7 @@ exports.createUser = function(userName, callback) {
 
 	var obj = JSON.stringify({
 		score : 0,
+		created_at: new Date(Date.now()).toGMTString(),
 	});
 
 	var appliedUserName = userName;
@@ -52,9 +53,17 @@ exports.updateScore = function(userName, score) {
 		res.on('end', function() {
 			
 			var seq = JSON.parse(body)._rev;
+			var createTime = JSON.parse(body).created_at;
+			var updatedTime = JSON.parse(body).updated_at;
+			if (updatedTime === undefined) {
+				updatedTime = [];
+			}
+			updatedTime.push(new Date(Date.now()).toGMTString());
 			
 			var data = JSON.stringify({
 				score : score,
+				updated_at: updatedTime,
+				created_at: createTime,
 				_rev  : seq,
 			});
 			
