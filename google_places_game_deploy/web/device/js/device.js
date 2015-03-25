@@ -214,7 +214,11 @@ var onDisplayOptions = function(args) {
       city2 = cities[1].name;
    
    document.getElementById("A").innerHTML = city1;
+   document.getElementById('A').style.backgroundColor = '#D4D0C8';
+
    document.getElementById("B").innerHTML = city2;
+   document.getElementById('B').style.backgroundColor = '#D4D0C8';
+
    }
 } // end onDisplayOptions
 
