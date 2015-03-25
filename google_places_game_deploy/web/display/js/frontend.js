@@ -47,9 +47,7 @@ connection.onopen = function(session) {
 var bundle = null;
 
 function reqQA(session) {
-    
     session.subscribe("edu.cmu.ipd.rounds.newRound", showQuesion);
-
 }
 
 var showQuesion = function (args) {
@@ -98,7 +96,7 @@ var showQuesion = function (args) {
     setTimeout(function() {
         coundownID = setInterval(startCountdown(), 1000);
     }, 13000);
-    setTimeout(stopCountdown(coundownID), 20000);
+    setTimeout(stopCountdown(coundownID, bundle), 20000);
 
 }
 
@@ -120,10 +118,24 @@ var startCountdown = function() {
     }
 };
 
-var stopCountdown = function(coundownID) {
+var stopCountdown = function(coundownID, bundle) {
     return function() {
         clearInterval(coundownID);
         document.getElementById("numberCountdown").innerHTML = "";
+        info1_str = bundle.options[0].name+" has "+bundle.statistics[0]+" "+bundle.place_type;
+        info1.setMap(null);
+        info1 = new google.maps.InfoWindow({
+            content: info1_str
+        });
+        info2_str = bundle.options[1].name+" has "+bundle.statistics[1]+" "+bundle.place_type;
+        info2.setMap(null);
+        info2 = new google.maps.InfoWindow({
+            content: info2_str
+        });
+        info1.open(map, marker1);
+        info2.open(map, marker2);
+
+        document.getElementById("question").innerHTML = "The winner is "+bundle.answer+" !!!";
     }
 }
 
