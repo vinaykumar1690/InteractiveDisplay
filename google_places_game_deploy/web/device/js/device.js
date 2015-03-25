@@ -193,9 +193,10 @@ var onDisplayOptions = function(args) {
 
 var shortenDisplayName = function(appliedUserName) {
    if (appliedUserName.length > 6) {
-      return appliedUserName.substring(0, 6) + "...";
+      return appliedUserName.substring(0, 3) + "..." 
+         + appliedUserName.substring(appliedUserName.length-3, appliedUserName.length);
    } else {
-      return appliedUserName
+      return appliedUserName;
    }
 }
 
