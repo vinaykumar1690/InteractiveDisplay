@@ -45,7 +45,7 @@ connection.onopen = function(session) {
       }
   )
 
-  setInterval(question(session), 30*1000);
+  setInterval(question(session), 21*1000);
 }
 
 /*
@@ -77,7 +77,6 @@ var createUser = function(session) {
 		} catch (err) {
 			console.log(err.message);
 		}
-		console.log('[backend] createUser: finished');
 		return [userToken];
 	}
 }

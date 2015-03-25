@@ -16,6 +16,7 @@ var marker2 = null;
 var info1;
 var info2;
 var place_type;
+var bundle = null;
 
 var coundownID;
 
@@ -41,16 +42,10 @@ connection.onopen = function(session) {
     var divMapCanvas = document.getElementById('Game_Body');
     divMapCanvas.insertBefore(divCountdownClock, divMapCanvas.childNodes[2]);
 
-    reqQA(session);
+    session.subscribe("edu.cmu.ipd.rounds.newRound", showAnswer);
 }
 
-var bundle = null;
-
-function reqQA(session) {
-    session.subscribe("edu.cmu.ipd.rounds.newRound", showQuesion);
-}
-
-var showQuesion = function (args) {
+function showQuestion(args) {
     bundle = args[0];
     //var answer = args[1];
 
@@ -92,21 +87,14 @@ var showQuesion = function (args) {
     info2.open(map, marker2);
 
     document.getElementById("question").innerHTML = 'Which place has more '+ place_type +'s ' +city1.name+ ' or ' +city2.name+ '?';
-
+    console.log('showing question');
     setTimeout(function() {
         coundownID = setInterval(startCountdown(), 1000);
-    }, 13000);
-    setTimeout(stopCountdown(coundownID, bundle), 20000);
+    }, 8000);
 
 }
 
-// var showAnswer = function(session) {
-//     console.log('showAnswer');
-//     setTimeout(reqQA, 5000, session);
-// };
-
-
-var startCountdown = function() {
+var startCountdown = function(countdownID) {
     
     var g_iCount = 6;
     
@@ -118,10 +106,19 @@ var startCountdown = function() {
     }
 };
 
-var stopCountdown = function(coundownID, bundle) {
-    return function() {
-        clearInterval(coundownID);
-        document.getElementById("numberCountdown").innerHTML = "";
+function stopCountdown() {
+    clearInterval(coundownID);
+    document.getElementById("numberCountdown").innerHTML = "";
+}
+
+var showAnswer = function(args) {
+        console.log('show answer');
+    if (bundle === null) {
+        console.log('No previous bundle, waiting 5 secs before showing the question');
+        setTimeout(showQuestion, 5000, args); 
+        //showQuestion(args);
+    } else {
+        stopCountdown();
         info1_str = bundle.options[0].name+" has "+bundle.statistics[0]+" "+bundle.place_type;
         info1.setMap(null);
         info1 = new google.maps.InfoWindow({
@@ -136,7 +133,12 @@ var stopCountdown = function(coundownID, bundle) {
         info2.open(map, marker2);
 
         document.getElementById("question").innerHTML = "The winner is "+bundle.answer+" !!!";
+        
+        console.log('previous answer shown, waiting 5 secs before showing the question');
+        setTimeout(showQuestion, 5000, args); 
+        //showQuestion(args);
     }
+
 }
 
 connection.open();
