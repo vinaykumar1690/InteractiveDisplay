@@ -1,17 +1,25 @@
 var connection = new autobahn.Connection({
-	url: 'ws://10.0.17.206:80/ws',
+	url: 'ws://ec2-54-183-65-200.us-west-1.compute.amazonaws.com:8080/ws',
 	realm: 'realm1'
 });
 
 document.getElementById('login').disabled = true;
 
 var sessionHandler;
+
 var userToken;
 var appliedUserName;
+
 var subscribeHandler;
 var answerSubmitted = null;
 var answerLastRound = null;
+
 var score = 0;
+
+var cachedUserName = [];
+var cachedToken    = [];
+
+
 
 connection.onopen = function(session){
 
@@ -35,6 +43,7 @@ connection.onopen = function(session){
          function(res) {
             console.log('called with token: ' + res[0]);
             userToken = res[0];
+            onCreatedUser([]);
          },
          function(err) {
             console.log('error:', err.error, err.args, err.kwargs);
@@ -57,13 +66,18 @@ connection.onopen = function(session){
  * return 	: a RPC call that for registration call, 
  */
 var onCreatedUser = function(args) {
-	
-   console.log('[client] onCreatedUser: applied username: ' + args[1] +  ' appliedToken:' + args[0]);
 
-   appliedUserName = args[1];
-   var appliedToken = args[0];
-
-   if (userToken === appliedToken) {
+   if (args.length === 2) {
+      console.log('[device].onCreatedUser: receive pubsub username: ' + args[1] +  ' appliedToken:' + args[0]);
+      cachedUserName.push(args[1]);
+      cachedToken.push(args[0]);
+   } else {
+      console.log('[device].onCreatedUser: receive userToken: ' + userToken);
+   }
+   
+   var idx = checkToken(userToken); 
+   if (idx > -1) {
+      appliedUserName = cachedUserName[idx];
       //Overwrite the header part
       addButton();
 
@@ -102,6 +116,19 @@ var onCreatedUser = function(args) {
             console.log('[device]\tFailed to call .rounds.currentRound.');
          });
    }
+        
+}
+
+
+var checkToken = function() {
+	console.log('[device].checkToken: start check');
+	for(i = 0; i < cachedToken.length; i++) {
+		console.log('[device].checkToken: userToken=' + userToken + ' cachedToken[' + i + ']=' + cachedToken[i]);
+		if (userToken === cachedToken[i]) {
+			return i;
+		}
+	}
+	return -1;
 }
 
 /*

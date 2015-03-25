@@ -9,7 +9,7 @@ var places_question = require('./cities_and_types.js');
 var places_answer = require('./getAnswer.js');
 
 var connection = new autobahn.Connection({
-	url: 'ws://127.0.0.1:80/ws',
+	url: 'ws://ec2-54-183-65-200.us-west-1.compute.amazonaws.com:8080/ws',
 	realm: 'realm1'
 });
 
@@ -45,7 +45,7 @@ connection.onopen = function(session) {
       }
   )
 
-  setInterval(question(session), 20*1000);
+  setInterval(question(session), 30*1000);
 }
 
 /*
@@ -57,7 +57,14 @@ var createUser = function(session) {
 	var onCreatedUser = function(token) {
 		var userNameToken = token;
 		return function(appliedUserName) {
-			session.publish('edu.cmu.ipd.users.onCreatedUser', [userNameToken, appliedUserName]);
+			console.log('[backend]: onCreatedUser: user[' + appliedUserName + '] with token[' + userNameToken + ']' );
+			session.publish('edu.cmu.ipd.users.onCreatedUser', [userNameToken, appliedUserName], {}, { acknowledge: true}).then(
+				function(publication) {
+					console.log("published, publication ID is ", publication);
+                  		},
+                  		function(error) {
+                    			console.log("publication error", error);
+                  	});
 		}
 	}
 
