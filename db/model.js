@@ -89,38 +89,41 @@ exports.getTopNUsers = function(N, callback) {
 		
 		var records = [];
 		
-		return function(res) {
+		return function() {
 
-			body = "";
-		
-			res.on('data', function(data) {
-				//console.log(data);
-				body += data;
-			});
+			return function(res) {
 
-			res.on('end', function() {
-				
-				result = JSON.parse(body);
-				
-				records.push(result);
-				
-				if (records.length === total) {
-					
-					records.sort(comparator);
-					
-					var param = [];
-					
-					for (i = 0; i < N && i < records.length; i++) {
-						var bundle = {
-							userName : records[i]._id,
-							score: records[i].score,
-						}
-						param.push(bundle);
-					}
-					callback(param);
-				}
 				body = "";
-			})
+			
+				res.on('data', function(data) {
+					//console.log(data);
+					body += data;
+				});
+
+				res.on('end', function() {
+					
+					result = JSON.parse(body);
+					
+					records.push(result);
+					
+					if (records.length === total) {
+						
+						records.sort(comparator);
+						
+						var param = [];
+						
+						for (i = 0; i < N && i < records.length; i++) {
+							var bundle = {
+								userName : records[i]._id,
+								score: records[i].score,
+							}
+							param.push(bundle);
+						}
+						callback(param);
+					}
+					body = "";
+				})
+			}
 		}
 	}
 
@@ -137,7 +140,7 @@ exports.getTopNUsers = function(N, callback) {
 			onRowResponse = onRowResponse(result.length);
 			for (i in result) {
 				row = result[i];
-				dbdriver.transaction('users', row.id, 'GET', null, onRowResponse, onReqError);
+				dbdriver.transaction('users', row.id, 'GET', null, onRowResponse(), onReqError);
 			}
 
 		});
