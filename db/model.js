@@ -94,6 +94,7 @@ exports.getTopNUsers = function(N, callback) {
 			body = "";
 		
 			res.on('data', function(data) {
+				//console.log(data);
 				body += data;
 			});
 
@@ -118,6 +119,7 @@ exports.getTopNUsers = function(N, callback) {
 					}
 					callback(param);
 				}
+				body = "";
 			})
 		}
 	}
