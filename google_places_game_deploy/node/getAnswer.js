@@ -9,7 +9,7 @@ exports.getAnswer = function(opt, latitude, longitude, radius, placeType, onResp
 		port: 443,
 		path: '/maps/api/place/radarsearch/json?location=' + latitude + ',' + longitude 
 			+ '&radius=' + radius + '&types=' + placeType + '&sensor=false'
-			+ '&key=AIzaSyALWxgT7ALon32ohU5-fB-IWbmzbwSIDmg',
+			+ '&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0',
 		method: 'GET'
 	}
 
