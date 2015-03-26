@@ -29,10 +29,12 @@ var cities = [
 {name: "Sydney", lat: -33.8667, lng: 151.2094},
 {name: "Sao Paulo", lat: -23.5500, lng: -46.6333},
 {name: "Rome", lat: 41.9000, lng: 12.5000},
+{name: "Berlin", lat: 52.5167, lng: 13.3833}
 ];
 
 var types = [];
 /* Supported place search */
+/* Deleted ["health",] */
 var types_full = [
 "airport", "amusement_park", "aquarium", "art_gallery",
 "atm", "bakery", "bank", "bar", "beauty_salon",
@@ -43,7 +45,7 @@ var types_full = [
 "doctor", "electrician", "electronics_store", "embassy",
 "finance", "fire_station", "florist", "food", 
 "furniture_store", "gas_station", "grocery_or_supermarket", "gym",
-"hair_care", "hardware_store", "health", "home_goods_store",
+"hair_care", "hardware_store", "home_goods_store",
 "hospital", "jewelry_store", "laundry", 
 "library", "locksmith", "lodging",
 "meal_delivery", "meal_takeaway", "movie_rental", "movie_theater",

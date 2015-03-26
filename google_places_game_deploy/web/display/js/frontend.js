@@ -14,13 +14,16 @@ var loc2  = new google.maps.LatLng(40.7033, -73.9796); // New York
 var marker1 = null;
 var marker2 = null;
 var info1;
+var info1_ans;
 var info2;
+var info2_ans;
 var place_type;
 var bundle = null;
 
 var coundownID;
 
 var sessionHandler;
+
 
 connection.onopen = function(session) {
     sessionHandler = session;
@@ -78,11 +81,26 @@ function showQuestion(args) {
     marker2 = new google.maps.Marker({
         position: loc2
     });
+
+    // InfoWindow for city1
+    city1_contentStr = '<div id="city1_Infowindow" class="infowindow">' +
+    '<span id="city1_InfowindowText" style="font-size: 2em;">'
+    + city1.name +
+    '</span>' +
+    '<div>';
+   
+    // InfoWindow for city2
+    city2_contentStr = '<div id="city2_Infowindow" class="infowindow">' +
+    '<span id="city2_InfowindowText" style="font-size: 2em;">'
+    + city2.name +
+    '</span>' +
+    '<div>';
+
     info1 = new google.maps.InfoWindow({
-        content: city1.name
+        content: city1_contentStr
     });
     info2 = new google.maps.InfoWindow({
-        content: city2.name
+        content: city2_contentStr
     });
     
     marker1.setMap(map);
@@ -127,18 +145,20 @@ var showAnswer = function(args) {
         //showQuestion(args);
     } else {
         stopCountdown();
-        info1_str = bundle.options[0].name+" has "+bundle.statistics[0]+" "+bundle.place_type;
-        info1.setMap(null);
-        info1 = new google.maps.InfoWindow({
-            content: info1_str
-        });
-        info2_str = bundle.options[1].name+" has "+bundle.statistics[1]+" "+bundle.place_type;
-        info2.setMap(null);
-        info2 = new google.maps.InfoWindow({
-            content: info2_str
-        });
-        info1.open(map, marker1);
-        info2.open(map, marker2);
+        // info1_str = bundle.options[0].name+" has "+bundle.statistics[0]+" "+bundle.place_type;
+        document.getElementById("city1_InfowindowText").innerHTML = bundle.options[0].name+" has "+bundle.statistics[0]+" "+bundle.place_type;
+        // info1.setMap(null); // Delete the old one
+        // info1_ans = new google.maps.InfoWindow({ 
+        //     content: city1_contentStr
+        // });
+        // info2_str = bundle.options[1].name+" has "+bundle.statistics[1]+" "+bundle.place_type;
+        document.getElementById("city2_InfowindowText").innerHTML = bundle.options[1].name+" has "+bundle.statistics[1]+" "+bundle.place_type;
+        // info2.setMap(null);
+        // info2 = new google.maps.InfoWindow({
+        //     content: city2_contentStr
+        // });
+        // info1_ans.open(map, marker1);
+        // info2.open(map, marker2);
 
         document.getElementById("question").innerHTML = "The winner is "+bundle.answer+" !!!";
         
