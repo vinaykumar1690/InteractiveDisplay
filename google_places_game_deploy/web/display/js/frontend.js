@@ -20,7 +20,10 @@ var bundle = null;
 
 var coundownID;
 
+var sessionHandler;
+
 connection.onopen = function(session) {
+    sessionHandler = session;
     var location = new google.maps.LatLng(40, 0);
     // MAP
     var mapOptions = {
@@ -43,6 +46,8 @@ connection.onopen = function(session) {
     divMapCanvas.insertBefore(divCountdownClock, divMapCanvas.childNodes[2]);
 
     session.subscribe("edu.cmu.ipd.rounds.newRound", showAnswer);
+
+    session.subscribe('edu.cmu.ipd.leaderboard.request', onLeaderBoardReady);
 }
 
 function showQuestion(args) {
@@ -88,6 +93,9 @@ function showQuestion(args) {
 
     document.getElementById("question").innerHTML = 'Which place has more '+ place_type +'s ' +city1.name+ ' or ' +city2.name+ '?';
     console.log('showing question');
+
+    sessionHandler.call('edu.cmu.ipd.leaderboard.request', [5]);
+
     setTimeout(function() {
         coundownID = setInterval(startCountdown(), 1000);
     }, 8000);
@@ -139,6 +147,26 @@ var showAnswer = function(args) {
         //showQuestion(args);
     }
 
+}
+
+onLeaderBoardReady = function(args) {
+
+    console.log(args);
+
+    document.getElementById('top_1_name').innerHTML = args[0].userName;
+    document.getElementById('top_1_score').innerHTML = args[0].score;
+
+    document.getElementById('top_2_name').innerHTML = args[1].userName;
+    document.getElementById('top_2_score').innerHTML = args[1].score;
+
+    document.getElementById('top_3_name').innerHTML = args[2].userName;
+    document.getElementById('top_3_score').innerHTML = args[2].score;
+
+    document.getElementById('top_4_name').innerHTML = args[3].userName;
+    document.getElementById('top_4_score').innerHTML = args[3].score;
+
+    document.getElementById('top_5_name').innerHTML = args[4].userName;
+    document.getElementById('top_5_score').innerHTML = args[4].score;
 }
 
 connection.open();

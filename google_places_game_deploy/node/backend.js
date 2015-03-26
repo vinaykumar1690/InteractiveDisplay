@@ -8,10 +8,13 @@ var model = require('../../db/model.js');
 var places_question = require('./cities_and_types.js');
 var places_answer = require('./getAnswer.js');
 
+var urls = require('../../url/url.js');
+
 var connection = new autobahn.Connection({
-	url: 'ws://ec2-54-183-65-200.us-west-1.compute.amazonaws.com:8080/ws',
+	url: 'ws://' + urls.crossbarURL + '/ws',
 	realm: 'realm1'
 });
+
 
 
 var currBundle = null;
@@ -43,7 +46,16 @@ connection.onopen = function(session) {
       function(err) {
         console.log('.rounds.currentRound failed in registration', err);
       }
-  )
+  );
+
+  session.register('edu.cmu.ipd.leaderboard.request', topN(session)).then(
+    function(reg) {
+      console.log('.leaderboard.request registered');
+    },
+    function(err) {
+      console.log('.leaderboard.request railed in registration');
+    }
+  );
 
   setInterval(question(session), 21*1000);
 }
@@ -195,5 +207,23 @@ var question = function(session) {
 var getCurrentRound = function(args){
   return [currBundle]
 }
+
+var topN = function(session) {
+  
+  return function(args) {
+    N = args[0];
+    onLeaderBoardReady = function(param) {
+      session.publish('edu.cmu.ipd.leaderboard.request', param, {}, { acknowledge: true}).then(
+        function(publication) {
+          console.log("leaderboard published with ID: " + publication);
+        },
+        function(error) {
+          console.log('leaderboard published with error', error);
+        });
+    }
+    model.getTopNUsers(N, onLeaderBoardReady);
+  }
+}
+
 
 connection.open();

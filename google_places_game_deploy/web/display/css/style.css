@@ -127,3 +127,7 @@ div.panel_banner {
     text-align: center;
     font-size: 10em;
 }
+
+table {
+  width : 100%;
+}
