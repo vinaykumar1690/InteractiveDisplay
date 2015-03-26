@@ -1,9 +1,10 @@
 querystring = require('querystring');
 http = require('http');
+url  = require('../url/url.js');
 
 exports.transaction = function(table, uuid, method, object, onResponse, onError) {
 	var options = {
-		host: "localhost", 
+		host: url.dbURL, 
 		port: "5984",
 		path: "/" + table + '/' + uuid,
 		method: method, 

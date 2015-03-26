@@ -79,3 +79,72 @@ exports.updateScore = function(userName, score) {
 	dbdriver.transaction('users', userName, 'GET', null, onGetResponse, onReqError);
 }
 
+exports.getTopNUsers = function(N, callback) {
+
+	var comparator = function(record1, record2) {
+		return record2.score - record1.score;
+	}
+
+	var onRowResponse = function(total) {
+		
+		var records = [];
+		
+		return function(res) {
+
+			body = "";
+		
+			res.on('data', function(data) {
+				body += data;
+			});
+
+			res.on('end', function() {
+				
+				result = JSON.parse(body);
+				
+				records.push(result);
+				
+				if (records.length === total) {
+					
+					records.sort(comparator);
+					
+					var param = [];
+					
+					for (i = 0; i < N && i < records.length; i++) {
+						var bundle = {
+							userName : records[i]._id,
+							score: records[i].score,
+						}
+						param.push(bundle);
+					}
+					callback(param);
+				}
+			})
+		}
+	}
+
+	var onDBGetResponse = function(res) {
+
+		body = "";
+
+		res.on('data', function(data) {
+			body += data;
+		});
+
+		res.on('end', function() {
+			result = JSON.parse(body).rows;
+			onRowResponse = onRowResponse(result.length);
+			for (i in result) {
+				row = result[i];
+				dbdriver.transaction('users', row.id, 'GET', null, onRowResponse, onReqError);
+			}
+
+		});
+	}
+
+	var onReqError = function(err) {
+		console.log('Update user[' + userName + '] score error:' + err.message);
+	};
+
+	dbdriver.transaction('users', '_all_docs', 'GET', null, onDBGetResponse, onReqError);
+}
+
