@@ -51,6 +51,8 @@ connection.onopen = function(session) {
     session.subscribe("edu.cmu.ipd.rounds.newRound", showAnswer);
 
     session.subscribe('edu.cmu.ipd.leaderboard.request', onLeaderBoardReady);
+
+
 }
 
 function showQuestion(args) {
@@ -190,3 +192,21 @@ onLeaderBoardReady = function(args) {
 }
 
 connection.open();
+
+
+$(document).ready(function() {
+    $('.flipper').addClass('flipperStart');
+    setInterval(flip, 15 * 1000);
+});
+
+var flip = function() {
+    var front = false;
+    return function() {
+        if (front === true) {
+            $('.flipper').css('transform', 'rotateY(180deg)');
+        } else {
+            $('.flipper').css('transform', 'rotateY(0deg)');
+        }
+        front = !front;
+    }
+}();

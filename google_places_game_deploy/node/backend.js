@@ -16,6 +16,9 @@ var connection = new autobahn.Connection({
 });
 
 
+var userBehaviorUpdates = [];
+
+
 
 var currBundle = null;
 
@@ -101,7 +104,9 @@ var updateScore = function(args) {
     model.updateScore(userName, score);
   } catch (err) {
     console.log('updateScore exception: ' + err.message);
-  } 
+  }
+
+  userBehaviorUpdates.push()
   return [];
 }
 
@@ -223,6 +228,14 @@ var topN = function(session) {
     }
     model.getTopNUsers(N, onLeaderBoardReady);
   }
+}
+
+var submitAnswer = function(args) {
+  update = {
+    userName : args[0],
+    action   : 'submit',
+  }
+  userBehaviorUpdates.push(update);
 }
 
 
