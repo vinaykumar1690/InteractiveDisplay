@@ -1,0 +1,626 @@
+2015-03-27 18:02:40+0000 [Controller   9718] Log opened.
+2015-03-27 18:02:40+0000 [Controller   9718] ==================== Crossbar.io ====================
+	
+2015-03-27 18:02:40+0000 [Controller   9718] Crossbar.io 0.10.3 starting
+2015-03-27 18:02:40+0000 [Controller   9718] Running on PyPy using EPollReactor reactor
+2015-03-27 18:02:40+0000 [Controller   9718] Starting from node directory /home/ubuntu/InteractiveDisplay/google_places_game_deploy/.crossbar
+2015-03-27 18:02:40+0000 [Controller   9718] Starting from local configuration '/home/ubuntu/InteractiveDisplay/google_places_game_deploy/.crossbar/config.json'
+2015-03-27 18:02:40+0000 [Controller   9718] Router created for realm 'crossbar'
+2015-03-27 18:02:40+0000 [Controller   9718] No WAMPlets detected in enviroment.
+2015-03-27 18:02:40+0000 [Controller   9718] Starting Router with ID 'worker1' ..
+2015-03-27 18:02:40+0000 [Controller   9718] Entering reactor event loop ...
+2015-03-27 18:02:41+0000 [Router       9729] Log opened.
+2015-03-27 18:02:42+0000 [Router       9729] Running under PyPy using EPollReactor reactor
+2015-03-27 18:02:43+0000 [Router       9729] Entering event loop ..
+2015-03-27 18:02:43+0000 [Controller   9718] Router with ID 'worker1' and PID 9729 started
+2015-03-27 18:02:43+0000 [Controller   9718] Router 'worker1': realm 'realm1' (named 'realm1') started
+2015-03-27 18:02:43+0000 [Controller   9718] Router 'worker1': role 'role1' (named 'anonymous') started on realm 'realm1'
+2015-03-27 18:02:43+0000 [Router       9729] Site starting on 8080
+2015-03-27 18:02:43+0000 [Controller   9718] Router 'worker1': transport 'transport1' started
+2015-03-27 18:02:43+0000 [Controller   9718] Using guest worker executable '/usr/bin/node' (executable path detected from environment)
+2015-03-27 18:02:43+0000 [Controller   9718] Starting Guest with ID 'worker2' ..
+2015-03-27 18:02:43+0000 [Controller   9718] GuestWorkerClientProtocol.connectionMade
+2015-03-27 18:02:43+0000 [Controller   9718] Guest with ID 'worker2' and PID 9736 started
+2015-03-27 18:02:43+0000 [Controller   9718] Guest 'worker2': started
+2015-03-27 18:02:43+0000 [Guest        9736] [ { full_name: 'airport', display_name: 'airport' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'amusement_park', display_name: 'amusement park' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'aquarium', display_name: 'aquarium' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'art_gallery', display_name: 'art gallery' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'atm', display_name: 'atm' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'bakery', display_name: 'bakery' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'bank', display_name: 'bank' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'bar', display_name: 'bar' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'beauty_salon', display_name: 'beauty salon' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'bicycle_store', display_name: 'bicycle store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'book_store', display_name: 'book store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'bowling_alley', display_name: 'bowling alley' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'bus_station', display_name: 'bus station' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'cafe', display_name: 'cafe' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'campground', display_name: 'campground' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'car_dealer', display_name: 'car dealer' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'car_rental', display_name: 'car rental' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'car_repair', display_name: 'car repair' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'car_wash', display_name: 'car wash' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'casino', display_name: 'casino' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'city_hall', display_name: 'city hall' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'clothing_store', display_name: 'clothing store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'convenience_store',
+2015-03-27 18:02:43+0000 [Guest        9736] display_name: 'convenience store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'dentist', display_name: 'dentist' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'department_store',
+2015-03-27 18:02:43+0000 [Guest        9736] display_name: 'department store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'doctor', display_name: 'doctor' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'electrician', display_name: 'electrician' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'electronics_store',
+2015-03-27 18:02:43+0000 [Guest        9736] display_name: 'electronics store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'embassy', display_name: 'embassy' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'finance', display_name: 'finance' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'fire_station', display_name: 'fire station' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'florist', display_name: 'florist' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'food', display_name: 'food' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'furniture_store',
+2015-03-27 18:02:43+0000 [Guest        9736] display_name: 'furniture store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'gas_station', display_name: 'gas station' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'grocery_or_supermarket',
+2015-03-27 18:02:43+0000 [Guest        9736] display_name: 'grocery or supermarket' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'gym', display_name: 'gym' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'hair_care', display_name: 'hair care' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'hardware_store', display_name: 'hardware store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'home_goods_store',
+2015-03-27 18:02:43+0000 [Guest        9736] display_name: 'home goods store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'hospital', display_name: 'hospital' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'jewelry_store', display_name: 'jewelry store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'laundry', display_name: 'laundry' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'library', display_name: 'library' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'locksmith', display_name: 'locksmith' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'lodging', display_name: 'lodging' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'meal_delivery', display_name: 'meal delivery' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'meal_takeaway', display_name: 'meal takeaway' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'movie_rental', display_name: 'movie rental' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'movie_theater', display_name: 'movie theater' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'moving_company', display_name: 'moving company' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'museum', display_name: 'museum' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'night_club', display_name: 'night club' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'painter', display_name: 'painter' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'park', display_name: 'park' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'parking', display_name: 'parking' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'pet_store', display_name: 'pet store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'pharmacy', display_name: 'pharmacy' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'place_of_worship',
+2015-03-27 18:02:43+0000 [Guest        9736] display_name: 'place of worship' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'plumber', display_name: 'plumber' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'post_office', display_name: 'post office' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'real_estate_agency',
+2015-03-27 18:02:43+0000 [Guest        9736] display_name: 'real estate agency' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'restaurant', display_name: 'restaurant' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'roofing_contractor',
+2015-03-27 18:02:43+0000 [Guest        9736] display_name: 'roofing contractor' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'rv_park', display_name: 'rv park' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'school', display_name: 'school' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'shoe_store', display_name: 'shoe store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'shopping_mall', display_name: 'shopping mall' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'spa', display_name: 'spa' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'stadium', display_name: 'stadium' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'storage', display_name: 'storage' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'store', display_name: 'store' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'subway_station', display_name: 'subway station' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'taxi_stand', display_name: 'taxi stand' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'train_station', display_name: 'train station' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'travel_agency', display_name: 'travel agency' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'university', display_name: 'university' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'veterinary_care',
+2015-03-27 18:02:43+0000 [Guest        9736] display_name: 'veterinary care' },
+2015-03-27 18:02:43+0000 [Guest        9736] { full_name: 'zoo', display_name: 'zoo' } ]
+2015-03-27 18:02:43+0000 [Guest        9736] google places node connected.
+2015-03-27 18:02:43+0000 [Guest        9736] .users.createUser registered
+2015-03-27 18:02:43+0000 [Guest        9736] .users.updateScore registered
+2015-03-27 18:02:43+0000 [Guest        9736] .rounds.currentRound registered
+2015-03-27 18:02:43+0000 [Guest        9736] .leaderboard.request registered
+2015-03-27 18:03:04+0000 [Guest        9736] full name: dentist
+2015-03-27 18:03:04+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.8369,-87.6847&radius=2000&types=dentist&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:03:04+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=52.5167,13.3833&radius=2000&types=dentist&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:03:04+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:03:04+0000 [Guest        9736] published, publication ID is  { id: 996587687 }
+2015-03-27 18:03:25+0000 [Guest        9736] full name: finance
+2015-03-27 18:03:25+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=finance&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:03:25+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-23.55,-46.6333&radius=2000&types=finance&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:03:25+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:03:25+0000 [Guest        9736] published, publication ID is  { id: 760303001 }
+2015-03-27 18:03:46+0000 [Guest        9736] full name: university
+2015-03-27 18:03:46+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=university&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:03:46+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=university&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:03:46+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:03:46+0000 [Guest        9736] published, publication ID is  { id: 194193291 }
+2015-03-27 18:04:07+0000 [Guest        9736] full name: shoe_store
+2015-03-27 18:04:07+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-33.8667,151.2094&radius=2000&types=shoe_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:04:07+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=shoe_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:04:07+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:04:07+0000 [Guest        9736] published, publication ID is  { id: 1251030903 }
+2015-03-27 18:04:28+0000 [Guest        9736] full name: veterinary_care
+2015-03-27 18:04:28+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.8567,2.3508&radius=2000&types=veterinary_care&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:04:28+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=veterinary_care&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:04:28+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:04:28+0000 [Guest        9736] published, publication ID is  { id: 2045223578 }
+2015-03-27 18:04:49+0000 [Guest        9736] full name: plumber
+2015-03-27 18:04:49+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-33.8667,151.2094&radius=2000&types=plumber&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:04:49+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=plumber&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:04:49+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:04:49+0000 [Guest        9736] published, publication ID is  { id: 1608139315 }
+2015-03-27 18:05:10+0000 [Guest        9736] full name: cafe
+2015-03-27 18:05:10+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=cafe&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:05:10+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=cafe&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:05:10+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:05:10+0000 [Guest        9736] published, publication ID is  { id: 1527925097 }
+2015-03-27 18:05:31+0000 [Guest        9736] full name: night_club
+2015-03-27 18:05:31+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=night_club&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:05:31+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=night_club&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:05:31+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:05:31+0000 [Guest        9736] published, publication ID is  { id: 1599261303 }
+2015-03-27 18:05:52+0000 [Guest        9736] full name: car_wash
+2015-03-27 18:05:52+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-33.8667,151.2094&radius=2000&types=car_wash&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:05:52+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=40.7127,-74.0059&radius=2000&types=car_wash&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:05:52+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:05:52+0000 [Guest        9736] published, publication ID is  { id: 1414919734 }
+2015-03-27 18:06:13+0000 [Guest        9736] full name: locksmith
+2015-03-27 18:06:13+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-33.8667,151.2094&radius=2000&types=locksmith&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:06:13+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.8567,2.3508&radius=2000&types=locksmith&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:06:13+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:06:13+0000 [Guest        9736] published, publication ID is  { id: 1033921161 }
+2015-03-27 18:06:34+0000 [Guest        9736] full name: car_wash
+2015-03-27 18:06:34+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=car_wash&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:06:34+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=40.7127,-74.0059&radius=2000&types=car_wash&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:06:34+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:06:34+0000 [Guest        9736] published, publication ID is  { id: 1982839459 }
+2015-03-27 18:06:55+0000 [Guest        9736] full name: dentist
+2015-03-27 18:06:55+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=dentist&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:06:55+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=dentist&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:06:55+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:06:55+0000 [Guest        9736] published, publication ID is  { id: 18641591 }
+2015-03-27 18:07:16+0000 [Guest        9736] full name: shopping_mall
+2015-03-27 18:07:16+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.8567,2.3508&radius=2000&types=shopping_mall&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:07:16+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.8369,-87.6847&radius=2000&types=shopping_mall&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:07:16+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:07:16+0000 [Guest        9736] published, publication ID is  { id: 915973263 }
+2015-03-27 18:07:37+0000 [Guest        9736] full name: bank
+2015-03-27 18:07:37+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=bank&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:07:37+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=bank&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:07:37+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:07:37+0000 [Guest        9736] published, publication ID is  { id: 1358947880 }
+2015-03-27 18:07:58+0000 [Guest        9736] full name: jewelry_store
+2015-03-27 18:07:58+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.8369,-87.6847&radius=2000&types=jewelry_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:07:58+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=jewelry_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:07:58+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:07:58+0000 [Guest        9736] published, publication ID is  { id: 1938953432 }
+2015-03-27 18:08:19+0000 [Guest        9736] full name: furniture_store
+2015-03-27 18:08:19+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=furniture_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:08:19+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.8369,-87.6847&radius=2000&types=furniture_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:08:19+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:08:19+0000 [Guest        9736] published, publication ID is  { id: 1886263785 }
+2015-03-27 18:08:40+0000 [Guest        9736] full name: library
+2015-03-27 18:08:40+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.8567,2.3508&radius=2000&types=library&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:08:40+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=library&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:08:40+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:08:40+0000 [Guest        9736] published, publication ID is  { id: 1053437667 }
+2015-03-27 18:09:01+0000 [Guest        9736] full name: pet_store
+2015-03-27 18:09:01+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=pet_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:09:01+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=pet_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:09:01+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:09:01+0000 [Guest        9736] published, publication ID is  { id: 909233774 }
+2015-03-27 18:09:22+0000 [Guest        9736] full name: locksmith
+2015-03-27 18:09:22+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=locksmith&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:09:22+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=locksmith&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:09:22+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:09:22+0000 [Guest        9736] published, publication ID is  { id: 1282730706 }
+2015-03-27 18:09:43+0000 [Guest        9736] full name: library
+2015-03-27 18:09:43+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.8567,2.3508&radius=2000&types=library&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:09:43+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=40.7127,-74.0059&radius=2000&types=library&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:09:43+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:09:43+0000 [Guest        9736] published, publication ID is  { id: 1214255659 }
+2015-03-27 18:10:04+0000 [Guest        9736] full name: dentist
+2015-03-27 18:10:04+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=52.5167,13.3833&radius=2000&types=dentist&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:10:04+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-33.8667,151.2094&radius=2000&types=dentist&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:10:04+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:10:04+0000 [Guest        9736] published, publication ID is  { id: 1264321433 }
+2015-03-27 18:10:25+0000 [Guest        9736] full name: post_office
+2015-03-27 18:10:25+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.8567,2.3508&radius=2000&types=post_office&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:10:25+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=post_office&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:10:26+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:10:26+0000 [Guest        9736] published, publication ID is  { id: 539399485 }
+2015-03-27 18:10:46+0000 [Guest        9736] full name: car_dealer
+2015-03-27 18:10:46+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=car_dealer&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:10:46+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=52.5167,13.3833&radius=2000&types=car_dealer&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:10:46+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:10:47+0000 [Guest        9736] published, publication ID is  { id: 1408048659 }
+2015-03-27 18:11:07+0000 [Guest        9736] full name: beauty_salon
+2015-03-27 18:11:07+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=beauty_salon&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:11:07+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=beauty_salon&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:11:08+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:11:08+0000 [Guest        9736] published, publication ID is  { id: 1606081836 }
+2015-03-27 18:11:28+0000 [Guest        9736] full name: meal_takeaway
+2015-03-27 18:11:28+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=meal_takeaway&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:11:28+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=52.5167,13.3833&radius=2000&types=meal_takeaway&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:11:29+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:11:29+0000 [Guest        9736] published, publication ID is  { id: 460512710 }
+2015-03-27 18:11:49+0000 [Guest        9736] full name: amusement_park
+2015-03-27 18:11:50+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=52.5167,13.3833&radius=2000&types=amusement_park&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:11:50+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=amusement_park&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:11:50+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:11:50+0000 [Guest        9736] published, publication ID is  { id: 2078294376 }
+2015-03-27 18:12:11+0000 [Guest        9736] full name: book_store
+2015-03-27 18:12:11+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.8567,2.3508&radius=2000&types=book_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:12:11+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=book_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:12:11+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:12:11+0000 [Guest        9736] published, publication ID is  { id: 1858263495 }
+2015-03-27 18:12:32+0000 [Guest        9736] full name: department_store
+2015-03-27 18:12:32+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=department_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:12:32+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-33.8667,151.2094&radius=2000&types=department_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:12:32+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:12:32+0000 [Guest        9736] published, publication ID is  { id: 1542481875 }
+2015-03-27 18:12:53+0000 [Guest        9736] full name: spa
+2015-03-27 18:12:53+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=spa&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:12:53+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-23.55,-46.6333&radius=2000&types=spa&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:12:53+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:12:53+0000 [Guest        9736] published, publication ID is  { id: 2058130877 }
+2015-03-27 18:13:14+0000 [Guest        9736] full name: fire_station
+2015-03-27 18:13:14+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=fire_station&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:13:14+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=fire_station&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:13:14+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:13:14+0000 [Guest        9736] published, publication ID is  { id: 1529012080 }
+2015-03-27 18:13:35+0000 [Guest        9736] full name: clothing_store
+2015-03-27 18:13:35+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-33.8667,151.2094&radius=2000&types=clothing_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:13:35+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=clothing_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:13:35+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:13:35+0000 [Guest        9736] published, publication ID is  { id: 1168958606 }
+2015-03-27 18:13:56+0000 [Guest        9736] full name: jewelry_store
+2015-03-27 18:13:56+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=jewelry_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:13:56+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.8369,-87.6847&radius=2000&types=jewelry_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:13:56+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:13:56+0000 [Guest        9736] published, publication ID is  { id: 425927179 }
+2015-03-27 18:14:17+0000 [Guest        9736] full name: art_gallery
+2015-03-27 18:14:17+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=art_gallery&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:14:17+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.8369,-87.6847&radius=2000&types=art_gallery&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:14:17+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:14:17+0000 [Guest        9736] published, publication ID is  { id: 1458566345 }
+2015-03-27 18:14:38+0000 [Guest        9736] full name: roofing_contractor
+2015-03-27 18:14:38+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=roofing_contractor&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:14:38+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.8369,-87.6847&radius=2000&types=roofing_contractor&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:14:38+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:14:38+0000 [Guest        9736] published, publication ID is  { id: 979431629 }
+2015-03-27 18:14:59+0000 [Guest        9736] full name: real_estate_agency
+2015-03-27 18:14:59+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=52.5167,13.3833&radius=2000&types=real_estate_agency&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:14:59+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=real_estate_agency&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:14:59+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:14:59+0000 [Guest        9736] published, publication ID is  { id: 2104099807 }
+2015-03-27 18:15:20+0000 [Guest        9736] full name: painter
+2015-03-27 18:15:20+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=painter&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:15:20+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-33.8667,151.2094&radius=2000&types=painter&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:15:20+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:15:20+0000 [Guest        9736] published, publication ID is  { id: 491305191 }
+2015-03-27 18:15:41+0000 [Guest        9736] full name: pharmacy
+2015-03-27 18:15:41+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=pharmacy&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:15:41+0000 [Guest        9736] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=52.5167,13.3833&radius=2000&types=pharmacy&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:15:41+0000 [Guest        9736] option0: 0 option1: 0
+2015-03-27 18:15:41+0000 [Guest        9736] published, publication ID is  { id: 569576516 }
+2015-03-27 18:15:52+0000 [Controller   9718] Received SIGINT, shutting down.
+2015-03-27 18:15:52+0000 [Controller   9718] GuestWorkerClientProtocol.connectionLost: [Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ProcessTerminated'>: A process has ended with a probable error condition: process ended with exit code 130.
+	]
+2015-03-27 18:15:52+0000 [Controller   9718] GuestWorkerClientProtocol: guest ended with error 130
+2015-03-27 18:15:52+0000 [Controller   9718] Guest excited with error [Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ProcessTerminated'>: A process has ended with a probable error condition: process ended with exit code 130.
+	]
+2015-03-27 18:15:52+0000 [Controller   9718] Worker 9729: Process connection gone (A process has ended with a probable error condition: process ended with exit code 1.)
+2015-03-27 18:15:52+0000 [Controller   9718] Main loop terminated.
+2015-03-27 18:28:14+0000 [Controller  10408] Log opened.
+2015-03-27 18:28:14+0000 [Controller  10408] ==================== Crossbar.io ====================
+	
+2015-03-27 18:28:14+0000 [Controller  10408] Crossbar.io 0.10.3 starting
+2015-03-27 18:28:14+0000 [Controller  10408] Running on PyPy using EPollReactor reactor
+2015-03-27 18:28:14+0000 [Controller  10408] Starting from node directory /home/ubuntu/InteractiveDisplay/google_places_game_deploy/.crossbar
+2015-03-27 18:28:15+0000 [Controller  10408] Starting from local configuration '/home/ubuntu/InteractiveDisplay/google_places_game_deploy/.crossbar/config.json'
+2015-03-27 18:28:15+0000 [Controller  10408] Router created for realm 'crossbar'
+2015-03-27 18:28:15+0000 [Controller  10408] No WAMPlets detected in enviroment.
+2015-03-27 18:28:15+0000 [Controller  10408] Starting Router with ID 'worker1' ..
+2015-03-27 18:28:15+0000 [Controller  10408] Entering reactor event loop ...
+2015-03-27 18:28:15+0000 [Router      10419] Log opened.
+2015-03-27 18:28:16+0000 [Router      10419] Running under PyPy using EPollReactor reactor
+2015-03-27 18:28:17+0000 [Router      10419] Entering event loop ..
+2015-03-27 18:28:17+0000 [Controller  10408] Router with ID 'worker1' and PID 10419 started
+2015-03-27 18:28:17+0000 [Controller  10408] Router 'worker1': realm 'realm1' (named 'realm1') started
+2015-03-27 18:28:17+0000 [Controller  10408] Router 'worker1': role 'role1' (named 'anonymous') started on realm 'realm1'
+2015-03-27 18:28:17+0000 [Router      10419] Site starting on 8080
+2015-03-27 18:28:17+0000 [Controller  10408] Router 'worker1': transport 'transport1' started
+2015-03-27 18:28:17+0000 [Controller  10408] Using guest worker executable '/usr/bin/node' (executable path detected from environment)
+2015-03-27 18:28:17+0000 [Controller  10408] Starting Guest with ID 'worker2' ..
+2015-03-27 18:28:17+0000 [Controller  10408] GuestWorkerClientProtocol.connectionMade
+2015-03-27 18:28:17+0000 [Controller  10408] Guest with ID 'worker2' and PID 10427 started
+2015-03-27 18:28:17+0000 [Controller  10408] Guest 'worker2': started
+2015-03-27 18:28:17+0000 [Guest       10427] [ { full_name: 'airport', display_name: 'airport' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'amusement_park', display_name: 'amusement park' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'aquarium', display_name: 'aquarium' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'art_gallery', display_name: 'art gallery' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'atm', display_name: 'atm' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'bakery', display_name: 'bakery' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'bank', display_name: 'bank' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'bar', display_name: 'bar' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'beauty_salon', display_name: 'beauty salon' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'bicycle_store', display_name: 'bicycle store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'book_store', display_name: 'book store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'bowling_alley', display_name: 'bowling alley' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'bus_station', display_name: 'bus station' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'cafe', display_name: 'cafe' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'campground', display_name: 'campground' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'car_dealer', display_name: 'car dealer' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'car_rental', display_name: 'car rental' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'car_repair', display_name: 'car repair' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'car_wash', display_name: 'car wash' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'casino', display_name: 'casino' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'city_hall', display_name: 'city hall' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'clothing_store', display_name: 'clothing store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'convenience_store',
+2015-03-27 18:28:17+0000 [Guest       10427] display_name: 'convenience store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'dentist', display_name: 'dentist' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'department_store',
+2015-03-27 18:28:17+0000 [Guest       10427] display_name: 'department store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'doctor', display_name: 'doctor' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'electrician', display_name: 'electrician' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'electronics_store',
+2015-03-27 18:28:17+0000 [Guest       10427] display_name: 'electronics store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'embassy', display_name: 'embassy' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'finance', display_name: 'finance' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'fire_station', display_name: 'fire station' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'florist', display_name: 'florist' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'food', display_name: 'food' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'furniture_store',
+2015-03-27 18:28:17+0000 [Guest       10427] display_name: 'furniture store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'gas_station', display_name: 'gas station' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'grocery_or_supermarket',
+2015-03-27 18:28:17+0000 [Guest       10427] display_name: 'grocery or supermarket' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'gym', display_name: 'gym' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'hair_care', display_name: 'hair care' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'hardware_store', display_name: 'hardware store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'home_goods_store',
+2015-03-27 18:28:17+0000 [Guest       10427] display_name: 'home goods store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'hospital', display_name: 'hospital' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'jewelry_store', display_name: 'jewelry store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'laundry', display_name: 'laundry' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'library', display_name: 'library' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'locksmith', display_name: 'locksmith' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'lodging', display_name: 'lodging' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'meal_delivery', display_name: 'meal delivery' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'meal_takeaway', display_name: 'meal takeaway' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'movie_rental', display_name: 'movie rental' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'movie_theater', display_name: 'movie theater' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'moving_company', display_name: 'moving company' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'museum', display_name: 'museum' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'night_club', display_name: 'night club' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'painter', display_name: 'painter' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'park', display_name: 'park' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'parking', display_name: 'parking' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'pet_store', display_name: 'pet store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'pharmacy', display_name: 'pharmacy' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'place_of_worship',
+2015-03-27 18:28:17+0000 [Guest       10427] display_name: 'place of worship' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'plumber', display_name: 'plumber' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'post_office', display_name: 'post office' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'real_estate_agency',
+2015-03-27 18:28:17+0000 [Guest       10427] display_name: 'real estate agency' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'restaurant', display_name: 'restaurant' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'roofing_contractor',
+2015-03-27 18:28:17+0000 [Guest       10427] display_name: 'roofing contractor' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'rv_park', display_name: 'rv park' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'school', display_name: 'school' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'shoe_store', display_name: 'shoe store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'shopping_mall', display_name: 'shopping mall' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'spa', display_name: 'spa' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'stadium', display_name: 'stadium' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'storage', display_name: 'storage' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'store', display_name: 'store' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'subway_station', display_name: 'subway station' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'taxi_stand', display_name: 'taxi stand' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'train_station', display_name: 'train station' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'travel_agency', display_name: 'travel agency' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'university', display_name: 'university' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'veterinary_care',
+2015-03-27 18:28:17+0000 [Guest       10427] display_name: 'veterinary care' },
+2015-03-27 18:28:17+0000 [Guest       10427] { full_name: 'zoo', display_name: 'zoo' } ]
+2015-03-27 18:28:17+0000 [Guest       10427] google places node connected.
+2015-03-27 18:28:17+0000 [Guest       10427] .users.createUser registered
+2015-03-27 18:28:17+0000 [Guest       10427] .users.updateScore registered
+2015-03-27 18:28:17+0000 [Guest       10427] .rounds.currentRound registered
+2015-03-27 18:28:17+0000 [Guest       10427] .leaderboard.request registered
+2015-03-27 18:28:38+0000 [Guest       10427] full name: movie_rental
+2015-03-27 18:28:38+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=movie_rental&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:28:38+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-23.55,-46.6333&radius=2000&types=movie_rental&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:28:38+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:28:38+0000 [Guest       10427] published, publication ID is  { id: 480955196 }
+2015-03-27 18:28:59+0000 [Guest       10427] full name: cafe
+2015-03-27 18:28:59+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=cafe&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:28:59+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=40.7127,-74.0059&radius=2000&types=cafe&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:28:59+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:28:59+0000 [Guest       10427] published, publication ID is  { id: 564383538 }
+2015-03-27 18:29:05+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:29:20+0000 [Guest       10427] full name: moving_company
+2015-03-27 18:29:20+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=40.7127,-74.0059&radius=2000&types=moving_company&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:29:20+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=moving_company&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:29:20+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:29:20+0000 [Guest       10427] published, publication ID is  { id: 1296121188 }
+2015-03-27 18:29:26+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:29:41+0000 [Guest       10427] full name: moving_company
+2015-03-27 18:29:41+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-23.55,-46.6333&radius=2000&types=moving_company&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:29:41+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=moving_company&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:29:41+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:29:41+0000 [Guest       10427] published, publication ID is  { id: 982965872 }
+2015-03-27 18:29:47+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:30:02+0000 [Guest       10427] full name: car_repair
+2015-03-27 18:30:02+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=car_repair&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:30:02+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=car_repair&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:30:02+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:30:02+0000 [Guest       10427] published, publication ID is  { id: 1901066735 }
+2015-03-27 18:30:08+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:30:23+0000 [Guest       10427] full name: grocery_or_supermarket
+2015-03-27 18:30:23+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=grocery_or_supermarket&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:30:23+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=grocery_or_supermarket&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:30:23+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:30:23+0000 [Guest       10427] published, publication ID is  { id: 1788279660 }
+2015-03-27 18:30:29+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:30:44+0000 [Guest       10427] full name: museum
+2015-03-27 18:30:44+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=museum&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:30:44+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=40.7127,-74.0059&radius=2000&types=museum&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:30:44+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:30:44+0000 [Guest       10427] published, publication ID is  { id: 1993847647 }
+2015-03-27 18:30:50+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:31:05+0000 [Guest       10427] full name: casino
+2015-03-27 18:31:05+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=casino&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:31:05+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.8567,2.3508&radius=2000&types=casino&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:31:05+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:31:05+0000 [Guest       10427] published, publication ID is  { id: 1005250224 }
+2015-03-27 18:31:11+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:31:26+0000 [Guest       10427] full name: locksmith
+2015-03-27 18:31:26+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=locksmith&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:31:26+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=locksmith&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:31:26+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:31:26+0000 [Guest       10427] published, publication ID is  { id: 1519002537 }
+2015-03-27 18:31:32+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:31:47+0000 [Guest       10427] full name: pet_store
+2015-03-27 18:31:47+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=pet_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:31:47+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=pet_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:31:47+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:31:47+0000 [Guest       10427] published, publication ID is  { id: 180134145 }
+2015-03-27 18:31:53+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:32:08+0000 [Guest       10427] full name: zoo
+2015-03-27 18:32:08+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=zoo&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:32:08+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.8567,2.3508&radius=2000&types=zoo&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:32:08+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:32:08+0000 [Guest       10427] published, publication ID is  { id: 180205026 }
+2015-03-27 18:32:14+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:32:29+0000 [Guest       10427] full name: book_store
+2015-03-27 18:32:29+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=book_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:32:29+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=book_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:32:29+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:32:29+0000 [Guest       10427] published, publication ID is  { id: 1835585531 }
+2015-03-27 18:32:35+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:32:50+0000 [Guest       10427] full name: university
+2015-03-27 18:32:50+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.8369,-87.6847&radius=2000&types=university&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:32:50+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=university&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:32:50+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:32:50+0000 [Guest       10427] published, publication ID is  { id: 114924407 }
+2015-03-27 18:32:57+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:33:11+0000 [Guest       10427] full name: lodging
+2015-03-27 18:33:11+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=lodging&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:33:11+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.8369,-87.6847&radius=2000&types=lodging&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:33:12+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:33:12+0000 [Guest       10427] published, publication ID is  { id: 1145190685 }
+2015-03-27 18:33:18+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:33:32+0000 [Guest       10427] [backend] createUser: called with input{JoeCherian}
+2015-03-27 18:33:32+0000 [Guest       10427] Create a new user: JoeCherian
+2015-03-27 18:33:32+0000 [Guest       10427] [backend]: onCreatedUser: user[JoeCherian] with token[1]
+2015-03-27 18:33:32+0000 [Guest       10427] published, publication ID is  { id: 1507478317 }
+2015-03-27 18:33:32+0000 [Guest       10427] full name: grocery_or_supermarket
+2015-03-27 18:33:32+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=grocery_or_supermarket&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:33:32+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=grocery_or_supermarket&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:33:32+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:33:32+0000 [Guest       10427] published, publication ID is  { id: 1244535386 }
+2015-03-27 18:33:38+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:33:53+0000 [Guest       10427] full name: lodging
+2015-03-27 18:33:53+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=lodging&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:33:53+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=lodging&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:33:54+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:33:54+0000 [Guest       10427] published, publication ID is  { id: 1036081659 }
+2015-03-27 18:34:00+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:34:14+0000 [Guest       10427] full name: pharmacy
+2015-03-27 18:34:14+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=pharmacy&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:34:14+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=pharmacy&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:34:15+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:34:15+0000 [Guest       10427] published, publication ID is  { id: 802816525 }
+2015-03-27 18:34:21+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:34:35+0000 [Guest       10427] full name: university
+2015-03-27 18:34:35+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=university&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:34:35+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-23.55,-46.6333&radius=2000&types=university&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:34:36+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:34:36+0000 [Guest       10427] published, publication ID is  { id: 835505079 }
+2015-03-27 18:34:42+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:34:57+0000 [Guest       10427] full name: school
+2015-03-27 18:34:57+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=school&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:34:57+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=school&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:34:57+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:34:57+0000 [Guest       10427] published, publication ID is  { id: 1343001526 }
+2015-03-27 18:35:03+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:35:04+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:35:18+0000 [Guest       10427] full name: park
+2015-03-27 18:35:18+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=40.7127,-74.0059&radius=2000&types=park&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:35:18+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.8369,-87.6847&radius=2000&types=park&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:35:18+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:35:18+0000 [Guest       10427] published, publication ID is  { id: 637275120 }
+2015-03-27 18:35:24+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:35:25+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:35:39+0000 [Guest       10427] full name: casino
+2015-03-27 18:35:39+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=casino&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:35:39+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=casino&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:35:39+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:35:39+0000 [Guest       10427] published, publication ID is  { id: 30120864 }
+2015-03-27 18:35:45+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:35:46+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:36:00+0000 [Guest       10427] full name: bar
+2015-03-27 18:36:00+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=bar&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:36:00+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-23.55,-46.6333&radius=2000&types=bar&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:36:00+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:36:00+0000 [Guest       10427] published, publication ID is  { id: 1120883703 }
+2015-03-27 18:36:06+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:36:07+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:36:21+0000 [Guest       10427] full name: campground
+2015-03-27 18:36:21+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=campground&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:36:21+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-23.55,-46.6333&radius=2000&types=campground&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:36:21+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:36:21+0000 [Guest       10427] published, publication ID is  { id: 1297633869 }
+2015-03-27 18:36:27+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:36:28+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:36:42+0000 [Guest       10427] full name: jewelry_store
+2015-03-27 18:36:42+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=jewelry_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:36:42+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=35.6833,139.6833&radius=2000&types=jewelry_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:36:42+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:36:42+0000 [Guest       10427] published, publication ID is  { id: 359402980 }
+2015-03-27 18:36:48+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:36:49+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:37:03+0000 [Guest       10427] full name: night_club
+2015-03-27 18:37:03+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=night_club&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:37:03+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-23.55,-46.6333&radius=2000&types=night_club&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:37:03+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:37:03+0000 [Guest       10427] published, publication ID is  { id: 764755966 }
+2015-03-27 18:37:09+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:37:10+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:37:24+0000 [Guest       10427] full name: travel_agency
+2015-03-27 18:37:24+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=40.7127,-74.0059&radius=2000&types=travel_agency&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:37:24+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.8567,2.3508&radius=2000&types=travel_agency&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:37:24+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:37:24+0000 [Guest       10427] published, publication ID is  { id: 1288239404 }
+2015-03-27 18:37:30+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:37:31+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:37:45+0000 [Guest       10427] full name: jewelry_store
+2015-03-27 18:37:45+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=18.975,72.8258&radius=2000&types=jewelry_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:37:45+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=31.2,121.5&radius=2000&types=jewelry_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:37:45+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:37:45+0000 [Guest       10427] published, publication ID is  { id: 1501032984 }
+2015-03-27 18:37:51+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:37:52+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:38:06+0000 [Guest       10427] full name: bicycle_store
+2015-03-27 18:38:06+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.8567,2.3508&radius=2000&types=bicycle_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:38:06+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=52.5167,13.3833&radius=2000&types=bicycle_store&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:38:06+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:38:06+0000 [Guest       10427] published, publication ID is  { id: 688232278 }
+2015-03-27 18:38:12+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:38:13+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:38:27+0000 [Guest       10427] full name: hair_care
+2015-03-27 18:38:27+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=40.7127,-74.0059&radius=2000&types=hair_care&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:38:27+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=28.6139,77.209&radius=2000&types=hair_care&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:38:27+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:38:27+0000 [Guest       10427] published, publication ID is  { id: 206484628 }
+2015-03-27 18:38:33+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:38:34+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:38:48+0000 [Guest       10427] full name: food
+2015-03-27 18:38:48+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=41.9,12.5&radius=2000&types=food&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:38:48+0000 [Guest       10427] url:https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-23.55,-46.6333&radius=2000&types=food&sensor=false&key=AIzaSyBv8Qjzf4KPVqu8Xk88SWYoGqJJ97cy8J0
+2015-03-27 18:38:48+0000 [Guest       10427] option0: 0 option1: 0
+2015-03-27 18:38:48+0000 [Guest       10427] published, publication ID is  { id: 438696465 }
+2015-03-27 18:38:54+0000 [Guest       10427] leaderboard published with ID: [object Object]
+2015-03-27 18:38:54+0000 [Controller  10408] Received SIGTERM, shutting down.
+2015-03-27 18:38:54+0000 [Controller  10408] Worker 10419: Process connection gone (A process has ended with a probable error condition: process ended with exit code 1.)
+2015-03-27 18:38:54+0000 [Controller  10408] Main loop terminated.
