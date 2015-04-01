@@ -116,7 +116,7 @@ function showQuestion(args) {
     document.getElementById("question").innerHTML = 'Which place has more '+ place_type +'s ' +city1.name+ ' or ' +city2.name+ '?';
     console.log('showing question');
 
-    sessionHandler.call('edu.cmu.ipd.leaderboard.request', [5]);
+   sessionHandler.call('edu.cmu.ipd.leaderboard.request', [5]);
 
     setTimeout(function() {
         coundownID = setInterval(startCountdown(), 1000);

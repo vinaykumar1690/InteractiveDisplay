@@ -3,3 +3,5 @@
 *.p12
 
 google_places_game_deploy/.crossbar/node.pid
+
+*.log
