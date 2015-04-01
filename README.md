@@ -1,12 +1,11 @@
 <h1>Public Displays and Interaction</h1><br>
 <h2>18-843 Mobile and Pervasive Computing (Carnegie Mellon University)</h2>
-<p>This project aims to explore various game design techniques that will foster interaction among people 
-in a scenario like a cocktail party or an informal networking event. The core idea is a game where the major elements 
-including the question is displayed on a large public screen and users play using a mobile device.</p>
+<p>The aim of this project is to explore various game design techniques that will foster interaction among people in different scenarios, such as a cocktail party or an informal networking event. The core idea is a to build a game consists of a question displayed on a large public screen and multiple users playing on mobile device.</p>
 
 <p>To Install and Play this game:</p>
 <ol>
 <li><p>Install Crossbar from http://crossbar.io/docs/Installation-on-Linux/</p>
+	<p>(For Crossbar installation on others OS, please see http://crossbar.io/docs/)</p>
 <li><p>Install Node.js</p>
 <p>curl -sL https://deb.nodesource.com/setup | sudo bash -</p>
 <p>sudo apt-get install nodejs</p>
@@ -19,7 +18,7 @@ including the question is displayed on a large public screen and users play usin
 <p>npm install autobahn</p>
 <p>npm link autobahn</p>
 <p>npm install when</p>
-<li><p>Replace the autobahn connection URL to 'ws://localhost:8080/ws' in the following files</p>
+<li><p>If you would like to host the game on local machine, please replace the autobahn connection URL to 'ws://localhost:8080/ws' in the following files.</p>
 <p>InteractiveDisplay/google_places_game_deploy/web/display/js/frontend.js</p>
 <p>InteractiveDisplay/google_places_game_deploy/web/device/js/device.js</p>
 <p>InteractiveDisplay/google_places_game_deploy/node/backend.js</p>
