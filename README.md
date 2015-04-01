@@ -5,7 +5,7 @@
 <p>To Install and Play this game:</p>
 <ol>
 <li><p>Install Crossbar from http://crossbar.io/docs/Installation-on-Linux/</p>
-	<p>(For Crossbar installation on others OS, please see http://crossbar.io/docs/)</p>
+	<p>(For Crossbar installation on other operating systems, please see http://crossbar.io/docs/)</p>
 <li><p>Install Node.js</p>
 <p>curl -sL https://deb.nodesource.com/setup | sudo bash -</p>
 <p>sudo apt-get install nodejs</p>
