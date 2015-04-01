@@ -15,10 +15,9 @@ var connection = new autobahn.Connection({
 	realm: 'realm1'
 });
 
+console.log("crossbar.io: " + 'ws://' + urls.crossbarURL + '/ws');
 
 var userBehaviorUpdates = [];
-
-
 
 var currBundle = null;
 
@@ -42,6 +41,14 @@ connection.onopen = function(session) {
          console.log('.users.updateScore failed in registration', err);
       });
 
+  session.register('edu.cmu.ipd.users.submitAnswer', submitAnswer).then(
+      function (reg) {
+         console.log('.users.submitAnswer registered');
+      },
+      function (err) {
+         console.log('.users.submitAnswer failed in registration', err);
+      });
+
   session.register('edu.cmu.ipd.rounds.currentRound', getCurrentRound).then(
       function(reg) {
         console.log('.rounds.currentRound registered');
@@ -61,6 +68,7 @@ connection.onopen = function(session) {
   );
 
   setInterval(question(session), 21*1000);
+  setInterval(pubUpdates(session, 2 * 1000));
 }
 
 /*
@@ -76,10 +84,10 @@ var createUser = function(session) {
 			session.publish('edu.cmu.ipd.users.onCreatedUser', [userNameToken, appliedUserName], {}, { acknowledge: true}).then(
 				function(publication) {
 					console.log("published, publication ID is ", publication);
-                  		},
-                  		function(error) {
-                    			console.log("publication error", error);
-                  	});
+        },
+        function(error) {
+          console.log("publication error", error);
+        });
 		}
 	}
 
@@ -148,15 +156,13 @@ var question = function(session) {
 
           res.setEncoding('utf8');
 
-          responseBody = "";
+          var responseBody = "";
 
           res.on('data', function(d) {
             responseBody += d;
           });
 
           res.on('end', function() {
-            
-            // console.log(responseBody);
 
             try {
               responseBody = JSON.parse(responseBody);
@@ -231,12 +237,36 @@ var topN = function(session) {
 }
 
 var submitAnswer = function(args) {
+  
   update = {
     userName : args[0],
-    action   : 'submit',
+    action   : args[1],
   }
+
+  console.log('[backend].submitAnswer: called');
+
   userBehaviorUpdates.push(update);
+
 }
+
+var pubUpdates = function(session) {
+
+  return function() {
+    
+    if(userBehaviorUpdates.length > 0) {
+      session.publish('edu.cmu.ipd.updates.newUpdate', userBehaviorUpdates, {}, { acknowledge: true}).then(
+        function(publication) {
+          console.log(".updates.newUpdate published with ID ", publication);
+        },
+        function(error) {
+          console.log(".updates.newUpdate publication error", error);
+        });
+      userBehaviorUpdates = [];
+    }
+
+  }
+}
+
 
 
 connection.open();

@@ -1,7 +1,7 @@
 // var autobahn = require('autobahn');
 
 var connection = new autobahn.Connection({
-    url: 'ws://ec2-54-183-65-200.us-west-1.compute.amazonaws.com:8080/ws',
+    url: 'ws://localhost:8080/ws',
     realm: 'realm1'
 })
 
@@ -51,6 +51,8 @@ connection.onopen = function(session) {
     session.subscribe("edu.cmu.ipd.rounds.newRound", showAnswer);
 
     session.subscribe('edu.cmu.ipd.leaderboard.request', onLeaderBoardReady);
+
+    session.subscribe('edu.cmu.ipd.updates.newUpdate', update);
 
 
 }
@@ -210,3 +212,15 @@ var flip = function() {
         front = !front;
     }
 }();
+
+var update = function(args) {
+    
+    console.log('receive update', args);
+    $("#updates").find("tr").fadeOut(1000, function(){$(this).remove()});
+
+    for(idx in args) {
+        record = args[idx];
+        $("#updates").append("<tr style=\"display:none;\"><td>" + record.userName + "</td><td>" + record.action + "</td></tr>")
+            .find("tr:first").fadeIn(1000);
+    }
+};

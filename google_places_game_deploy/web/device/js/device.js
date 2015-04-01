@@ -1,5 +1,5 @@
 var connection = new autobahn.Connection({
-	url: 'ws://ec2-54-183-65-200.us-west-1.compute.amazonaws.com:8080/ws',
+	url: 'ws://localhost:8080/ws',
 	realm: 'realm1'
 });
 
@@ -161,8 +161,8 @@ var onDisplayOptions = function(args) {
          // divAlert.innerHTML = divAlert.innerHTML + '  Your user name is ' + appliedUserName
          document.getElementById('demo_body').appendChild(divAlert);
          setTimeout(function() {
-         document.getElementById('demo_body').removeChild(divAlert);
-      }, 5000);
+            document.getElementById('demo_body').removeChild(divAlert);
+         }, 5000);
          answerSubmitted = null;
          score += 10;
       } else {
@@ -184,8 +184,8 @@ var onDisplayOptions = function(args) {
          divAlert.innerHTML = divAlert.innerHTML + '  The correct answer is ' + answerLastRound;
          document.getElementById('demo_body').appendChild(divAlert);
          setTimeout(function() {
-         document.getElementById('demo_body').removeChild(divAlert);
-      }, 5000);
+            document.getElementById('demo_body').removeChild(divAlert);
+         }, 5000);
          answerSubmitted = null;
          score = Math.max(0, score - 5);
       }
@@ -269,13 +269,45 @@ var addButton = function() {
       answerSubmitted = buttonA.innerHTML;
       document.getElementById('A').style.backgroundColor = 'rgb(196, 88, 173)';
       document.getElementById('B').style.backgroundColor = '#D4D0C8';
-      console.log("answer submitted: " + buttonA.innerHTML);
+      
+      param = [];
+      param.push(appliedUserName);
+      if (answerSubmitted === null) {
+         param.push('choose');
+      } else {
+         param.push('change')
+      }
+
+      sessionHandler.call('edu.cmu.ipd.users.submitAnswer', param).then(
+         function(res) {
+            console.log('submitted user choice');
+         },
+         function(err) {
+            console.log('failed to submit user choice.', err);
+         });
+
    }
    document.getElementById("B").onclick = function (event) {
       answerSubmitted = buttonB.innerHTML;
       document.getElementById('B').style.backgroundColor = 'rgb(196, 88, 173)';
       document.getElementById('A').style.backgroundColor = '#D4D0C8';
       console.log("answer submitted: " + buttonB.innerHTML);
+
+      param = [];
+      param.push(appliedUserName);
+      if (answerSubmitted === null) {
+         param.push('choose');
+      } else {
+         param.push('change')
+      }
+
+      sessionHandler.call('edu.cmu.ipd.users.submitAnswer', param).then(
+         function(res) {
+            console.log('submitted user choice');
+         },
+         function(err) {
+            console.log('failed to submit user choice.', err);
+         });
    }
 }
 

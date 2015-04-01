@@ -32,32 +32,37 @@ exports.updateScore = function(userName, score) {
 	
 	console.log('model.updateScore: userName = ' + userName + '   score = ' + score);
 	var onPutResponse = function(res) {
-		body = "";
+		
+		var body = "";
+		
 		res.on('data', function(data) {
 			body += data;
 		});
+
 		res.on('end', function() {
 			console.log(body);
-		})
+		});
 	}
 
 
 	var onGetResponse = function(res) {
 		
-		body = "";
+		var body = "";
+		
 		res.on('data', function(data) {
 			body += data;
 		});
 		
-
 		res.on('end', function() {
 			
 			var seq = JSON.parse(body)._rev;
 			var createTime = JSON.parse(body).created_at;
 			var updatedTime = JSON.parse(body).updated_at;
+			
 			if (updatedTime === undefined) {
 				updatedTime = [];
 			}
+			
 			updatedTime.push(new Date(Date.now()).toGMTString());
 			
 			var data = JSON.stringify({
@@ -93,7 +98,7 @@ exports.getTopNUsers = function(N, callback) {
 
 			return function(res) {
 
-				body = "";
+				var body = "";
 			
 				res.on('data', function(data) {
 					//console.log(data);
@@ -102,7 +107,7 @@ exports.getTopNUsers = function(N, callback) {
 
 				res.on('end', function() {
 					
-					result = JSON.parse(body);
+					var result = JSON.parse(body);
 					
 					records.push(result);
 					
@@ -121,35 +126,42 @@ exports.getTopNUsers = function(N, callback) {
 						}
 						callback(param);
 					}
-					body = "";
-				})
+				});
 			}
 		}
 	}
 
-	var onDBGetResponse = function(res) {
+	var onDBGetResponse = function() {
 
-		body = "";
+		var body = "";
 
-		res.on('data', function(data) {
-			body += data;
-		});
+		return function(res) {
+			res.on('data', function(chunk) {
+				// console.log('append:\t' + chunk);
+				body += chunk;
+			});
 
-		res.on('end', function() {
-			result = JSON.parse(body).rows;
-			onRowResponse = onRowResponse(result.length);
-			for (i in result) {
-				row = result[i];
-				dbdriver.transaction('users', row.id, 'GET', null, onRowResponse(), onReqError);
-			}
+			res.on('end', function() {
+				// console.log(body);
+				result = JSON.parse(body).rows;
+				onRowResponse = onRowResponse(result.length);
+				for (i in result) {
+					var row = result[i];
+					dbdriver.transaction('users', row.id, 'GET', null, onRowResponse(), onReqError);
+				}
 
-		});
+			});
+
+			res.on('error', function(e) {
+  				console.log("[model].getTopNUsers.onDBGetResponse: error: " + e.message);
+			});
+		}
 	}
 
 	var onReqError = function(err) {
 		console.log('Update user[' + userName + '] score error:' + err.message);
 	};
 
-	dbdriver.transaction('users', '_all_docs', 'GET', null, onDBGetResponse, onReqError);
+	dbdriver.transaction('users', '_all_docs', 'GET', null, onDBGetResponse(), onReqError);
 }
 

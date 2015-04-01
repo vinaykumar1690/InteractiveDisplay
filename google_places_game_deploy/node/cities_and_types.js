@@ -70,7 +70,7 @@ for (i = 0; i < types_full.length; i++){
 		console.log('Type: NO DATA.');
 	}
 }
-console.log(types);
+// console.log(types);
 
 exports.getQuestion = function(){
     /* Make a question */
