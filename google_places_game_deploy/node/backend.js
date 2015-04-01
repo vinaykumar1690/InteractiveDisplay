@@ -81,13 +81,21 @@ var createUser = function(session) {
 		var userNameToken = token;
 		return function(appliedUserName) {
 			console.log('[backend]: onCreatedUser: user[' + appliedUserName + '] with token[' + userNameToken + ']' );
-			session.publish('edu.cmu.ipd.users.onCreatedUser', [userNameToken, appliedUserName], {}, { acknowledge: true}).then(
+			
+      session.publish('edu.cmu.ipd.users.onCreatedUser', [userNameToken, appliedUserName], {}, { acknowledge: true}).then(
 				function(publication) {
 					console.log("published, publication ID is ", publication);
         },
         function(error) {
           console.log("publication error", error);
         });
+
+      var update = {
+        userName : appliedUserName,
+        action   : "Just Joined",
+      }
+      userBehaviorUpdates.push(update);
+
 		}
 	}
 
@@ -238,12 +246,10 @@ var topN = function(session) {
 
 var submitAnswer = function(args) {
   
-  update = {
+  var update = {
     userName : args[0],
     action   : args[1],
   }
-
-  console.log('[backend].submitAnswer: called');
 
   userBehaviorUpdates.push(update);
 

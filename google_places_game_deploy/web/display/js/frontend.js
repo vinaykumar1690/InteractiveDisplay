@@ -24,6 +24,7 @@ var coundownID;
 
 var sessionHandler;
 
+var updatesCounter = 0;
 
 connection.onopen = function(session) {
     sessionHandler = session;
@@ -215,12 +216,17 @@ var flip = function() {
 
 var update = function(args) {
     
-    console.log('receive update', args);
-    $("#updates").find("tr").fadeOut(1000, function(){$(this).remove()});
-
+    console.log('receive update', args);    
     for(idx in args) {
         record = args[idx];
+        while (updatesCounter >= 8) {
+            $("#updates").find("tr").first().fadeOut(500, function(){$(this).remove()});
+            updatesCounter--;
+            console.log('updatesCounter decrement to:' + updatesCounter);
+        }
         $("#updates").append("<tr style=\"display:none;\"><td>" + record.userName + "</td><td>" + record.action + "</td></tr>")
-            .find("tr:first").fadeIn(1000);
+            .find("tr").last().fadeIn(500);
+        updatesCounter++;
+        console.log('updatesCounter increment to:' + updatesCounter);
     }
 };

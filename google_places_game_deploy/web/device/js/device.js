@@ -200,6 +200,9 @@ var onDisplayOptions = function(args) {
       document.getElementById('score').innerHTML = 'Score: ' + score;
    }
 
+   document.getElementById("A").disabled = false;
+   document.getElementById("B").disabled = false;
+
    // City names to display on buttons
    var cities = args[0].options; 
    var city1;
@@ -249,10 +252,12 @@ var addButton = function() {
    //Overwrite the button
 
    var buttonA = document.createElement('button');
+   buttonA.disabled = true;
    buttonA.id = 'A';
    buttonA.innerHTML = 'Loading';
 
    var buttonB = document.createElement('button');
+   buttonB.disabled = true;
    buttonB.id = 'B';
    buttonB.innerHTML = 'Loading';
 
@@ -266,18 +271,23 @@ var addButton = function() {
 
    // Add OnClick events
    document.getElementById("A").onclick = function (event) {
-      answerSubmitted = buttonA.innerHTML;
+      
+      if (answerSubmitted === buttonA.innerHTML) {
+         return;
+      }
+
       document.getElementById('A').style.backgroundColor = 'rgb(196, 88, 173)';
       document.getElementById('B').style.backgroundColor = '#D4D0C8';
       
       param = [];
       param.push(appliedUserName);
       if (answerSubmitted === null) {
-         param.push('choose');
+         param.push('Submit ' + buttonA.innerHTML);
       } else {
-         param.push('change')
+         param.push('Change to ' + buttonA.innerHTML)
       }
 
+      answerSubmitted = buttonA.innerHTML;
       sessionHandler.call('edu.cmu.ipd.users.submitAnswer', param).then(
          function(res) {
             console.log('submitted user choice');
@@ -288,7 +298,11 @@ var addButton = function() {
 
    }
    document.getElementById("B").onclick = function (event) {
-      answerSubmitted = buttonB.innerHTML;
+      
+      if (answerSubmitted === buttonB.innerHTML) {
+         return;
+      }
+
       document.getElementById('B').style.backgroundColor = 'rgb(196, 88, 173)';
       document.getElementById('A').style.backgroundColor = '#D4D0C8';
       console.log("answer submitted: " + buttonB.innerHTML);
@@ -296,11 +310,12 @@ var addButton = function() {
       param = [];
       param.push(appliedUserName);
       if (answerSubmitted === null) {
-         param.push('choose');
+         param.push('Submit ' + buttonB.innerHTML);
       } else {
-         param.push('change')
+         param.push('Change to ' + buttonB.innerHTML)
       }
 
+      answerSubmitted = buttonB.innerHTML;
       sessionHandler.call('edu.cmu.ipd.users.submitAnswer', param).then(
          function(res) {
             console.log('submitted user choice');
