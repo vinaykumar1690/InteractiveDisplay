@@ -1,5 +1,5 @@
 var connection = new autobahn.Connection({
-	url: 'ws://localhost:8080/ws',
+	url: 'ws://' + location.host + '/ws',
 	realm: 'realm1'
 });
 
