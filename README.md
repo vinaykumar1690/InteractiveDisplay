@@ -18,11 +18,6 @@
 <p>npm install autobahn</p>
 <p>npm link autobahn</p>
 <p>npm install when</p>
-<li><p>If you would like to host the game on local machine, please replace the autobahn connection URL to 'ws://localhost:8080/ws' in the following files.</p>
-<p>InteractiveDisplay/google_places_game_deploy/web/display/js/frontend.js</p>
-<p>InteractiveDisplay/google_places_game_deploy/web/device/js/device.js</p>
-<p>InteractiveDisplay/google_places_game_deploy/node/backend.js</p>
-<p>InteractiveDisplay/google_places_game_deploy/node/createUserClient.js</p>
 <li><p>Start the Crossbar router from the root directory</p>
 <p>cd InteractiveDisplay/google_places_game_deploy/</p>
 <p>crossbar start</p>
