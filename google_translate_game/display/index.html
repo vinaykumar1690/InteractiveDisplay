@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Simple Polygon</title>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+  <div id="Game_Title"> 
+    <div id="left">
+      <img class="img" src="../logos/Google-Translate-icon.png"></img>
+    </div>   
+    <div id="middle">
+      <span id="question">
+        Are you ready for the battle of cities?
+      </span>
+    </div>
+    <div id="right">
+      <img class="img" src="../logos/Google-Translate-icon.png"></img>
+    </div>
+  </div>
+
+  <div id="Game_Body">
+    <div id="left_panel">
+
+      <div class="flip-container">
+        <div class="flipper">
+          <div class="front">
+            <div class="panel_banner">Leaderboard</div>
+            <table>
+              <tr id = "top_1">
+                <td>1</td>
+                <td id = "top_1_name">Jeremy</td>
+                <td id = "top_1_score">75</td>
+              </tr>
+              <tr id = "top_2">
+                <td>2</td>
+                <td id = "top_2_name">Vinay</td>
+                <td id = "top_2_score">35</td>
+              </tr>
+              <tr id = "top_3">
+                <td>3</td>
+                <td id = "top_3_name">Yalei</td>
+                <td id = "top_3_score">30</td>
+              </tr>
+              <tr id = "top_4">
+                <td>4</td>
+                <td id = "top_4_name">Trevor</td>
+                <td id = "top_4_score">25</td>
+              </tr>
+              <tr id = "top_5">
+                <td>5</td>
+                <td id = "top_5_name">Pei</td>
+                <td id = "top_5_score">0</td>
+              </tr>
+            </table>
+          </div>
+          <div class="back">
+
+            <div class="panel_banner">Instructions</div>
+            <p class="center_text">Battle of Cities</p>
+            <p class="center_text">Mobile and Pervasive Computing</p>
+            <p class="center_text">Scan the QR code to access the game on your mobile device.</p>
+            <p class="center_text">Choose the city which you think will win in the battle of places and numbers!</p>
+
+          </div>
+        </div>
+      </div>
+
+      <p class="tinyURL">http://tinyurl.com/BattleOfCities</p>
+
+      <img class="qr_code" src="./images/QR.png">
+    </div>
+
+    <div id="map_canvas">
+    </div>
+
+
+    <div id="right_panel">
+      <div class="panel_banner">Updates</div>
+      <table id = "updates">
+
+      </table>
+
+      <p class="tinyURL">http://tinyurl.com/BattleOfCities</p>
+
+      <!-- <img class="arrow_right" src="./images/arrow_right.png"> -->
+      <img class="qr_code" src="./images/QR.png">
+    </div>
+  </div>  
+
+  <script src="js/frontend.js"></script>
+</body>
+</html>
