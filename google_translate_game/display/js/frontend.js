@@ -4,7 +4,7 @@ var mapOptions = {
     // mapTypeId: google.maps.MapTypeId.TERRAIN
 };
 
-var map = new google.maps.Map(document.getElementById('map-canvas'),
+var map = new google.maps.Map(document.getElementById('map_canvas'),
     mapOptions);
 
 // Here we use capital city's coordinate to represent a country.
@@ -51,28 +51,6 @@ function initialize() {
 	}
 	console.log(countriesCoords);
 
-	// Construct the polygon.
-	Triangle = new google.maps.Polygon({
-		paths: countriesCoords,
-		strokeColor: '#FF0000',
-		strokeOpacity: 0.8,
-		strokeWeight: 2,
-		icons: [{
-			icon: lineSymbol,
-			offset: '100%'
-		}],
-	});
-	// Triangle.setMap(map);
-
-	Triangle_line = new google.maps.Polyline({
-		path: [new google.maps.LatLng(38.9047, -77.0164), new google.maps.LatLng(52.5167, 13.3833)],
-		icons: [{
-			icon: lineSymbol,
-			offset: '100%'
-		}],
-		// map: map
-	});
-
     drawPath();
  
 } // End initialize()
@@ -96,7 +74,8 @@ var drawPath = (function() {
             strokeWeight: 2,
             icons: [{
                 icon: lineSymbol,
-                offset: '100%'
+                offset: '100%',
+                repeat: '50px'
             }],
             geodesic: true, //set to false if you want straight line instead of arc
             map: map,
