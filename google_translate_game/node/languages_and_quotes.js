@@ -1,3 +1,22 @@
+
+Array.prototype.getRandom = ( function() {
+    var previous = [];
+    return function() {
+        if (this.length == 0) {
+            return null;
+        } else if (this.length == 1) {
+            return this[0];
+        } else {
+            var num = 0;
+            do {
+                num = Math.floor(Math.random() * this.length);
+            } while (previous.contains(num));
+            previous.push(num);
+            return this[num];
+        }
+    }
+})();
+
 var cities = [
     {city: "Beijing",         language: "Mandarin",   language_code: "zh-CN", lat: 39.9388,  lng: 116.3974 },
     {city: "Delhi",           language: "Hindi",      language_code: "hi",    lat: 28.6454,  lng: 77.0907  },
@@ -56,3 +75,34 @@ var quotes = [
     "I started with nothing, and I still have most of it",
     "I would like to slip into something more comfortable - like a coma"
 ];
+
+Array.prototype.contains = (function(obj) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == obj) { 
+            return true;
+        }
+    }
+    return false;
+}
+);
+
+exports.getQuestion = function (len) {
+    var question = {
+        gameType: 'translator',
+        seed1: getRandomCities(len), // Path 1
+        seed2: getRandomCities(len), // Path 2
+        seed3: quotes.getRandom()  // Quote
+    }
+
+    return question;
+}
+
+var getRandomCities = function (len) {
+    var randomCities = [];
+    for (var i = 0; i < len; i++){
+        var c = cities.getRandom();
+        randomCities.push(c);
+    }
+    // console.log(randomCities);
+    return randomCities;
+}
