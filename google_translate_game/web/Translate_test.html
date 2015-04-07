@@ -3,7 +3,8 @@
     <title>Translate API Example</title>
   </head>
   <body>
-    <div id="sourceText">Today is a sunny day.</div>
+    <div id="sourceText1">Today is a sunny day.</div>
+    <div id="sourceText">Bueno, aquí estoy! ¿Cuáles son sus otros dos deseos</div>
     <div id="translation"></div>
     <script>
       function translateText(response) {
@@ -17,7 +18,7 @@
       // WARNING: be aware that YOUR-API-KEY inside html is viewable by all your users.
       // Restrict your key to designated domains or use a proxy to hide your key
       // to avoid misuage by other party.
-      var source = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyALWxgT7ALon32ohU5-fB-IWbmzbwSIDmg&source=en&target=de&callback=translateText&q=' + sourceText;
+      var source = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyALWxgT7ALon32ohU5-fB-IWbmzbwSIDmg&source=es&target=en&callback=translateText&q=' + sourceText;
       newScript.src = source;
 
       // When we add this script to the head, the request is sent off.

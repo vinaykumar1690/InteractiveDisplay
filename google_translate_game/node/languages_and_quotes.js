@@ -1,4 +1,3 @@
-
 Array.prototype.getRandom = ( function() {
     var previous = [];
     return function() {
@@ -99,10 +98,12 @@ exports.getQuestion = function (len) {
 
 var getRandomCities = function (len) {
     var randomCities = [];
+    randomCities.push(cities[3]);
     for (var i = 0; i < len; i++){
         var c = cities.getRandom();
         randomCities.push(c);
     }
+    randomCities.push(cities[3]);
     // console.log(randomCities);
     return randomCities;
 }
