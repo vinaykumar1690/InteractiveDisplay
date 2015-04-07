@@ -44,9 +44,12 @@ var cities = [
     {city: "Brazzaville",     language: "Swahili",    language_code: "sw",    lat: -4.2471,  lng: 15.2272  },
     {city: "Singapore",       language: "Malay",      language_code: "ms",    lat: 1.3147,   lng: 103.8470 },
     {city: "Windhoek",        language: "Afrikaans",  language_code: "af",    lat: -22.5632, lng: 17.0707  },
-    {city: "Skopje",          language: "Macedonian", language_code: "mk",    lat: 19.7469,  lng: 96.0844  }
+    {city: "Skopje",          language: "Macedonian", language_code: "mk",    lat: 19.7469,  lng: 96.0844  },
+   }
 ];
 
+var startingCity = {city: "London", language: "English", language_code: "en", lat: 51.5072,  lng: -0.1275  }
+;
 var quotes = [
     "If you are here - who is running hell?",
     "Artificial intelligence is no match for natural stupidity",
@@ -98,12 +101,12 @@ exports.getQuestion = function (len) {
 
 var getRandomCities = function (len) {
     var randomCities = [];
-    randomCities.push(cities[3]);
+    randomCities.push(startingCity);
     for (var i = 0; i < len; i++){
         var c = cities.getRandom();
         randomCities.push(c);
     }
-    randomCities.push(cities[3]);
+    randomCities.push(startingCity);
     // console.log(randomCities);
     return randomCities;
 }
