@@ -9,8 +9,11 @@ Array.prototype.getRandom = ( function() {
             var num = 0;
             do {
                 num = Math.floor(Math.random() * this.length);
-            } while (previous.contains(num));
-            previous.push(num);
+                lan = cities[num].language_code;
+                // console.log(previous);
+                // console.log(lan);
+            } while (previous.contains(lan));
+            previous.push(lan);
             return this[num];
         }
     }
@@ -20,7 +23,7 @@ var cities = [
     {city: "Beijing",         language: "Mandarin",   language_code: "zh-CN", lat: 39.9388,  lng: 116.3974 },
     {city: "Delhi",           language: "Hindi",      language_code: "hi",    lat: 28.6454,  lng: 77.0907  },
     {city: "Madrid",          language: "Spanish",    language_code: "es",    lat: 40.4378,  lng: -3.6795  },
-    {city: "Washington, D.C", language: "English",    language_code: "en",    lat: 38.8993,  lng: -77.0145 },
+    // {city: "Washington, D.C", language: "English",    language_code: "en",    lat: 38.8993,  lng: -77.0145 },
     {city: "Abu Dhabi",       language: "Arabic",     language_code: "ar",    lat: 24.3865,  lng: 54.5599  },
     {city: "Lisbon",          language: "Portugese",  language_code: "pt",    lat: 38.7436,  lng: -9.1602  },
     {city: "Moscow",          language: "Russian",    language_code: "ru",    lat: 55.7497,  lng: 37.6324  },
@@ -45,11 +48,12 @@ var cities = [
     {city: "Singapore",       language: "Malay",      language_code: "ms",    lat: 1.3147,   lng: 103.8470 },
     {city: "Windhoek",        language: "Afrikaans",  language_code: "af",    lat: -22.5632, lng: 17.0707  },
     {city: "Skopje",          language: "Macedonian", language_code: "mk",    lat: 19.7469,  lng: 96.0844  },
-   }
 ];
 
-var startingCity = {city: "London", language: "English", language_code: "en", lat: 51.5072,  lng: -0.1275  }
+// Set London as the start and end cities.
+var start_end_City = {city: "London", language: "English", language_code: "en", lat: 51.5072,  lng: -0.1275  }
 ;
+
 var quotes = [
     "If you are here - who is running hell?",
     "Artificial intelligence is no match for natural stupidity",
@@ -95,18 +99,17 @@ exports.getQuestion = function (len) {
         seed2: getRandomCities(len), // Path 2
         seed3: quotes.getRandom()  // Quote
     }
-
     return question;
 }
 
 var getRandomCities = function (len) {
     var randomCities = [];
-    randomCities.push(startingCity);
+    randomCities.push(start_end_City);
     for (var i = 0; i < len; i++){
         var c = cities.getRandom();
         randomCities.push(c);
     }
-    randomCities.push(startingCity);
+    randomCities.push(start_end_City);
     // console.log(randomCities);
     return randomCities;
 }
