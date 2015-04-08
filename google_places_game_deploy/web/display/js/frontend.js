@@ -200,6 +200,9 @@ connection.open();
 $(document).ready(function() {
     $('.flipper').addClass('flipperStart');
     setInterval(flip, 15 * 1000);
+
+    $('#qr_code_left').qrcode(location.host);
+    $('#qr_code_right').qrcode(location.host);
 });
 
 var flip = function() {

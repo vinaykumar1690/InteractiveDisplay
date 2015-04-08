@@ -59,6 +59,13 @@ img.qr_code {
     height:40%;
     bottom: 0;
 }
+div.qr_code {
+    position: absolute;
+    width:100%;
+    height:40%;
+    bottom: 0;
+}
+
 .arrow_left,.arrow_right{
     position: absolute;
     width:30%;
