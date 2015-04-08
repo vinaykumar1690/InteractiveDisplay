@@ -1,28 +1,34 @@
 var https = require('https');
 
 exports.getAnswer = function() {
-    
-    var cCities = null;
-    var cIndex = null;
 
-    var onIntermediateResponse = function(res) {
-        
-        res.setEncoding('utf8');
-        
-        var responseBody = "";
-        res.on('data', function(d) {
-            responseBody += d;
-        });
+    var onIntermediateResponse = function(qNum, index, cities, callback) {
 
-        res.on('end', function() {
-            responseBody = JSON.parse(responseBody);
-            var translatedText = responseBody.data.translations[0].translatedText;
-            console.log(translatedText);
-            translate(cCities, cIndex+1, translatedText);
-        });
+        return function(res) {
+        
+            res.setEncoding('utf8');
+            
+            var responseBody = "";
+            res.on('data', function(d) {
+                responseBody += d;
+            });
+
+            res.on('end', function() {
+                responseBody = JSON.parse(responseBody);
+                try {
+                    var translatedText = responseBody.data.translations[0].translatedText;
+                    translate(qNum, cities, index+1, translatedText, callback);
+                } catch (exception) {
+                    console.log(exception);
+                    console.log(responseBody);
+                }
+                // console.log('[' + qNum + ']' + translatedText);
+                
+            });
+        }
     }
 
-    var onFinalResponse = function(callback) {
+    var onFinalResponse = function(qNum, callback) {
         
         return  function(res) {
             res.setEncoding('utf8');
@@ -34,20 +40,25 @@ exports.getAnswer = function() {
 
             res.on('end', function() {
                 responseBody = JSON.parse(responseBody);
-                var translatedText = responseBody.data.translations[0].translatedText;
-                console.log(translatedText);
-                callback();
+                try {
+                    var translatedText = responseBody.data.translations[0].translatedText;
+                    console.log('[' + qNum + ',final]' + translatedText);
+                    callback(qNum, translatedText);
+                } catch (exception) {
+                    console.log(exception);
+                    console.log(responseBody);
+                }
+                
             });
         }
     }
 
-    var translate =  function(cities, index, text, callback) {
-
-        cIndex = index;
-        cCities = cities;
+    var translate =  function(qNum, cities, index, text, callback) {
+        
+        console.log('[' + qNum +',' + index + '/' + cities.length +'] has started.');
 
         if (index+1 === cities.length) {
-            console.log('getTranslation called with index '+ index +' but length of array is '+cities.length);
+            // console.log('getTranslation called with index '+ index +' but length of array is '+cities.length);
             return;
         }
 
@@ -65,13 +76,13 @@ exports.getAnswer = function() {
             method: 'GET'
         }
 
-        console.log("url:" + "https://" + options.hostname + options.path);
+        // console.log("url:" + "https://" + options.hostname + options.path);
         
         var req = null;
         if (target === 'en')
-            req = https.request(options, onFinalResponse(callback));
+            req = https.request(options, onFinalResponse(qNum, callback));
         else
-            req = https.request(options, onIntermediateResponse);
+            req = https.request(options, onIntermediateResponse(qNum, index, cities, callback));
 
         req.on('error', onError);
 
