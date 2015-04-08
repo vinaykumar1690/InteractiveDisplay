@@ -184,7 +184,7 @@ var onDisplayOptions = function(args) {
 
 		 	divAlert.appendChild(aHref);
 		 	divAlert.appendChild(strongTag);
-		 	divAlert.innerHTML = divAlert.innerHTML + '  The correct answer is ' + answerLastRound;
+		 	divAlert.innerHTML = divAlert.innerHTML + '  The correct answer is ' + $('#pollContainer').attr('answer-body');
 		 	document.getElementById('demo_body').appendChild(divAlert);
 		 	setTimeout(function() {
 				document.getElementById('demo_body').removeChild(divAlert);
@@ -235,6 +235,14 @@ var onDisplayOptions = function(args) {
 
 		$('#B').text('Path B');
 		$('#B').css('background-color', '#D4D0C8');
+
+		var answerBody = null;
+		if (args[0].answer === 0) {
+			answerBody = 'Path A';
+		} else {
+			answerBody = 'Path B';
+		}
+		$('#pollContainer').attr('answer-body', answerBody);
 
 	}
 }// end onDisplayOptions
