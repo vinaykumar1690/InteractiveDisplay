@@ -1,6 +1,6 @@
 var https = require('https');
 
-exports.getTranslation = (function() {
+exports.getAnswer = function() {
     
     var cCities = null;
     var cIndex = null;
@@ -22,22 +22,26 @@ exports.getTranslation = (function() {
         });
     }
 
-    var onFinalResponse = function(res) {
-        res.setEncoding('utf8');
+    var onFinalResponse = function(callback) {
         
-        var responseBody = "";
-        res.on('data', function(d) {
-            responseBody += d;
-        });
+        return  function(res) {
+            res.setEncoding('utf8');
+            
+            var responseBody = "";
+            res.on('data', function(d) {
+                responseBody += d;
+            });
 
-        res.on('end', function() {
-            responseBody = JSON.parse(responseBody);
-            var translatedText = responseBody.data.translations[0].translatedText;
-            console.log(translatedText);
-        });
+            res.on('end', function() {
+                responseBody = JSON.parse(responseBody);
+                var translatedText = responseBody.data.translations[0].translatedText;
+                console.log(translatedText);
+                callback();
+            });
+        }
     }
 
-    var translate =  function(cities, index, text) {
+    var translate =  function(cities, index, text, callback) {
 
         cIndex = index;
         cCities = cities;
@@ -65,7 +69,7 @@ exports.getTranslation = (function() {
         
         var req = null;
         if (target === 'en')
-            req = https.request(options, onFinalResponse);
+            req = https.request(options, onFinalResponse(callback));
         else
             req = https.request(options, onIntermediateResponse);
 
@@ -75,4 +79,4 @@ exports.getTranslation = (function() {
     }
 
     return translate;
-})();
+}();
