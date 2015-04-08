@@ -201,8 +201,10 @@ $(document).ready(function() {
     $('.flipper').addClass('flipperStart');
     setInterval(flip, 15 * 1000);
 
-    $('#qr_code_left').qrcode(location.host);
-    $('#qr_code_right').qrcode(location.host);
+    var qr_url = 'http://'+location.host+'/device/index.html';
+    console.log(qr_url);
+    $('#qr_code_left').qrcode(qr_url);
+    $('#qr_code_right').qrcode(qr_url);
 });
 
 var flip = function() {
