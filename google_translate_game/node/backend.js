@@ -59,8 +59,8 @@ connection.onopen = function(session) {
     }
   );
 
-  question(session)();
-  // setInterval(question(session), 21*1000);
+  // question(session)();
+  setInterval(question(session), 10*1000);
   // setInterval(pubUpdates(session, 2 * 1000));
 }
 
@@ -130,46 +130,51 @@ var question = function(session) {
 
     return function() {
 
+        console.log('generate question')
+        try {
+            var question = questions.getQuestion(intermCitiesNum);
 
-
-        var question = questions.getQuestion(intermCitiesNum);
-
-        var onResponse = function() {
-        
-            var resBundle = {
-                option0 : null,
-                option1 : null,
-            }
-
-            return function(qNum, translatedText) {
-
-                if (qNum === 0) {
-                    resBundle.option0 = translatedText
-                } else {
-                    resBundle.option1 = translatedText
+            var onResponse = function() {
+            
+                var resBundle = {
+                    option0 : null,
+                    option1 : null,
                 }
 
-                if (resBundle.option0 !== null && resBundle.option1 !== null) {
-                    
-                    var ret = {};
-                    ret.seeds = [question.seed1, question.seed2, question.seed3, intermCitiesNum];
-                    ret.results = [resBundle.option0, resBundle.option1];
-                    ret.answer = 0; //Replace by a random number
+                return function(qNum, translatedText) {
 
-                    // session.publish('edu.cmu.ipd.rounds.newRound', [ret], {}, {acknowledge: true}).then(
-                    //     function(publication) {
-                    //         console.log("published new round, publication ID is ", publication);
-                    //     },
-                    //     function(error) {
-                    //         console.log("failed to publish new round ", error);
-                    //     });
-                    console.log(ret);
+                    if (qNum === 0) {
+                        resBundle.option0 = translatedText
+                    } else {
+                        resBundle.option1 = translatedText
+                    }
+
+                    if (resBundle.option0 !== null && resBundle.option1 !== null) {
+                        
+                        var ret = {};
+                        ret.gameType = question.gameType;
+                        ret.seeds = [question.seed1, question.seed2, question.seed3];
+                        ret.results = [resBundle.option0, resBundle.option1];
+                        ret.answer = 0; //Replace by a random number
+
+                        session.publish('edu.cmu.ipd.rounds.newRound', [ret], {}, {acknowledge: true}).then(
+                            function(publication) {
+                                console.log("published new round, publication ID is ", publication);
+                            },
+                            function(error) {
+                                console.log("failed to publish new round ", error);
+                            });
+                        // console.log(ret);
+                        currBundle = ret;
+                    }
                 }
-            }
-        }();
-        
-        answers.getAnswer(0, question.seed1, 0, question.seed3, onResponse);
-        answers.getAnswer(1, question.seed2, 0, question.seed3, onResponse);
+            }();
+            
+            answers.getAnswer(0, question.seed1, 0, question.seed3, onResponse);
+            answers.getAnswer(1, question.seed2, 0, question.seed3, onResponse);
+        } catch (exception) {
+            console.log(exception);
+        }
 
     }
 }
