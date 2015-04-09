@@ -53,15 +53,27 @@ connection.onopen = function(session) {
 
     session.subscribe("edu.cmu.ipd.rounds.newRound", showAnswer).then(
         function(res) {
-            console.log('subscribe to newRound');
+            console.log('subscribe to rounds.newRound');
         },
         function(err) {
             console.log('error: ', err);
         });
 
-    session.subscribe('edu.cmu.ipd.leaderboard.request', onLeaderBoardReady);
+    session.subscribe('edu.cmu.ipd.leaderboard.request', onLeaderBoardReady).then(
+        function(res) {
+            console.log('subscribe to leaderboard.request');
+        },
+        function(err) {
+            console.log('error: ', err);
+        });
 
-    session.subscribe('edu.cmu.ipd.updates.newUpdate', update);
+    session.subscribe('edu.cmu.ipd.updates.newUpdate', update).then(
+        function(res) {
+            console.log('subscribe to lupdates.newUpdate');
+        },
+        function(err) {
+            console.log('error: ', err);
+        });
 
 } // End connection.onopen
 
@@ -363,4 +375,65 @@ function showAnswer(args) {
         setTimeout(showQuestion, 5000, args);
     }
 }
+
+onLeaderBoardReady = function(args) {
+    console.log('[Display] onLeaderBoardReady called.');
+    console.log(args);
+
+    document.getElementById('top_1_name').innerHTML = args[0].userName;
+    document.getElementById('top_1_score').innerHTML = args[0].score;
+
+    document.getElementById('top_2_name').innerHTML = args[1].userName;
+    document.getElementById('top_2_score').innerHTML = args[1].score;
+
+    document.getElementById('top_3_name').innerHTML = args[2].userName;
+    document.getElementById('top_3_score').innerHTML = args[2].score;
+
+    document.getElementById('top_4_name').innerHTML = args[3].userName;
+    document.getElementById('top_4_score').innerHTML = args[3].score;
+
+    document.getElementById('top_5_name').innerHTML = args[4].userName;
+    document.getElementById('top_5_score').innerHTML = args[4].score;
+}
+
+$(document).ready(function() {
+    console.log('documet.ready');
+    $('.flipper').addClass('flipperStart');
+    setInterval(flip, 15 * 1000);
+
+    var qr_url = 'http://'+location.host+'/device/index.html';
+    console.log(qr_url);
+    $('#qr_code_left').qrcode(qr_url);
+    $('#qr_code_right').qrcode(qr_url);
+});
+
+var flip = function() {
+    var front = false;
+    return function() {
+        console.log('flip is called');
+        if (front === true) {
+            $('.flipper').css('transform', 'rotateY(180deg)');
+        } else {
+            $('.flipper').css('transform', 'rotateY(0deg)');
+        }
+        front = !front;
+    }
+}();
+
+var update = function(args) {
+    
+    console.log('receive update', args);    
+    for(idx in args) {
+        record = args[idx];
+        while (updatesCounter >= 8) {
+            $("#updates").find("tr").first().fadeOut(500, function(){$(this).remove()});
+            updatesCounter--;
+            console.log('updatesCounter decrement to:' + updatesCounter);
+        }
+        $("#updates").append("<tr style=\"display:none;\"><td>" + record.userName + "</td><td>" + record.action + "</td></tr>")
+            .find("tr").last().fadeIn(500);
+        updatesCounter++;
+        console.log('updatesCounter increment to:' + updatesCounter);
+    }
+};
 
