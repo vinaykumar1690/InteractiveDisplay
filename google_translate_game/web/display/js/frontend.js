@@ -12,10 +12,13 @@ var markers_2 = [];
 
 var infos = [{},{}];
 
-var path_length = 5;
 var map;
 var countdownID = null;
 var gbundle = null;
+var drawPath1 = null;
+var drawPath2 = null;
+var lines1 = [];
+var lines2 = [];
 
 // function initialize() {
 connection.onopen = function(session) {
@@ -184,8 +187,9 @@ var showQuestion = function(args) {
 
     addPathResultdivs();
 
-    drawPath1(paths[0]);
-    drawPath2(paths[1]);  
+    resetLines();
+    drawPath1(paths[0], [], [], 0);
+    drawPath2(paths[1], [], [], 0);  
 
     document.getElementById("question").innerHTML = 'Original Text: '+ original_quote + '<br>' + 'Translation: ' + translations[answer_index];
     // document.getElementById("question").innerHTML = "Brazil";
@@ -198,11 +202,8 @@ var showQuestion = function(args) {
 
 
 var drawPathClosure = function(pathNum) {
-    var path_index = 0;
-    var l = [];  
-    var markers = [];
 
-    return function(countries) {
+    return function(countries, l, markers, path_index) {
         console.log('Countries are: ', countries);
         var step = 0;
         var numSteps = 100; //Change this to set animation resolution
@@ -245,28 +246,26 @@ var drawPathClosure = function(pathNum) {
                 clearInterval(interval); // Stop the interval?
                 path_index++;
 
-                if (path_index < 5) {
+                console.log('path_index is: ', path_index);
+                if (path_index < countries.length-1) {
                     if (pathNum === 1) {
-                        drawPath1(countries);
-
-                    }
-                    else { 
-                        drawPath2(countries);
-                    }
-                    if (pathNum === 1)
-                    {
                         document.getElementById("InfowindowText_1").innerHTML = countries[path_index].language;
                         document.getElementById("InfowindowText_1").style.color = "#0000FF";
                         infos[0].open(map, markers[path_index]); 
+
+                        drawPath1(countries, l, markers, path_index);
+
                     }
-                    else
-                    { 
+                    else { 
                         document.getElementById("InfowindowText_2").innerHTML = countries[path_index].language;
                         document.getElementById("InfowindowText_2").style.color = "#FF0000";
                         infos[1].open(map, markers[path_index]); 
+
+                        drawPath2(countries, l, markers, path_index);
                     }
                 }
                 else {
+                    console.log('Draw final InfoWindow');
                     // Display Final InfoWindow
                     document.getElementById("InfowindowText_1").innerHTML = countries[path_index].language;
                     infos[0].open(map, markers[path_index]); 
@@ -294,11 +293,22 @@ var drawPathClosure = function(pathNum) {
                 l[path_index].setPath([departure, progress]);
             }
         }, timePerStep);
+        if (pathNum === 1)
+            lines1 = l;
+        else
+            lines2 = l;
     }
 };
 
-var drawPath1 = drawPathClosure(1);
-var drawPath2 = drawPathClosure(2);
+drawPath1 = drawPathClosure(1);
+drawPath2 = drawPathClosure(2);
+
+function resetLines() {
+    for (var i=0; i<lines1.length; i++) {
+        lines1[i].setMap(null);
+        lines2[i].setMap(null);
+    }
+}
 
 function addPathResultdivs() {
     var divMapCanvas = document.getElementById('map_canvas');
