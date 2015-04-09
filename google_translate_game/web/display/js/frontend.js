@@ -372,15 +372,15 @@ function showAnswer(args) {
 
         var winner = null;
         if (res.answer === 0)
-            winner = 'Path A is the winner!';
+            winner = 'Blue Path is the winner!';
         else
-            winner = 'Path B is the winner';
+            winner = 'Red Path is the winner';
         document.getElementById('question').innerHTML = winner;
 
         var patha_span = document.getElementById('patha_res');
         var pathb_span = document.getElementById('pathb_res');
-        patha_span.innerHTML = res.results[0];
-        pathb_span.innerHTML = res.results[1];
+        patha_span.innerHTML = 'Blue Path: ' + res.results[0];
+        pathb_span.innerHTML = 'Red Path: ' + res.results[1];
         
         setTimeout(showQuestion, 5000, args);
     }

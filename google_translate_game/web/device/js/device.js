@@ -230,17 +230,17 @@ var onDisplayOptions = function(args) {
 		
 		answerLastRound = args[0].answer;
 
-		$('#A').text('Path A');
+		$('#A').text('Blue Path');
 		$('#A').css('background-color', '#D4D0C8');
 
-		$('#B').text('Path B');
+		$('#B').text('Red Path');
 		$('#B').css('background-color', '#D4D0C8');
 
 		var answerBody = null;
 		if (args[0].answer === 0) {
-			answerBody = 'Path A';
+			answerBody = 'Blue Path';
 		} else {
-			answerBody = 'Path B';
+			answerBody = 'Red Path';
 		}
 		$('#pollContainer').attr('answer-body', answerBody);
 
