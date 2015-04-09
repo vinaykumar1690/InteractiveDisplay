@@ -53,7 +53,7 @@ var path_length = 5;
 function initialize() {	
     // Define the LatLng coordinates for the polygon's path.
 	// var countriesCoords = [];
-	
+    console.log('initializing');	
 	var image = {
 		url: '',
 		// size: new google.maps.Size(71, 71),
@@ -104,8 +104,17 @@ for (i = 0; i < countries_2.length; i++) {
     });
     infos[1].open(map, markers_2[0]);
 
-    drawPath2(countries_2);  
-    drawPath1(countries_1);
+//    drawPath2(countries_2);  
+//    drawPath1(countries_1);
+
+    addPathResultdivs();
+
+    ret = {
+        gametype : 'translator',
+        results : ['She sells sea shells at the sea floor', 'Sells sea floor at sea'],
+        answer : 1
+    }
+    setTimeout(showAnswer, 5000, ret);
 
 } // End initialize()
 
@@ -200,5 +209,48 @@ var drawPathClosure = function(pathNum) {
 
 var drawPath1 = drawPathClosure(1);
 var drawPath2 = drawPathClosure(2);
+
+function addPathResultdivs() {
+    var divMapCanvas = document.getElementById('map_canvas');
+    
+    var patha_res = document.createElement('div');
+    patha_res.id = 'patha_res';
+    patha_res.className = 'Path_Res';
+    var patha_span = document.createElement('span');
+    patha_span.id = 'patha_span';
+    patha_span.className = 'Path_Res_Span';
+    patha_res.appendChild(patha_span);
+
+    var pathb_res = document.createElement('div');
+    pathb_res.id = 'pathb_res';
+    pathb_res.className = 'Path_Res';
+    var pathb_span = document.createElement('span');
+    pathb_span.className = 'Path_Res_Span';
+    pathb_span.id = 'pathb_span';
+    pathb_res.appendChild(pathb_span);
+    
+    divMapCanvas.appendChild(patha_res);
+    divMapCanvas.appendChild(pathb_res);
+
+}
+
+function showAnswer(ret) {
+    var divMapCanvas = document.getElementById('map_canvas');
+    divMapCanvas.style.visibility = 'hidden';
+
+    var winner = null;
+    if (ret.answer === 0)
+        winner = 'Path A is the winner!';
+    else
+        winner = 'Path B is the winner';
+    document.getElementById('question').innerHTML = winner;
+
+    var patha_span = document.getElementById('patha_res');
+    var pathb_span = document.getElementById('pathb_res');
+    patha_span.innerHTML = ret.results[0];
+    pathb_span.innerHTML = ret.results[1];
+        
+//    divMapCanvas.style.visibility = 'visible';
+}
 
 google.maps.event.addDomListener(window, 'load', initialize);

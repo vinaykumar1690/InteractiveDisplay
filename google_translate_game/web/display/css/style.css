@@ -146,6 +146,20 @@ div.panel_banner {
     font-size: 10em;
 }
 
+.Path_Res {
+    width: 100%;
+    height: 50%;
+    background-color: white;
+    text-align: center;
+    display: table;
+    visibility: visible;
+}
+
+.Path_Res_Span {
+    display: table-cell;
+    vertical-align: middle; 
+}
+
 table {
   width : 100%;
 }
