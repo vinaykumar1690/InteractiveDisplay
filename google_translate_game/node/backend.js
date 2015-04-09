@@ -60,7 +60,7 @@ connection.onopen = function(session) {
   );
 
   
-  setInterval(question(session), 30*1000);
+  setInterval(question(session), 10*1000);
   setInterval(pubUpdates(session, 2 * 1000));
 }
 

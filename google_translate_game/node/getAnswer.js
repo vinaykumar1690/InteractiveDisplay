@@ -14,8 +14,12 @@ exports.getAnswer = function() {
             });
 
             res.on('end', function() {
-                responseBody = JSON.parse(responseBody);
+
+                // console.log('STATUS: ', res.statusCode);
+                // console.log(responseBody);
+
                 try {
+                    responseBody = JSON.parse(responseBody);
                     var translatedText = responseBody.data.translations[0].translatedText;
                     translate(qNum, cities, index+1, translatedText, callback);
                 } catch (exception) {
@@ -31,6 +35,7 @@ exports.getAnswer = function() {
     var onFinalResponse = function(qNum, callback) {
         
         return  function(res) {
+
             res.setEncoding('utf8');
             
             var responseBody = "";
@@ -39,8 +44,13 @@ exports.getAnswer = function() {
             });
 
             res.on('end', function() {
-                responseBody = JSON.parse(responseBody);
+                
+                // console.log('STATUS: ', res.statusCode);
+                // console.log(responseBody);
+
+                
                 try {
+                    responseBody = JSON.parse(responseBody);
                     var translatedText = responseBody.data.translations[0].translatedText;
                     console.log('[' + qNum + ',final]' + translatedText);
                     callback(qNum, translatedText);
@@ -73,10 +83,13 @@ exports.getAnswer = function() {
             hostname: 'www.googleapis.com',
             port: 443,
             path: encodeURI('/language/translate/v2?key=AIzaSyALWxgT7ALon32ohU5-fB-IWbmzbwSIDmg&source='+ source +'&target='+ target +'&q='+text),
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+            }
         }
 
-        // console.log("url:" + "https://" + options.hostname + options.path);
+        console.log("url:" + "https://" + options.hostname + options.path);
         
         var req = null;
         if (target === 'en')
