@@ -12,6 +12,7 @@
 <p>sudo apt-get install build-essential</p>
 <li><p>Install CouchDb</p>
 <p>sudo apt-get install couchdb</p>
+<p>Create a "users" table in couchDB: curl -X PUT http://127.0.0.1:5984/users</p>
 <li><p>Clone this repository</p>
 <li><p>Install autobahn and when modules</p>
 <p>Browse to InteractiveDisplay/google_places_game_deploy/</p>
@@ -21,6 +22,6 @@
 <li><p>Start the Crossbar router from the root directory</p>
 <p>cd InteractiveDisplay/google_places_game_deploy/</p>
 <p>crossbar start</p>
-<li><p>The Display screen is hosted at, http://localhost:8080/display/index.html</p>
-<li><p>The Device screen is hosted at, http://localhost:8080/device/index.html</p>
+<li><p>The Display screen is hosted at, http://your-host-ip:8080/display/index.html</p>
+<li><p>The Device screen is hosted at, http://your-host-ip:8080/device/index.html</p>
 </ol>
