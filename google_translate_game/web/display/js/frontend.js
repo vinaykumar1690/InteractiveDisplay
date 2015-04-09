@@ -1,43 +1,7 @@
-var mapOptions = {
-    zoom: 2,
-    center: new google.maps.LatLng(23,0),
-};
-
-var map = new google.maps.Map(document.getElementById('map_canvas'),
-    mapOptions);
-
-// Here we use capital city's coordinate to represent a country.
-var loc_WashingtonDC = new google.maps.LatLng(38.9047, -77.0164); // US
-var loc_Berlin = new google.maps.LatLng(52.5167, 13.3833); // Germany
-var loc_Brasilia = new google.maps.LatLng(-15.7939, -47.8828); // Portuguese, Brazil
-var loc_Brazzaville = new google.maps.LatLng(-4.2471, 15.2272);
-var loc_Tunis = new google.maps.LatLng(-22.5632, 17.0707);
-var loc_London = new google.maps.LatLng(51.5072, -0.1275);
-
-var loc_Tokyo = new google.maps.LatLng(35.6833, 139.6833); // Japan
-var loc_Paris = new google.maps.LatLng(48.8588, 2.3470);
-var loc_Delhi = new google.maps.LatLng(28.6454, 77.0907);
-var loc_Seoul = new google.maps.LatLng(37.5651, 126.9895);
-var loc_Rome = new google.maps.LatLng(41.9100, 12.5359);
-
-// List of countries
-var countries_1 = [
-{name: "England", language: "English", location: loc_London},
-{name: "Germany", language: "Germany", location: loc_Berlin},
-{name: "Brazil", language: "Portuguese-Brazil", location: loc_Brasilia},
-{name: "Congo", language: "Swahili", location: loc_Brazzaville},
-{name: "Tunisia", language: "Arabic", location: loc_Tunis},
-{name: "England", language: "English", location: loc_London}
-];
-
-var countries_2 = [
-{name: "England", language: "English", location: loc_London},
-{name: "Japan", language: "Japanese", location: loc_Tokyo},
-{name: "Paris", language: "French", location: loc_Paris},
-{name: "Delhi", language: "Hindi", location: loc_Delhi},
-{name: "Seoul", language: "Korean", location: loc_Seoul},
-{name: "England", language: "English", location: loc_London}
-];
+var connection = new autobahn.Connection({
+    url: 'ws://' + location.host + '/ws',
+    realm: 'realm1'
+})
 
 var lineSymbol = {
     path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
@@ -49,63 +13,143 @@ var markers_2 = [];
 var infos = [{},{}];
 
 var path_length = 5;
+var map;
 
-function initialize() {	
-    // Define the LatLng coordinates for the polygon's path.
-	// var countriesCoords = [];
-    console.log('initializing');	
-	var image = {
-		url: '',
-		// size: new google.maps.Size(71, 71),
-		origin: new google.maps.Point(0, 0),
-		anchor: new google.maps.Point(0, 25), // Is "25" scaled?
-		scaledSize: new google.maps.Size(25, 25)
-	};
+// function initialize() {
+connection.onopen = function(session) {
+    console.log('connection opened');
+    var image = {
+        url: '',
+        // size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 25), // Is "25" scaled?
+        scaledSize: new google.maps.Size(25, 25)
+    };
 
-// Markers for Path 1
-for (i = 0; i < countries_1.length; i++) {
-  image.url = './images/' + countries_1[i].name + '.png'; 
-		// console.log('image.url is ' + image.url);
-		var marker = new google.maps.Marker({
-			position: countries_1[i].location,
-			map: map,
-			// icon: image
-		});
+// Map
+var mapOptions = {
+    zoom: 2,
+    center: new google.maps.LatLng(23,0)
+};
+
+map = new google.maps.Map(document.getElementById('map_canvas'),
+    mapOptions);
+
+    session.subscribe("edu.cmu.ipd.rounds.newRound", showQuestion).then(
+        function(res) {
+            console.log('subscribe to newRound');
+        },
+        function(err) {
+            console.log('error: ', err);
+        });
+
+    session.subscribe('edu.cmu.ipd.leaderboard.request', onLeaderBoardReady);
+
+    session.subscribe('edu.cmu.ipd.updates.newUpdate', update);
+
+} // End connection.onopen
+
+connection.open();
+
+var showQuestion = function(args) {
+
+    console.log('[display]showQuestion() is called');
+
+    var bundle = args[0];
+
+
+    var game_type = bundle.gameType;
+    var paths = [];
+    var original_quote = null;
+    var translations = [];
+    var answer_index = bundle.answer;
+
+    if (bundle.seeds.length === 3) {
+        paths.push(bundle.seeds[0]);
+        paths.push(bundle.seeds[1]);
+        original_quote = bundle.seeds[2]; 
+
+        console.log('bundle is: ',bundle);
+    }
+
+    console.log('[display]showQuestion(): bundle.results.length=' + bundle.results.length);
+
+    if (bundle.results.length === 2) {
+        translations.push(bundle.results[0]);
+        translations.push(bundle.results[1]);
+        console.log('results are: ' + bundle.results);
+    }
+
+    if (paths.length < 2 || translations.length < 2) {
+        console.log('null error');
+    }
+
+    // Dismiss markers_1
+    if (markers_1.length > 0) {
+        for (i = 0; i < markers_1.length; i++) {
+            console.log('dismiss marker_1 called');
+            markers_1[i].setMap(null);
+        }
+        // Reset array of markers
+        markers_1 = [];
+    }
+    // Dismiss markers_2
+    if (markers_2.length > 0) {
+        for (i = 0; i < markers_2.length; i++) {
+            console.log('dismiss marker_2 called');
+            markers_2[i].setMap(null);
+        }
+        // Reset array of markers       
+        markers_2 = [];
+    }
+
+// Display markers and call drawPath here.
+    // Markers for Path 1
+    for (i = 0; i < paths[0].length; i++) {
+        // image.url = './images/' + countries_1[i].name + '.png'; 
+        // console.log('image.url is ' + image.url);
+        var location = new google.maps.LatLng(paths[0][i].lat, paths[0][i].lng);
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
+            // icon: image
+        });
         markers_1.push(marker); // Add marker
     }
+    // InfoWindow for markers in Path 1
     info_contentStr_1 = '<div id="Infowindow_1" class="infowindow">' +
     '<span id="InfowindowText_1" style="font-size: 2em;">'
     + 'English' +
     '</span>' +
     '<div>';   
+    // Set initial InfoWindow
     infos[0] = new google.maps.InfoWindow({
         content: info_contentStr_1
     });
-    infos[0].open(map, markers_1[0]);
+    infos[0].open(map, markers_1[0]);   
 
-// Markers for Path 2
-for (i = 0; i < countries_2.length; i++) {
-    image.url = './images/' + countries_2[i].name + '.png'; 
+    // Markers for Path 2
+    for (i = 0; i < paths[1].length; i++) {
+        // image.url = './images/' + countries_2[i].name + '.png'; 
         // console.log('image.url is ' + image.url);
+        var location = new google.maps.LatLng(paths[1][i].lat, paths[1][i].lng);        
         var marker = new google.maps.Marker({
-            position: countries_2[i].location,
+            position: location,
             map: map,
-            // icon: image
-        });
-        markers_2.push(marker); // Add marker        
+                // icon: image
+            });
+            markers_2.push(marker); // Add marker        
     }
     info_contentStr_2 = '<div id="Infowindow_2" class="infowindow">' +
     '<span id="InfowindowText_2" style="font-size: 2em;">'
     + 'English' +
     '</span>' +
     '<div>';      
+    // Set initial InfoWindow    
     infos[1] = new google.maps.InfoWindow({
         content: info_contentStr_2
     });
     infos[1].open(map, markers_2[0]);
-
-//    drawPath2(countries_2);  
-//    drawPath1(countries_1);
 
     addPathResultdivs();
 
@@ -116,7 +160,20 @@ for (i = 0; i < countries_2.length; i++) {
     }
     setTimeout(showAnswer, 5000, ret);
 
-} // End initialize()
+    drawPath2(paths[1]);  
+    drawPath1(paths[0]);
+
+    document.getElementById("question").innerHTML = 'Original Text: '+ original_quote + '\n' + 'Translation: ' + translations[answer_index];
+    // document.getElementById("question").innerHTML = "Brazil";
+    console.log('showing question');
+
+    // sessionHandler.call('edu.cmu.ipd.leaderboard.request', [5]);
+
+    // setTimeout(function() {
+    //     coundownID = setInterval(startCountdown(), 1000);
+    // }, 8000);
+
+} // End showQuestion
 
 
 var drawPathClosure = function(pathNum) {
@@ -129,8 +186,11 @@ var drawPathClosure = function(pathNum) {
         var step = 0;
         var numSteps = 100; //Change this to set animation resolution
         var timePerStep = 20; //Change this to alter animation speed, 5ms
-        var departure = countries[path_index].location;
-        var arrival = countries[path_index + 1].location;
+
+        var loc_departure = new google.maps.LatLng(countries[path_index].lat, countries[path_index].lng);
+        var loc_arrival = new google.maps.LatLng(countries[path_index + 1].lat, countries[path_index + 1].lng);
+        var departure = loc_departure;
+        var arrival = loc_arrival;
         var color = "#000000";
 
         console.log('%s to %s', countries[path_index].name, countries[path_index+1].name);
@@ -207,8 +267,10 @@ var drawPathClosure = function(pathNum) {
     }
 };
 
+
 var drawPath1 = drawPathClosure(1);
 var drawPath2 = drawPathClosure(2);
+
 
 function addPathResultdivs() {
     var divMapCanvas = document.getElementById('map_canvas');
@@ -253,4 +315,3 @@ function showAnswer(ret) {
 //    divMapCanvas.style.visibility = 'visible';
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
