@@ -1,17 +1,25 @@
-exports.getQuestion = function (len) {
-    var question = {
-        gameType: 'translator',
-        seed1: getRandomCities(len), // Path 1
-        seed2: getRandomCities(len), // Path 2
-        seed3: quotes.getRandom()  // Quote
-    }
-    return question;
-}
 
 
-Array.prototype.getRandom = function() {
+exports.getQuestion = function () {
     
-    var previous = [];
+    var quoteIdx = 0;
+
+    return function(len) {
+        var prev = [];
+        var question = {
+            gameType: 'translator',
+            seed1: getRandomCities(len, prev), // Path 1
+            seed2: getRandomCities(len, prev), // Path 2
+            seed3: quotes[quoteIdx]  // Quote
+        }
+        quoteIdx = (quoteIdx + 1) % quotes.length;
+        return question;
+    }
+}()
+
+
+Array.prototype.getRandom = function(previous) {
+    
     if (this.length == 0) {
         return null;
     } else if (this.length == 1) {
@@ -104,11 +112,12 @@ Array.prototype.contains = (function(obj) {
 );
 
 
-var getRandomCities = function (len) {
+var getRandomCities = function (len, prev) {
     var randomCities = [];
+    // var prev = [];
     randomCities.push(start_end_City);
     for (var i = 0; i < len; i++){
-        var c = cities.getRandom();
+        var c = cities.getRandom(prev);
         randomCities.push(c);
     }
     randomCities.push(start_end_City);
