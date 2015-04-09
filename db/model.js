@@ -87,47 +87,50 @@ exports.updateScore = function(userName, score) {
 exports.getTopNUsers = function(N, callback) {
 
 	var comparator = function(record1, record2) {
-		return record2.score - record1.score;
+		if (record2.score !== record1.score) {
+			return record2.score - record1.score;
+		} else {
+			return record1._id.localeCompare(record2._id);
+		}
 	}
 
 	var onRowResponse = function(total) {
 		
 		var records = [];
+
+		return function(res) {
+
+			var body = "";
 		
-		return function() {
+			res.on('data', function(data) {
+				//console.log(data);
+				body += data;
+			});
 
-			return function(res) {
-
-				var body = "";
-			
-				res.on('data', function(data) {
-					//console.log(data);
-					body += data;
-				});
-
-				res.on('end', function() {
+			res.on('end', function() {
+				
+				var result = JSON.parse(body);
+				
+				records.push(result);
+				
+				if (records.length === total) {
 					
-					var result = JSON.parse(body);
+					records.sort(comparator);
 					
-					records.push(result);
+					var param = [];
 					
-					if (records.length === total) {
+					for (i = 0; i < N && i < records.length; i++) {
 						
-						records.sort(comparator);
-						
-						var param = [];
-						
-						for (i = 0; i < N && i < records.length; i++) {
-							var bundle = {
-								userName : records[i]._id,
-								score: records[i].score,
-							}
-							param.push(bundle);
+						var bundle = {
+							userName : records[i]._id,
+							score: records[i].score,
 						}
-						callback(param);
+
+						param.push(bundle);
 					}
-				});
-			}
+					callback(param);
+				}
+			});
 		}
 	}
 
@@ -145,9 +148,9 @@ exports.getTopNUsers = function(N, callback) {
 				// console.log(body);
 				result = JSON.parse(body).rows;
 				onRowResponse = onRowResponse(result.length);
-				for (i in result) {
+				for (var i = 0; i < result.length; i++) {
 					var row = result[i];
-					dbdriver.transaction('users', row.id, 'GET', null, onRowResponse(), onReqError);
+					dbdriver.transaction('users', row.id, 'GET', null, onRowResponse, onRowsReqError);
 				}
 
 			});
@@ -158,10 +161,14 @@ exports.getTopNUsers = function(N, callback) {
 		}
 	}
 
-	var onReqError = function(err) {
-		console.log('Update user[' + userName + '] score error:' + err.message);
+	var onRowsReqError = function(err) {
+		console.log('Get rows error:' + err.message);
 	};
 
-	dbdriver.transaction('users', '_all_docs', 'GET', null, onDBGetResponse(), onReqError);
+	var onRowReqError = function(err) {
+		console.log('Get row error:' + err.message);
+	}
+
+	dbdriver.transaction('users', '_all_docs', 'GET', null, onDBGetResponse(), onRowsReqError);
 }
 

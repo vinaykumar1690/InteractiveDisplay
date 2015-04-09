@@ -60,7 +60,7 @@ connection.onopen = function(session) {
   );
 
   
-  setInterval(question(session), 10*1000);
+  setInterval(question(session), 30*1000);
   setInterval(pubUpdates(session, 2 * 1000));
 }
 
@@ -200,11 +200,11 @@ var topN = function(session) {
   
   return function(args) {
 	N = args[0];
-	console.log('[backend]topN: called');
+	// console.log('[backend]topN: called');
 	onLeaderBoardReady = function(param) {
 	  session.publish('edu.cmu.ipd.leaderboard.request', param, {}, { acknowledge: true}).then(
 		function(publication) {
-		  console.log("leaderboard published with ID: " + publication);
+		  console.log("leaderboard published with ID: " + publication.id);
 		},
 		function(error) {
 		  console.log('leaderboard published with error', error);

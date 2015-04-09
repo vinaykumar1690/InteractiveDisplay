@@ -81,6 +81,10 @@ connection.onopen = function(session) {
             console.log('error: ', err);
         });
 
+    setInterval(function() {
+        sessionHandler.call('edu.cmu.ipd.leaderboard.request', [5])
+    }, 5 * 1000);
+
 } // End connection.onopen
 
 connection.open();
@@ -404,7 +408,7 @@ onLeaderBoardReady = function(args) {
 
 $(document).ready(function() {
     console.log('documet.ready');
-    $('.flipper').addClass('flipperStart');
+    // $('.flipper').addClass('flipperStart');
     setInterval(flip, 15 * 1000);
 
     var qr_url = 'http://'+location.host+'/device/index.html';
