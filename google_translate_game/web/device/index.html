@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <title>Log in</title>
+    <link rel="stylesheet" href="css/device.css">
+    <script src="js/autobahn.min.jgz"></script>
+  </head>
+
+  <body>
+    <header>
+      <div id="header_inner">
+        <!-- <div id="demo_title"><span>Quiz</span></div> -->
+        <div id="demo_title">
+          <div id = "api_title">Game</div>
+        </div>
+      </div>
+    </header>
+
+    <div id="demo_body" >
+      <div id="pollContainer" align="center">
+        <div class="part">  
+          <input type="text" id="username" placeholder="Your name"></input>
+        </div>
+
+        <br/>
+
+        <div class="part">
+          <button id="login">Join</button>
+        </div>
+      </div>
+      
+      <br>
+    </div>
+    <script>AUTOBAHN_DEBUG = true;</script>
+    <script src="js/device.js"></script>
+  </body>
+</html>

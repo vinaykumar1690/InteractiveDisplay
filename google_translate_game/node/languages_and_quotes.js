@@ -1,23 +1,34 @@
-Array.prototype.getRandom = ( function() {
-    var previous = [];
-    return function() {
-        if (this.length == 0) {
-            return null;
-        } else if (this.length == 1) {
-            return this[0];
-        } else {
-            var num = 0;
-            do {
-                num = Math.floor(Math.random() * this.length);
-                lan = cities[num].language_code;
-                // console.log(previous);
-                // console.log(lan);
-            } while (previous.contains(lan));
-            previous.push(lan);
-            return this[num];
-        }
+exports.getQuestion = function (len) {
+    var question = {
+        gameType: 'translator',
+        seed1: getRandomCities(len), // Path 1
+        seed2: getRandomCities(len), // Path 2
+        seed3: quotes.getRandom()  // Quote
     }
-})();
+    return question;
+}
+
+
+Array.prototype.getRandom = function() {
+    
+    var previous = [];
+    if (this.length == 0) {
+        return null;
+    } else if (this.length == 1) {
+        return this[0];
+    } else {
+        var num = 0;
+        var lan = null;
+        do {
+            num = Math.floor(Math.random() * this.length);
+            lan = cities[num].language_code;
+            // console.log(previous);
+            // console.log(lan);
+        } while (previous.contains(lan));
+        previous.push(lan);
+        return this[num];
+    }
+};
 
 var cities = [
     {city: "Beijing",         language: "Mandarin",   language_code: "zh-CN", lat: 39.9388,  lng: 116.3974 },
@@ -92,15 +103,6 @@ Array.prototype.contains = (function(obj) {
 }
 );
 
-exports.getQuestion = function (len) {
-    var question = {
-        gameType: 'translator',
-        seed1: getRandomCities(len), // Path 1
-        seed2: getRandomCities(len), // Path 2
-        seed3: quotes.getRandom()  // Quote
-    }
-    return question;
-}
 
 var getRandomCities = function (len) {
     var randomCities = [];

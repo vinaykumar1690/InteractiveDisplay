@@ -1,17 +1,10 @@
 //Put the backend js file here
 var autobahn = require('autobahn');
 
-var when = require('when');
-
 var model = require('../../db/model.js');
 
-var places_question = require('./cities_and_types.js');
-var places_answer = require('./getAnswer.js');
-
-var urls = require('../../url/url.js');
-
 var connection = new autobahn.Connection({
-	url: 'ws://' + urls.crossbarURL + '/ws',
+	url: 'ws://localhost:8080/ws',
 	realm: 'realm1'
 });
 
@@ -21,7 +14,7 @@ var currBundle = null;
 
 connection.onopen = function(session) {
 	
-  console.log('google places node connected.');
+  console.log('google translator node connected.');
 
 	session.register('edu.cmu.ipd.users.createUser', createUser(session)).then(
 
@@ -66,8 +59,9 @@ connection.onopen = function(session) {
     }
   );
 
-  setInterval(question(session), 21*1000);
-  setInterval(pubUpdates(session, 2 * 1000));
+  // question(session)();
+  setInterval(question(session), 10*1000);
+  // setInterval(pubUpdates(session, 2 * 1000));
 }
 
 /*
@@ -127,99 +121,62 @@ var updateScore = function(args) {
 
 
 var question = function(session) {
-  
-  var commHandler = session;
-  var answers = require('./getAnswer.js');
-  var questions = require('./cities_and_types.js');
-
-  return function() {
     
-    question = questions.getQuestion();
+    var commHandler = session;
+    var answers = require('./getAnswer.js');
+    var questions = require('./languages_and_quotes.js');
 
-    var onResponse = function() {
+    var intermCitiesNum = 5;
 
-      var bundle = {
-        option0 : null,
-        option1 : null,
-      }
+    return function() {
 
-      return function (opt) {
-        
-        return function(res) {
-          
-          var generateBundle = function(qBundle, apiResultBundle) {
-            var ret = {};
-            ret.place_type = qBundle.place_type.display_name;
-            ret.options = [qBundle.city1, qBundle.city2];
-            ret.statistics = [apiResultBundle.option0, apiResultBundle.option1];
-            console.log('option0: ' + apiResultBundle.option0, 'option1: ' + apiResultBundle.option1);
-            if (apiResultBundle.option0 < apiResultBundle.option1) {
-              ret.answer = qBundle.city2.name;
-            } else {
-              ret.answer = qBundle.city1.name;
-            }
-            return ret;
-          }
+        console.log('generate question')
+        try {
+            var question = questions.getQuestion(intermCitiesNum);
 
-          res.setEncoding('utf8');
+            var onResponse = function() {
+            
+                var resBundle = {
+                    option0 : null,
+                    option1 : null,
+                }
 
-          var responseBody = "";
+                return function(qNum, translatedText) {
 
-          res.on('data', function(d) {
-            responseBody += d;
-          });
+                    if (qNum === 0) {
+                        resBundle.option0 = translatedText
+                    } else {
+                        resBundle.option1 = translatedText
+                    }
 
-          res.on('end', function() {
+                    if (resBundle.option0 !== null && resBundle.option1 !== null) {
+                        
+                        var ret = {};
+                        ret.gameType = question.gameType;
+                        ret.seeds = [question.seed1, question.seed2, question.seed3];
+                        ret.results = [resBundle.option0, resBundle.option1];
+                        ret.answer = 0; //Replace by a random number
 
-            try {
-              responseBody = JSON.parse(responseBody);
-            } catch (e) {
-              console.log(e);
-              answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
-              answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
-              return;
-            }
-            if (opt === 0) {
-              bundle.option0 = responseBody.results.length;
-              if (bundle.option1 !== null) {
-                var pubData = generateBundle(question, bundle);
-                currBundle = pubData;
-                session.publish('edu.cmu.ipd.rounds.newRound', [pubData], {}, { acknowledge: true}).then(
-                  function(publication) {
-                    console.log("published, publication ID is ", publication);
-                  },
-                  function(error) {
-                    console.log("publication error", error);
-                  });
-                
-              }
-            } else if (opt === 1) {
-              bundle.option1 = responseBody.results.length;
-              if (bundle.option0 !== null) {
-                var pubData = generateBundle(question, bundle);
-                currBundle = pubData;
-                session.publish('edu.cmu.ipd.rounds.newRound', [pubData], {}, { acknowledge: true}).then(
-                  function(publication) {
-                    console.log("published, publication ID is ", publication);
-                  },
-                  function(error) {
-                    console.log("publication error", error);
-                  });
-              }
-            }
-          });
+                        session.publish('edu.cmu.ipd.rounds.newRound', [ret], {}, {acknowledge: true}).then(
+                            function(publication) {
+                                console.log("published new round, publication ID is ", publication);
+                            },
+                            function(error) {
+                                console.log("failed to publish new round ", error);
+                            });
+                        // console.log(ret);
+                        currBundle = ret;
+                    }
+                }
+            }();
+            
+            answers.getAnswer(0, question.seed1, 0, question.seed3, onResponse);
+            answers.getAnswer(1, question.seed2, 0, question.seed3, onResponse);
+        } catch (exception) {
+            console.log(exception);
         }
-      }
-    }();
 
-    var onError = function(err) {
-      console.log('err');
     }
-    
-    console.log('full name: ' + question.place_type.full_name);
-    answers.getAnswer(0, question.city1.lat ,question.city1.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
-    answers.getAnswer(1, question.city2.lat ,question.city2.lng, 2 * 1000, question.place_type.full_name, onResponse, onError, null);
-  }
 }
 
 var getCurrentRound = function(args){

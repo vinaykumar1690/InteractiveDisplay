@@ -1,5 +1,5 @@
 var languages_and_quotes = require('./languages_and_quotes.js');
-var translate = require('./getTranslation.js');
+var translate = require('./getAnswer.js');
 
 var question = languages_and_quotes.getQuestion(3);
 
@@ -33,6 +33,8 @@ var cities = [
 ];
 
 var text = 'Well, here I am! What are your other two wishes';
-console.log(cities);
+// console.log(cities);
 //translate.getTranslation(question.seed1, 0, question.seed3);
-translate.getTranslation(cities, 0, text);
+translate.getAnswer(0, cities, 0, text, function(qNum, translatedText) {
+    console.log('[' + qNum + ']:' + translatedText);
+});
