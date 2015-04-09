@@ -14,6 +14,8 @@ var infos = [{},{}];
 
 var path_length = 5;
 var map;
+var countdownID = null;
+var gbundle = null;
 
 // function initialize() {
 connection.onopen = function(session) {
@@ -26,16 +28,27 @@ connection.onopen = function(session) {
         scaledSize: new google.maps.Size(25, 25)
     };
 
-// Map
-var mapOptions = {
-    zoom: 2,
-    center: new google.maps.LatLng(23,0)
-};
+    // Map
+    var mapOptions = {
+        zoom: 2,
+        center: new google.maps.LatLng(23,0)
+    };
 
-map = new google.maps.Map(document.getElementById('map_canvas'),
-    mapOptions);
+    map = new google.maps.Map(document.getElementById('map_canvas'),
+        mapOptions);
 
-    session.subscribe("edu.cmu.ipd.rounds.newRound", showQuestion).then(
+    // Add Count Down div, dynamically
+    var divCountdownClock = document.createElement('div');
+    divCountdownClock.id = 'Countdown_clock';
+
+    var spanNumberCountdown = document.createElement('span');
+    spanNumberCountdown.id = 'numberCountdown';
+    divCountdownClock.appendChild(spanNumberCountdown);
+
+    var divMapCanvas = document.getElementById('Game_Body');
+    divMapCanvas.insertBefore(divCountdownClock, divMapCanvas.childNodes[2]);
+
+    session.subscribe("edu.cmu.ipd.rounds.newRound", showAnswer).then(
         function(res) {
             console.log('subscribe to newRound');
         },
@@ -51,12 +64,30 @@ map = new google.maps.Map(document.getElementById('map_canvas'),
 
 connection.open();
 
+var startCountdown = function(countdownID) {
+    
+    var g_iCount = 6;
+    
+    return function() {
+        if((g_iCount - 1) >= 0){
+           g_iCount = g_iCount - 1;
+           document.getElementById("numberCountdown").innerHTML = g_iCount;
+        }   
+    }
+};
+
+function stopCountdown() {
+    clearInterval(countdownID);
+    document.getElementById("numberCountdown").innerHTML = "";
+}
+
 var showQuestion = function(args) {
 
     console.log('[display]showQuestion() is called');
+    var divMapCanvas = document.getElementById('map_canvas');
+    divMapCanvas.style.visibility = 'visible';
 
     var bundle = args[0];
-
 
     var game_type = bundle.gameType;
     var paths = [];
@@ -103,7 +134,7 @@ var showQuestion = function(args) {
         markers_2 = [];
     }
 
-// Display markers and call drawPath here.
+    // Display markers and call drawPath here.
     // Markers for Path 1
     for (i = 0; i < paths[0].length; i++) {
         // image.url = './images/' + countries_1[i].name + '.png'; 
@@ -153,25 +184,15 @@ var showQuestion = function(args) {
 
     addPathResultdivs();
 
-    ret = {
-        gametype : 'translator',
-        results : ['She sells sea shells at the sea floor', 'Sells sea floor at sea'],
-        answer : 1
-    }
-    setTimeout(showAnswer, 5000, ret);
-
-    drawPath2(paths[1]);  
     drawPath1(paths[0]);
+    drawPath2(paths[1]);  
 
-    document.getElementById("question").innerHTML = 'Original Text: '+ original_quote + '\n' + 'Translation: ' + translations[answer_index];
+    document.getElementById("question").innerHTML = 'Original Text: '+ original_quote + '<br>' + 'Translation: ' + translations[answer_index];
     // document.getElementById("question").innerHTML = "Brazil";
     console.log('showing question');
 
     // sessionHandler.call('edu.cmu.ipd.leaderboard.request', [5]);
 
-    // setTimeout(function() {
-    //     coundownID = setInterval(startCountdown(), 1000);
-    // }, 8000);
 
 } // End showQuestion
 
@@ -253,6 +274,15 @@ var drawPathClosure = function(pathNum) {
                     document.getElementById("InfowindowText_2").innerHTML = countries[path_index].language;
                     document.getElementById("InfowindowText_2").style.color = "#000000";
                     infos[1].open(map, markers[path_index]);
+
+                    if (pathNum === 1) {
+                        // Start the countdown interval after path1 completes
+                        // We assume that path 2 also will complete at the same time
+                        // because they have same number of cities in the path
+                        setTimeout(function() {
+                             countdownID = setInterval(startCountdown(), 1000);
+                        }, 5000);
+                    }
                 }
                 console.log('Drew line: ', path_index);
                 console.log('step: %d, numSteps: %d', step, numSteps);
@@ -267,10 +297,8 @@ var drawPathClosure = function(pathNum) {
     }
 };
 
-
 var drawPath1 = drawPathClosure(1);
 var drawPath2 = drawPathClosure(2);
-
 
 function addPathResultdivs() {
     var divMapCanvas = document.getElementById('map_canvas');
@@ -296,22 +324,33 @@ function addPathResultdivs() {
 
 }
 
-function showAnswer(ret) {
-    var divMapCanvas = document.getElementById('map_canvas');
-    divMapCanvas.style.visibility = 'hidden';
+function showAnswer(args) {
 
-    var winner = null;
-    if (ret.answer === 0)
-        winner = 'Path A is the winner!';
-    else
-        winner = 'Path B is the winner';
-    document.getElementById('question').innerHTML = winner;
-
-    var patha_span = document.getElementById('patha_res');
-    var pathb_span = document.getElementById('pathb_res');
-    patha_span.innerHTML = ret.results[0];
-    pathb_span.innerHTML = ret.results[1];
+    if (gbundle === null) {
+        console.log('No previous bundle, waiting 5 secs before showing the question');
+        gbundle = args[0];
+        setTimeout(showQuestion, 5000, args);
+    } else {
+        stopCountdown();
         
-//    divMapCanvas.style.visibility = 'visible';
+        res = gbundle;
+        gbundle = args[0];
+        var divMapCanvas = document.getElementById('map_canvas');
+        divMapCanvas.style.visibility = 'hidden';
+
+        var winner = null;
+        if (res.answer === 0)
+            winner = 'Path A is the winner!';
+        else
+            winner = 'Path B is the winner';
+        document.getElementById('question').innerHTML = winner;
+
+        var patha_span = document.getElementById('patha_res');
+        var pathb_span = document.getElementById('pathb_res');
+        patha_span.innerHTML = res.results[0];
+        pathb_span.innerHTML = res.results[1];
+        
+        setTimeout(showQuestion, 5000, args);
+    }
 }
 

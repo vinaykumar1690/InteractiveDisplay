@@ -115,6 +115,7 @@ Array.prototype.contains = (function(obj) {
 var getRandomCities = function (len, prev) {
     var randomCities = [];
     // var prev = [];
+    len = len-2; // to account for start_end_city
     randomCities.push(start_end_City);
     for (var i = 0; i < len; i++){
         var c = cities.getRandom(prev);
