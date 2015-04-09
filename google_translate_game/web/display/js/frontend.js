@@ -20,8 +20,14 @@ var drawPath2 = null;
 var lines1 = [];
 var lines2 = [];
 
+var sessionHandler = null;
+var updatesCounter = 0;
+
 // function initialize() {
 connection.onopen = function(session) {
+
+    sessionHandler = session;
+
     console.log('connection opened');
     var image = {
         url: '',
@@ -207,7 +213,7 @@ var showQuestion = function(args) {
     // document.getElementById("question").innerHTML = "Brazil";
     console.log('showing question');
 
-    // sessionHandler.call('edu.cmu.ipd.leaderboard.request', [5]);
+    sessionHandler.call('edu.cmu.ipd.leaderboard.request', [5]);
 
 
 } // End showQuestion

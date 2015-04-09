@@ -59,9 +59,9 @@ connection.onopen = function(session) {
 	}
   );
 
-  // question(session)();
+  
   setInterval(question(session), 30*1000);
-  // setInterval(pubUpdates(session, 2 * 1000));
+  setInterval(pubUpdates(session, 2 * 1000));
 }
 
 /*
@@ -200,6 +200,7 @@ var topN = function(session) {
   
   return function(args) {
 	N = args[0];
+	console.log('[backend]topN: called');
 	onLeaderBoardReady = function(param) {
 	  session.publish('edu.cmu.ipd.leaderboard.request', param, {}, { acknowledge: true}).then(
 		function(publication) {
