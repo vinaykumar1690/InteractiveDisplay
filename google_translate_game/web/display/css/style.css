@@ -153,6 +153,7 @@ div.panel_banner {
     text-align: center;
     display: table;
     visibility: visible;
+    font-size: 2em;
 }
 
 .Path_Res_Span {
