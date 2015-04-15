@@ -17,7 +17,7 @@ exports.createUser = function(userName, callback) {
 			callback(appliedUserName);
 		} else if (res.statusCode === 409) { //Conflict
 			appliedUserName = userName + (Math.floor(Math.random() * 100)+1);
-			dbdriver.transaction('users', appliedUserName,'PUT', obj, onResponse, onReqError);
+			dbdriver.transaction('andrew_id', appliedUserName,'PUT', obj, onResponse, onReqError);
 		}
 	}
 
@@ -25,7 +25,7 @@ exports.createUser = function(userName, callback) {
 		console.log("error: " + e.message);
 	};
 
-	dbdriver.transaction('users', userName, 'PUT', obj, onResponse, onReqError);
+	dbdriver.transaction('andrew_id', userName, 'PUT', obj, onResponse, onReqError);
 }
 
 exports.updateScore = function(userName, score) {
@@ -72,7 +72,7 @@ exports.updateScore = function(userName, score) {
 				_rev  : seq,
 			});
 			
-			dbdriver.transaction('users', userName, 'PUT', data, onPutResponse, onReqError);
+			dbdriver.transaction('andrew_id', userName, 'PUT', data, onPutResponse, onReqError);
 
 		});
 	};
@@ -81,7 +81,7 @@ exports.updateScore = function(userName, score) {
 		console.log('Update user[' + userName + '] score error:' + err.message);
 	};
 
-	dbdriver.transaction('users', userName, 'GET', null, onGetResponse, onReqError);
+	dbdriver.transaction('andrew_id', userName, 'GET', null, onGetResponse, onReqError);
 }
 
 exports.getTopNUsers = function(N, callback) {
@@ -150,7 +150,7 @@ exports.getTopNUsers = function(N, callback) {
 				onRowResponse = onRowResponse(result.length);
 				for (var i = 0; i < result.length; i++) {
 					var row = result[i];
-					dbdriver.transaction('users', row.id, 'GET', null, onRowResponse, onRowsReqError);
+					dbdriver.transaction('andrew_id', row.id, 'GET', null, onRowResponse, onRowsReqError);
 				}
 
 			});
@@ -169,6 +169,6 @@ exports.getTopNUsers = function(N, callback) {
 		console.log('Get row error:' + err.message);
 	}
 
-	dbdriver.transaction('users', '_all_docs', 'GET', null, onDBGetResponse(), onRowsReqError);
+	dbdriver.transaction('andrew_id', '_all_docs', 'GET', null, onDBGetResponse(), onRowsReqError);
 }
 
