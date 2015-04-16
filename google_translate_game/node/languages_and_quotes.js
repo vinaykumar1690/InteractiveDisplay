@@ -74,7 +74,7 @@ var start_end_City = {city: "London", language: "English", language_code: "en", 
 ;
 
 var quotes = [
-    "If you are here - who is running hell?",
+    'If you are here - who is running hell?',
     "Artificial intelligence is no match for natural stupidity",
     "The only substitute for good manners is fast reflexes",
     "Support bacteria - they're the only culture some people have",
@@ -86,7 +86,7 @@ var quotes = [
     "Isn't it scary that doctors call what they do \"practice\"",
     "All power corrupts. Absolute power is pretty neat, though",
     "Always remember you're unique, just like everyone else",
-    "Everybody repeat after me: \"We are all individuals.\"",
+    "Everybody repeat after me\: \"We are all individuals.\"",
     "Confession is good for the soul, but bad for your career",
     "A bartender is just a pharmacist with a limited inventory",
     "Bombs don't kill people, explosions kill people",

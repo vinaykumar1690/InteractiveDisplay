@@ -32,7 +32,9 @@ var cities = [
     lng: -77.0145 } 
 ];
 
-var text = 'Well, here I am! What are your other two wishes';
+var text = "Everybody repeat after me: \"We are all individuals.\"";
+
+console.log('Original: ' + text);
 // console.log(cities);
 //translate.getTranslation(question.seed1, 0, question.seed3);
 translate.getAnswer(0, cities, 0, text, function(qNum, translatedText) {
