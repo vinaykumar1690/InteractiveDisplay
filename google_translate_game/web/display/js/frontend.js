@@ -14,7 +14,6 @@ var infos = [{},{}];
 
 var map;
 var countdownID = null;
-var gbundle = null;
 var drawPath1 = null;
 var drawPath2 = null;
 var lines1 = [];
@@ -57,9 +56,17 @@ connection.onopen = function(session) {
     var divMapCanvas = document.getElementById('Game_Body');
     divMapCanvas.insertBefore(divCountdownClock, divMapCanvas.childNodes[2]);
 
-    session.subscribe("edu.cmu.ipd.rounds.newRound", showAnswer).then(
+    session.subscribe("edu.cmu.ipd.rounds.newRound", showQuestion).then(
         function(res) {
             console.log('subscribe to rounds.newRound');
+        },
+        function(err) {
+            console.log('error: ', err);
+        });
+    
+    session.subscribe("edu.cmu.ipd.rounds.newAnswer", startTimer).then(
+        function(res) {
+            console.log('subscribe to rounds.newAnswer');
         },
         function(err) {
             console.log('error: ', err);
@@ -89,21 +96,31 @@ connection.onopen = function(session) {
 
 connection.open();
 
-var startCountdown = function(countdownID) {
+var startCountdown = function(args) {
     
     var g_iCount = 6;
+    var answer = args;
     
     return function() {
         if((g_iCount - 1) >= 0){
            g_iCount = g_iCount - 1;
            document.getElementById("numberCountdown").innerHTML = g_iCount;
+        } else {
+	    stopCountdown();
+	    resetLines();
+	    resetMarkers();
+            showAnswer(answer);
         }   
     }
-};
+}
 
 function stopCountdown() {
     clearInterval(countdownID);
     document.getElementById("numberCountdown").innerHTML = "";
+}
+
+var startTimer = function(args) {
+    countdownID = setInterval(startCountdown(args), 1000);
 }
 
 var showQuestion = function(args) {
@@ -284,7 +301,6 @@ var drawPathClosure = function(pNum) {
                         // We assume that path 2 also will complete at the same time
                         // because they have same number of cities in the path
                         setTimeout(function() {
-                             countdownID = setInterval(startCountdown(), 1000);
                         }, 5000);
                     }
                 }
@@ -364,34 +380,22 @@ function addPathResultdivs() {
 
 function showAnswer(args) {
 
-    if (gbundle === null) {
-        console.log('No previous bundle, waiting 5 secs before showing the question');
-        gbundle = args[0];
-        setTimeout(showQuestion, 5000, args);
-    } else {
-        stopCountdown();
-        resetLines();
-        resetMarkers();
-        
-        res = gbundle;
-        gbundle = args[0];
-        var divMapCanvas = document.getElementById('map_canvas');
-        divMapCanvas.style.visibility = 'hidden';
 
-        var winner = null;
-        if (res.answer === 0)
-            winner = 'Blue Path is the winner!';
-        else
-            winner = 'Red Path is the winner';
-        document.getElementById('question').innerHTML = winner;
+	res = args[0];
+	var divMapCanvas = document.getElementById('map_canvas');
+	divMapCanvas.style.visibility = 'hidden';
 
-        var patha_span = document.getElementById('patha_res');
-        var pathb_span = document.getElementById('pathb_res');
-        patha_span.innerHTML = 'Blue Path: ' + res.results[0];
-        pathb_span.innerHTML = 'Red Path: ' + res.results[1];
-        
-        setTimeout(showQuestion, 5000, args);
-    }
+	var winner = null;
+	if (res.answer === 0)
+		winner = 'Blue Path is the winner!';
+	else
+		winner = 'Red Path is the winner';
+	document.getElementById('question').innerHTML = winner;
+
+	var patha_span = document.getElementById('patha_res');
+	var pathb_span = document.getElementById('pathb_res');
+	patha_span.innerHTML = 'Blue Path: ' + res.results[0];
+	pathb_span.innerHTML = 'Red Path: ' + res.results[1];
 }
 
 onLeaderBoardReady = function(args) {
