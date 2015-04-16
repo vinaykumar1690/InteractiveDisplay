@@ -140,24 +140,7 @@ var showQuestion = function(args) {
         console.log('null error');
     }
 
-    // Dismiss markers_1
-    if (markers_1.length > 0) {
-        for (i = 0; i < markers_1.length; i++) {
-            console.log('dismiss marker_1 called');
-            markers_1[i].setMap(null);
-        }
-        // Reset array of markers
-        markers_1 = [];
-    }
-    // Dismiss markers_2
-    if (markers_2.length > 0) {
-        for (i = 0; i < markers_2.length; i++) {
-            console.log('dismiss marker_2 called');
-            markers_2[i].setMap(null);
-        }
-        // Reset array of markers       
-        markers_2 = [];
-    }
+
 
     // Display markers and call drawPath here.
     // Markers for Path 1
@@ -209,7 +192,6 @@ var showQuestion = function(args) {
 
     addPathResultdivs();
 
-    resetLines();
     drawPath1(paths[0], [], [], 0);
     drawPath2(paths[1], [], [], 0);  
 
@@ -223,8 +205,8 @@ var showQuestion = function(args) {
 } // End showQuestion
 
 
-var drawPathClosure = function(pathNum) {
-
+var drawPathClosure = function(pNum) {
+    var pathNum = pNum;
     return function(countries, l, markers, path_index) {
         console.log('Countries are: ', countries);
         var step = 0;
@@ -289,8 +271,9 @@ var drawPathClosure = function(pathNum) {
                 else {
                     console.log('Draw final InfoWindow');
                     // Display Final InfoWindow
-                    document.getElementById("InfowindowText_1").innerHTML = countries[path_index].language;
-                    infos[0].open(map, markers[path_index]); 
+                    //document.getElementById("InfowindowText_1").innerHTML = countries[path_index].language;
+                    //infos[0].open(map, markers[path_index]); 
+                    infos[0].close(); 
 
                     document.getElementById("InfowindowText_2").innerHTML = countries[path_index].language;
                     document.getElementById("InfowindowText_2").style.color = "#000000";
@@ -330,6 +313,29 @@ function resetLines() {
         lines1[i].setMap(null);
         lines2[i].setMap(null);
     }
+        lines1 = [];
+        lines2 = [];
+}
+
+function resetMarkers() {
+    // Dismiss markers_1
+    if (markers_1.length > 0) {
+        for (i = 0; i < markers_1.length; i++) {
+            console.log('dismiss marker_1 called');
+            markers_1[i].setMap(null);
+        }
+        // Reset array of markers
+        markers_1 = [];
+    }
+    // Dismiss markers_2
+    if (markers_2.length > 0) {
+        for (i = 0; i < markers_2.length; i++) {
+            console.log('dismiss marker_2 called');
+            markers_2[i].setMap(null);
+        }
+        // Reset array of markers       
+        markers_2 = [];
+    }
 }
 
 function addPathResultdivs() {
@@ -364,6 +370,8 @@ function showAnswer(args) {
         setTimeout(showQuestion, 5000, args);
     } else {
         stopCountdown();
+        resetLines();
+        resetMarkers();
         
         res = gbundle;
         gbundle = args[0];
