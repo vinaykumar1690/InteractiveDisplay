@@ -114,6 +114,15 @@ var showQuestion = function(args) {
 
     var bundle = args[0];
 
+
+    for (var i = 2; i <= 5; i++) {
+        $("#red_path_" + i).fadeOut(1);
+        $("#blue_path_" + i).fadeOut(1);
+    }
+    $("#red_path").fadeIn(100);
+    $("#blue_path").fadeIn(100);
+
+
     var game_type = bundle.gameType;
     var paths = [];
     var original_quote = null;
@@ -223,6 +232,10 @@ var showQuestion = function(args) {
 } // End showQuestion
 
 
+
+/*
+ * drawPathClosure? what is pathNum?
+ */
 var drawPathClosure = function(pathNum) {
 
     return function(countries, l, markers, path_index) {
@@ -270,7 +283,13 @@ var drawPathClosure = function(pathNum) {
 
                 console.log('path_index is: ', path_index);
                 if (path_index < countries.length-1) {
+                    
+
+
                     if (pathNum === 1) {
+
+
+                        fadeInPathTag('blue', path_index, countries);
                         document.getElementById("InfowindowText_1").innerHTML = countries[path_index].language;
                         document.getElementById("InfowindowText_1").style.color = "#0000FF";
                         infos[0].open(map, markers[path_index]); 
@@ -279,6 +298,8 @@ var drawPathClosure = function(pathNum) {
 
                     }
                     else { 
+
+                        fadeInPathTag('red', path_index, countries);
                         document.getElementById("InfowindowText_2").innerHTML = countries[path_index].language;
                         document.getElementById("InfowindowText_2").style.color = "#FF0000";
                         infos[1].open(map, markers[path_index]); 
@@ -295,7 +316,8 @@ var drawPathClosure = function(pathNum) {
                     document.getElementById("InfowindowText_2").innerHTML = countries[path_index].language;
                     document.getElementById("InfowindowText_2").style.color = "#000000";
                     infos[1].open(map, markers[path_index]);
-
+                    fadeInPathTag('blue', path_index, countries);
+                    fadeInPathTag('red', path_index, countries);
                     if (pathNum === 1) {
                         // Start the countdown interval after path1 completes
                         // We assume that path 2 also will complete at the same time
@@ -328,7 +350,9 @@ drawPath2 = drawPathClosure(2);
 function resetLines() {
     for (var i=0; i<lines1.length; i++) {
         lines1[i].setMap(null);
+        lines1[i] = null;
         lines2[i].setMap(null);
+        lines2[i] = null;
     }
 }
 
@@ -365,6 +389,9 @@ function showAnswer(args) {
     } else {
         stopCountdown();
         
+        $("#red_path").fadeOut(100);
+        $("#blue_path").fadeOut(100);
+
         res = gbundle;
         gbundle = args[0];
         var divMapCanvas = document.getElementById('map_canvas');
@@ -446,4 +473,10 @@ var update = function(args) {
         console.log('updatesCounter increment to:' + updatesCounter);
     }
 };
+
+
+var fadeInPathTag = function(pathColor, pathSeq, countries) {
+    console.log('fadeInPathTag: country: ' + countries[pathSeq]);
+    $("#" + pathColor + "_path_" + (pathSeq+1)).text(countries[pathSeq].language).fadeIn(1000);
+}
 
