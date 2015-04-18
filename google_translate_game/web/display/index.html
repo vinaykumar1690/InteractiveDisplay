@@ -9,8 +9,11 @@
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false&libraries=places"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="js/jquery.qrcode.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 </head>
 <body>
+
+
   <div id="Game_Title"> 
     <div id="left">
       <img class="img" src="../logos/Google-Translate-icon.png"></img>
@@ -25,7 +28,7 @@
     </div>
   </div>
 
-  <div id="Game_Body">
+  <div id="Game_Body" style="position: absolute;width: 99%;">
     <div id="left_panel">
 
       <div class="flip-container">
@@ -77,7 +80,66 @@
       <div class="qr_code" id = 'qr_code_left'></div>
     </div>
 
+    <div id="red_path" style="
+      width: 10%;
+      height: 22vh;
+      margin-left: 20%;
+      margin-right: 70%;
+      margin-bottom: 2vh;
+      margin-top: 54vh;
+      background: red;
+      position: absolute;
+      opacity: 0.6;
+      z-index: 5;">
+
+      <div id="red_path_1" style="
+        color: white;">English</div>
+      <div id="red_path_2" style="
+        color: white;
+        display: none;">Shanghai</div>
+      <div id="red_path_3" style="
+        color: white;
+        display: none;">Chengdu</div>
+      <div id="red_path_4" style="
+        color: white;
+        display: none;">Chongqing</div>
+      <div id="red_path_5" style="
+        color: white;
+        display: none;">Hubei</div>
+
+    </div>
+
+    <div id="blue_path" style="
+      width: 10%;
+      height: 22vh;
+      margin-left: 70%;
+      margin-right: 20%;
+      margin-bottom: 2vh;
+      margin-top: 54vh;
+      background: blue;
+      position: absolute;
+      opacity: 0.6;
+      z-index: 6;">
+
+      <div id="blue_path_1" style="
+        color: white;">English</div>
+      <div id="blue_path_2" style="
+        color: white;
+        display: none;">Shanghai</div>
+      <div id="blue_path_3" style="
+        color: white;
+        display: none;">Chengdu</div>
+      <div id="blue_path_4" style="
+        color: white;
+        display: none;">Chongqing</div>
+      <div id="blue_path_5" style="
+        color: white;
+        display: none;">Hubei</div>
+
+    </div>
+    
     <div id="map_canvas"></div>
+    
 
     <div id="right_panel">
       <div class="panel_banner">Updates</div>

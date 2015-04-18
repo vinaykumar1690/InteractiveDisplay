@@ -18,7 +18,7 @@
     text-align: center;
     /* margin-top: 100%; */
     /* padding:5px; */
-    height: 20%;
+    height: 22vh;
     width:100%; 
     margin: 0px;
     /*font-size: 0;*/
@@ -27,7 +27,7 @@
 
 #Game_Body {
     font-family: "Comic Sans MS", cursive, sans-serif;
-    height: 80%;
+    height: 72vh;
     width: 100%;
 }
 #left, #right 
@@ -120,10 +120,10 @@ div#right_panel {
 div#map_canvas {
     position: relative;
     display: inline-block;
-    height: 80%;
-    top:20%;
+    height: 58vh;
+    top: 18vh;
     width: 60%;
-    margin: 0;
+    margin-bottom: 2vh;
     z-index: 0;
     padding: 0;
 }
