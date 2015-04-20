@@ -3,9 +3,6 @@ var connection = new autobahn.Connection({
 	realm: 'realm1'
 });
 
-document.getElementById('login').disabled = true;
-
-var sessionHandler;
 
 var userToken;
 var appliedUserName;
@@ -25,32 +22,6 @@ connection.onopen = function(session){
 
 	console.log('node connected.');
 
-	sessionHandler = session;  
-
-	session.subscribe("edu.cmu.ipd.users.onCreatedUser", onCreatedUser).then(
-		function (sub) {
-			console.log('subscribed to topic');
-			subscribeHandler = sub;
-		},
-		function (err) {
-			console.log('failed to subscribe to topic', err);
-		});
-
-	document.getElementById('login').onclick = function() {
-		username = document.getElementById('username').value;
-		session.call('edu.cmu.ipd.users.createUser', [username]).then(
-			function(res) {
-				console.log('called with token: ' + res[0]);
-				userToken = res[0];
-				onCreatedUser([]);
-			},
-			function(err) {
-				console.log('error:', err.error, err.args, err.kwargs);
-			});
-	}
-
-	document.getElementById('login').disabled = false;
-
 	session.subscribe("edu.cmu.ipd.rounds.newRound", onDisplayOptions).then(
 		function (sub) {
 			console.log('subscribed to topic');
@@ -59,79 +30,16 @@ connection.onopen = function(session){
 			console.log('failed to subscribe to topic', err);
 		});
 
-}
+	addOnClick(session);
 
-/*
- * createUser is a closure of session.
- * return 	: a RPC call that for registration call, 
- */
-var onCreatedUser = function(args) {
-
-	if (args.length === 2) {
-		console.log('[device].onCreatedUser: receive pubsub username: ' + args[1] +  ' appliedToken:' + args[0]);
-		cachedUserName.push(args[1]);
-		cachedToken.push(args[0]);
-	} else {
-		console.log('[device].onCreatedUser: receive userToken: ' + userToken);
-	}
-
-	var idx = checkToken(userToken); 
-
-	if (idx > -1) {
-		appliedUserName = cachedUserName[idx];
-
-		//Overwrite the header part
-		addButton();
-
-		var divAlert = document.createElement('div');
-		divAlert.className = 'alert alert-success';
-		divAlert.setAttribute('style', 'margin-top:1.5em');
-
-		var aHref = document.createElement('a');
-		aHref.setAttribute('href', '#');
-		aHref.className = 'close';
-		aHref.setAttribute('data-dismiss', 'alert'),
-		aHref.innerHTML = '&times;';
-
-		var strongTag =  document.createElement('strong');
-		strongTag.innerHTML = 'Success!';
-
-		divAlert.appendChild(aHref);
-		divAlert.appendChild(strongTag);
-		divAlert.innerHTML = divAlert.innerHTML + '  Your user name is ' + appliedUserName
-		document.getElementById('demo_body').appendChild(divAlert);
-
-		sessionHandler.unsubscribe(subscribeHandler).then(
-			function(res) {
-				console.log('unsubscribe .users.onCreatedUser');
-			},
-			function(err) {
-				console.log('failed to unsubscribe .users.onCreatedUser');
-			});
-
-		setTimeout(function() {
-			document.getElementById('demo_body').removeChild(divAlert);
-		}, 5000);
-
-	  sessionHandler.call('edu.cmu.ipd.rounds.currentRound', []).then(onDisplayOptions, 
+	sessionHandler.call('edu.cmu.ipd.rounds.currentRound', []).then(onDisplayOptions, 
 		 function(err) {
 			console.log('[device]\tFailed to call .rounds.currentRound.');
 		 });
-   }
-		
+
 }
 
 
-var checkToken = function() {
-	console.log('[device].checkToken: start check');
-	for(i = 0; i < cachedToken.length; i++) {
-		console.log('[device].checkToken: userToken=' + userToken + ' cachedToken[' + i + ']=' + cachedToken[i]);
-		if (userToken === cachedToken[i]) {
-			return i;
-		}
-	}
-	return -1;
-}
 
 /*
  * Display the options on device UI.
@@ -256,40 +164,7 @@ var shortenDisplayName = function(appliedUserName) {
 	}
 }
 
-var addButton = function() {
-	var divField = document.createElement('div');
-	divField.id = 'field';
-	var divUserName = document.createElement('div');
-	divUserName.id = 'user_name';
-	divUserName.innerHTML = 'Player: ' + shortenDisplayName(appliedUserName);
-
-	var divScore = document.createElement('div');
-	divScore.id = 'score';
-	divScore.innerHTML = 'Score: ' + score;
-	divField.appendChild(divUserName);
-	divField.appendChild(divScore);
-
-	var divDemoTitle = document.getElementById('demo_title');
-	divDemoTitle.appendChild(divField);
-
-	//Overwrite the button
-	var buttonA = document.createElement('button');
-	buttonA.disabled = true;
-	buttonA.id = 'A';
-	buttonA.innerHTML = 'Loading';
-
-	var buttonB = document.createElement('button');
-	buttonB.disabled = true;
-	buttonB.id = 'B';
-	buttonB.innerHTML = 'Loading';
-
-	var parts = document.getElementsByClassName('part');
-	var partA = parts[0];
-	var partB = parts[1];
-	partA.removeChild(partA.children[0]);
-	partB.removeChild(partB.children[0]);
-	partA.appendChild(buttonA);
-	partB.appendChild(buttonB);
+var addOnClick = function(sessionHandler) {
 
 	// Add OnClick events
 	document.getElementById("A").onclick = function (event) {
@@ -304,9 +179,9 @@ var addButton = function() {
 		param = [];
 		param.push(appliedUserName);
 		if (answerSubmitted === null) {
-			param.push('Submit ' + buttonA.innerHTML);
+			param.push('Submit ' + $('#A').html());
 		} else {
-			param.push('Change to ' + buttonA.innerHTML)
+			param.push('Change to ' + $('#A').html())
 		}
 
 		answerSubmitted = 0;
@@ -327,14 +202,14 @@ var addButton = function() {
 
 		document.getElementById('B').style.backgroundColor = 'rgb(196, 88, 173)';
 		document.getElementById('A').style.backgroundColor = '#D4D0C8';
-		console.log("answer submitted: " + buttonB.innerHTML);
+		// console.log("answer submitted: " + $('#B').html());
 
 		param = [];
 		param.push(appliedUserName);
 		if (answerSubmitted === null) {
-			param.push('Submit ' + buttonB.innerHTML);
+			param.push('Submit ' + $('#B').html());
 		} else {
-			param.push('Change to ' + buttonB.innerHTML)
+			param.push('Change to ' + $('#B').html())
 		}
 
 		answerSubmitted = 1;
@@ -349,3 +224,4 @@ var addButton = function() {
 }
 
 connection.open();
+$('#user_name').text("Player: " + shortenDisplayName(window.location.search.split('=')[1]));

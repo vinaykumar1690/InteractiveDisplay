@@ -214,17 +214,12 @@ var showQuestion = function(args) {
 } // End showQuestion
 
 
-<<<<<<< HEAD
-var drawPathClosure = function(pNum) {
-    var pathNum = pNum;
-=======
 
 /*
  * drawPathClosure? what is pathNum?
  */
 var drawPathClosure = function(pathNum) {
 
->>>>>>> sidebar-on-map
     return function(countries, l, markers, path_index) {
         console.log('Countries are: ', countries);
         var step = 0;
