@@ -186,6 +186,12 @@ var Question = function(session) {
             if (opt === 0) {
               bundle.option0 = responseBody.results.length;
               if (bundle.option1 !== null) {
+                while (bundle.option0 === bundle.option1 && bundle.option0 > 0 && bundle.option1 > 0) {
+                  bundle.option0 = bundle.option0 + Math.ceil(Math.random() * 50) - 25;
+                  bundle.option1 = bundle.option1 + Math.ceil(Math.random() * 50) - 25;
+                }
+
+
                 var pubData = generateBundle(question, bundle);
                 currBundle = pubData;
                 session.publish('edu.cmu.ipd.rounds.newRound', [pubData], {}, { acknowledge: true}).then(
