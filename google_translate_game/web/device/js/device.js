@@ -4,8 +4,7 @@ var connection = new autobahn.Connection({
 });
 
 
-var userToken;
-var appliedUserName;
+var appliedUserName = window.location.search.split('=')[1];
 
 var subscribeHandler;
 var answerSubmitted = null;

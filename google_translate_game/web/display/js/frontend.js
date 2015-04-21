@@ -446,7 +446,7 @@ $(document).ready(function() {
     // $('.flipper').addClass('flipperStart');
     setInterval(flip, 15 * 1000);
 
-    var qr_url = 'http://'+location.host+'/device/index.html';
+    var qr_url = 'http://'+location.host+'/device/login.html';
     console.log(qr_url);
     $('#qr_code_left').qrcode(qr_url);
     $('#qr_code_right').qrcode(qr_url);
@@ -467,20 +467,22 @@ var flip = function() {
 
 var update = function(args) {
     
-    console.log('receive update', args);    
-    for(idx in args) {
-        record = args[idx];
-        while (updatesCounter >= 8) {
-            $("#updates").find("tr").first().fadeOut(500, function(){$(this).remove()});
+    console.log('receive update', args); 
+
+    for (var idx = 0; idx < args.length; idx++) {
+        console.log('update', args[idx]); 
+        if (updatesCounter >= 8) {
+            $('#updates').find('tr').first().remove();
             updatesCounter--;
-            console.log('updatesCounter decrement to:' + updatesCounter);
         }
+        var record = args[idx];
         $("#updates").append("<tr style=\"display:none;\"><td>" + record.userName + "</td><td>" + record.action + "</td></tr>")
-            .find("tr").last().fadeIn(500);
+                .find("tr").last().fadeIn(300);
         updatesCounter++;
-        console.log('updatesCounter increment to:' + updatesCounter);
     }
+
 };
+
 
 
 var fadeInPathTag = function(pathColor, pathSeq, countries) {
