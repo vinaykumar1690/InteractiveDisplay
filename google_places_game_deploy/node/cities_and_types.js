@@ -57,16 +57,39 @@ var types_full = [
 "moving_company", "museum", "night_club", "painter", "park",
 "parking", "pet_store", "pharmacy", "place_of_worship",
 "plumber", "post_office", "real_estate_agency", "restaurant",
-"roofing_contractor", "rv_park", "school", "shoe_store", "shopping_mall",
-"spa", "stadium", "storage", "store", "subway_station",
+"roofing_contractor", "school", "shoe_store", "shopping_mall",
+"spa", "stadium", "storage", "subway_station",
 "taxi_stand", "train_station", "travel_agency", "university",
 "veterinary_care", "zoo"
 ];
 
+var display_names = [
+"Airport", "Amusement Park", "Aquarium", "Art Gallery",
+"ATM", "Bakery", "Bank", "Bar", "Beauty Salon",
+"Bicycle Store", "Book Store", "Bowling Alley", "Bus Station", "Cafe",
+"Campground", "Car Dealer", "Car Rental", "Car Repair", "Car Wash",
+"Casino", "City Hall", "Clothing Store",
+"Convenience Store", "Dentist", "Department Store",
+"Doctor", "Electrician", "Electronics Store", "Embassy",
+"Finance", "Fire Ftation", "Florist", "Food", 
+"Furniture_store", "Gas Station", "Supermarket", "Gym",
+"Hair Care", "Hardware Store", "Home Goods Store",
+"Hospital", "Jewelry Store", "Laundry", 
+"Library", "Locksmith", "Lodging",
+"Meal Delivery", "Meal Takeaway", "Movie Rental", "Movie Theater",
+"Moving Company", "Museum", "Night Club", "Painter", "Park",
+"Parking", "Pet Store", "Pharmacy", "Place Of Worship",
+"Plumber", "Post Office", "Real Estate Agency", "Restaurant",
+"Roofing Contractor", "School", "Shoe Store", "Shopping Mall",
+"SPA", "Stadium", "Storage", "Subway Station",
+"Taxi Stand", "Train Station", "Travel Agency", "University",
+"Veterinary Care", "Zoo"
+]
+
 for (i = 0; i < types_full.length; i++){
 	if (types_full[i]){	
 		var fullName = types_full[i];
-		var displayName = fullName.replace(/_/g," "); // Eliminate of underscore("_")
+		var displayName = display_names[i]; // Eliminate of underscore("_")
 
 		var newType = {full_name: fullName, display_name: displayName};
 		types.push(newType); // Add new type element into array
