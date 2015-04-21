@@ -20,6 +20,8 @@ console.log("crossbar.io: " + 'ws://' + urls.crossbarURL + '/ws');
 var userBehaviorUpdates = [];
 
 var currBundle = null;
+var QUESTION_INTERVAL = 20*1000;
+var ANSWER_INTERVAL = 10*1000;
 
 connection.onopen = function(session) {
 	console.log('google places node connected.');
@@ -67,7 +69,8 @@ connection.onopen = function(session) {
     }
   );
 
-  setInterval(question(session), 21*1000);
+  //setInterval(question(session), 21*1000);
+  setTimeout(Question(session), 2000);
   setInterval(pubUpdates(session, 2 * 1000));
 }
 
@@ -127,7 +130,7 @@ var updateScore = function(args) {
 }
 
 
-var question = function(session) {
+var Question = function(session) {
   
   var commHandler = session;
   var answers = require('./getAnswer.js');
@@ -192,7 +195,7 @@ var question = function(session) {
                   function(error) {
                     console.log("publication error", error);
                   });
-                
+                setTimeout(Answer(session, pubData), QUESTION_INTERVAL);
               }
             } else if (opt === 1) {
               bundle.option1 = responseBody.results.length;
@@ -206,6 +209,7 @@ var question = function(session) {
                   function(error) {
                     console.log("publication error", error);
                   });
+                setTimeout(Answer(session, pubData), QUESTION_INTERVAL);
               }
             }
           });
@@ -273,6 +277,17 @@ var pubUpdates = function(session) {
   }
 }
 
-
+var Answer = function(session, ans) {
+    return function() {
+        session.publish('edu.cmu.ipd.rounds.newAnswer', [currBundle], {}, {acknowledge: true}).then(
+        function(publication) {
+            console.log("published new answer, publication ID is ", publication);
+        },
+        function(error) {
+            console.log("failed to publish new answer ", error);
+        });
+        setTimeout(Question(session), ANSWER_INTERVAL);
+    }
+} 
 
 connection.open();
