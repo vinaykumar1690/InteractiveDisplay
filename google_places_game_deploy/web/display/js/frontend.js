@@ -18,12 +18,9 @@ var info1_ans;
 var info2;
 var info2_ans;
 var place_type;
-var bundle = null;
 
-var coundownID;
-
+var countdownID = null;
 var sessionHandler;
-
 var updatesCounter = 0;
 
 connection.onopen = function(session) {
@@ -49,17 +46,18 @@ connection.onopen = function(session) {
     var divMapCanvas = document.getElementById('Game_Body');
     divMapCanvas.insertBefore(divCountdownClock, divMapCanvas.childNodes[2]);
 
-    session.subscribe("edu.cmu.ipd.rounds.newRound", showAnswer);
+    session.subscribe("edu.cmu.ipd.rounds.newRound", showQuestion);
 
     session.subscribe('edu.cmu.ipd.leaderboard.request', onLeaderBoardReady);
 
     session.subscribe('edu.cmu.ipd.updates.newUpdate', update);
 
+    session.subscribe("edu.cmu.ipd.rounds.newAnswer", startTimer);
 
 }
 
 function showQuestion(args) {
-    bundle = args[0];
+    var bundle = args[0];
     //var answer = args[1];
 
     var place_type = bundle.place_type;
@@ -119,59 +117,38 @@ function showQuestion(args) {
 
    sessionHandler.call('edu.cmu.ipd.leaderboard.request', [5]);
 
-    setTimeout(function() {
-        coundownID = setInterval(startCountdown(), 1000);
-    }, 8000);
-
 }
 
-var startCountdown = function(countdownID) {
+var startCountdown = function(args) {
     
     var g_iCount = 6;
-    
+
     return function() {
         if((g_iCount - 1) >= 0){
            g_iCount = g_iCount - 1;
            document.getElementById("numberCountdown").innerHTML = g_iCount;
-        }   
+        } else {
+           stopCountdown();
+           showAnswer(args);
+        }
     }
 };
 
 function stopCountdown() {
-    clearInterval(coundownID);
+    clearInterval(countdownID);
     document.getElementById("numberCountdown").innerHTML = "";
 }
 
+var startTimer = function(args) {
+    countdownID = setInterval(startCountdown(args), 1000);
+}
+
 var showAnswer = function(args) {
-        console.log('show answer');
-    if (bundle === null) {
-        console.log('No previous bundle, waiting 5 secs before showing the question');
-        setTimeout(showQuestion, 5000, args); 
-        //showQuestion(args);
-    } else {
-        stopCountdown();
-        // info1_str = bundle.options[0].name+" has "+bundle.statistics[0]+" "+bundle.place_type;
-        document.getElementById("city1_InfowindowText").innerHTML = bundle.options[0].name+" has "+bundle.statistics[0]+" "+bundle.place_type;
-        // info1.setMap(null); // Delete the old one
-        // info1_ans = new google.maps.InfoWindow({ 
-        //     content: city1_contentStr
-        // });
-        // info2_str = bundle.options[1].name+" has "+bundle.statistics[1]+" "+bundle.place_type;
-        document.getElementById("city2_InfowindowText").innerHTML = bundle.options[1].name+" has "+bundle.statistics[1]+" "+bundle.place_type;
-        // info2.setMap(null);
-        // info2 = new google.maps.InfoWindow({
-        //     content: city2_contentStr
-        // });
-        // info1_ans.open(map, marker1);
-        // info2.open(map, marker2);
-
-        document.getElementById("question").innerHTML = "The winner is "+bundle.answer+" !!!";
-        
-        console.log('previous answer shown, waiting 5 secs before showing the question');
-        setTimeout(showQuestion, 5000, args); 
-        //showQuestion(args);
-    }
-
+    console.log('show answer');
+    var bundle = args[0];
+    document.getElementById("city1_InfowindowText").innerHTML = bundle.options[0].name+" has "+bundle.statistics[0]+" "+bundle.place_type;
+    document.getElementById("city2_InfowindowText").innerHTML = bundle.options[1].name+" has "+bundle.statistics[1]+" "+bundle.place_type;
+    document.getElementById("question").innerHTML = "The winner is "+bundle.answer+" !!!";
 }
 
 onLeaderBoardReady = function(args) {
