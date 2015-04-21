@@ -20,7 +20,7 @@ Array.prototype.getRandom = ( function() {
 /* List of cities and their coordinates */
 var westCities = [
 {name: "New York City", lat: 40.7127, lng: -74.0059},
-{name: "Chicago", lat: 41.8369, lng: -87.6847},
+{name: "San Francisco", lat: 37.7833, lng: -122.4167},
 {name: "Paris", lat: 48.8567, lng: 2.3508},
 {name: "Sao Paulo", lat: -23.5500, lng: -46.6333},
 {name: "Rome", lat: 41.9000, lng: 12.5000},

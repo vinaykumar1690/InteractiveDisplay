@@ -46,11 +46,14 @@
   margin-top: 10px;
   width: 60%;
   background: white;
-  font-size: 35px;
+  font-size: 2.2em;
   font-family: "Comic Sans MS", cursive, sans-serif;
 }
 #right {
   float: right;
+}
+#city1, #city2 {
+  font-size: 2.1em
 }
 
 img.qr_code {
