@@ -112,7 +112,10 @@ function showQuestion(args) {
     info1.open(map, marker1);
     info2.open(map, marker2);
 
-    document.getElementById("question").innerHTML = 'Which place has more '+ place_type +'s ' +city1.name+ ' or ' +city2.name+ '?';
+    document.getElementById("question").innerHTML = 'More '+ place_type +'s ';
+    document.getElementById("city1").innerHTML = city1.name;
+    document.getElementById("city2").innerHTML = city2.name;
+    document.getElementById("vs").innerHTML = "vs.";
     console.log('showing question');
 
    sessionHandler.call('edu.cmu.ipd.leaderboard.request', [5]);
@@ -149,6 +152,9 @@ var showAnswer = function(args) {
     document.getElementById("city1_InfowindowText").innerHTML = bundle.options[0].name+" has "+bundle.statistics[0]+" "+bundle.place_type;
     document.getElementById("city2_InfowindowText").innerHTML = bundle.options[1].name+" has "+bundle.statistics[1]+" "+bundle.place_type;
     document.getElementById("question").innerHTML = "The winner is "+bundle.answer+" !!!";
+    document.getElementById("city1").innerHTML = "";
+    document.getElementById("city2").innerHTML = "";
+    document.getElementById("vs").innerHTML = "";
 }
 
 onLeaderBoardReady = function(args) {
