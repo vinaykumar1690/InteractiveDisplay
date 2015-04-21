@@ -60,7 +60,8 @@ connection.onopen = function(session) {
   );
 
   
-  setInterval(question(session), 30*1000);
+  //setInterval(question(session), 30*1000);
+  setTimeout(question(session), 2000);
   setInterval(pubUpdates(session, 2 * 1000));
 }
 
@@ -178,6 +179,9 @@ var question = function(session) {
 							});
 						// console.log(ret);
 						currBundle = ret;
+
+                                                setTimeout(answer(session, ret), 20*1000);
+
 					}
 				}
 			}();
@@ -191,6 +195,19 @@ var question = function(session) {
 	}
 	return retFunc;
 }
+
+var answer = function(session, answer) {
+    return function() {
+	session.publish('edu.cmu.ipd.rounds.newAnswer', [answer], {}, {acknowledge: true}).then(
+		function(publication) {
+			console.log("published new answer, publication ID is ", publication);
+		},
+		function(error) {
+			console.log("failed to publish new answer ", error);
+		});
+        setTimeout(question(session), 10*1000);
+    }
+} 
 
 var getCurrentRound = function(args){
   return [currBundle]
