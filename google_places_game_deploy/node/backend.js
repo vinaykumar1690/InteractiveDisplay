@@ -83,14 +83,14 @@ var createUser = function(session) {
 	var onCreatedUser = function(token) {
 		var userNameToken = token;
 		return function(appliedUserName) {
-			console.log('[backend]: onCreatedUser: user[' + appliedUserName + '] with token[' + userNameToken + ']' );
+			console.log();
 			
       session.publish('edu.cmu.ipd.users.onCreatedUser', [userNameToken, appliedUserName], {}, { acknowledge: true}).then(
 				function(publication) {
-					console.log("published, publication ID is ", publication);
+					console.log('[backend]: .users.onCreatedUser: user[' + appliedUserName + '] with token[' + userNameToken + '] and published, publication ID is ', publication);
         },
         function(error) {
-          console.log("publication error", error);
+          console.log('[backend]: .users.onCreatedUser: user[' + appliedUserName + '] with token[' + userNameToken + '], but failed to publish, the error is ', error);
         });
 
       var update = {

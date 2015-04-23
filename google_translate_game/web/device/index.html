@@ -3,19 +3,26 @@
   
   <head>
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    
     <link rel="shortcut icon" href="img/favicon.ico">
-    <title>Log in</title>
+    
     <link rel="stylesheet" href="css/device.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+    
     <script src="js/autobahn.min.jgz"></script>
+
+    <script src="js/jquery-ui.min.js"></script>
+
+
+    <title>Log in</title>
+
   </head>
 
   <body>
@@ -46,6 +53,25 @@
       </div>
       
       <br>
+    </div>
+
+    <div id="dialog" title="Instructions" style="display:none;">
+      <p>Orignal quote and its translation are shown on the screen.</p>
+      <p>One of the path (blue or red) generated the translation shown on the screen. Can you guess which one?</p>
+      <p>Good luck!</p>
+    </div>
+    <div id="progressbar-5" style="background: #cedc98;
+      border: 1px solid #DDDDDD;
+      color: #333333;
+      font-weight: bold;">
+      <div class="progress-background" style="position: relative;
+        text-align: center;
+        font-weight: bold;
+        text-shadow: 1px 1px 0 #fff;">
+      </div>
+        <div class="progress-label" style="position: absolute;text-align: center;width: 100%;">
+          Loading...
+        </div>
     </div>
     <script>AUTOBAHN_DEBUG = true;</script>
     <script src="js/device.js"></script>

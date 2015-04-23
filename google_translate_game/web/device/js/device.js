@@ -15,6 +15,8 @@ var score = 0;
 var cachedUserName = [];
 var cachedToken    = [];
 
+var onDialog;
+
 
 
 connection.onopen = function(session){
@@ -23,7 +25,7 @@ connection.onopen = function(session){
 
 	session.subscribe("edu.cmu.ipd.rounds.newRound", onDisplayOptions).then(
 		function (sub) {
-			console.log('subscribed to topic');
+			console.log('subscribed to topic [.rounds.newRound]');
 		},
 		function (err) {
 			console.log('failed to subscribe to topic', err);
@@ -31,11 +33,18 @@ connection.onopen = function(session){
 
 	addOnClick(session);
 
-	sessionHandler.call('edu.cmu.ipd.rounds.currentRound', []).then(onDisplayOptions, 
-		 function(err) {
-			console.log('[device]\tFailed to call .rounds.currentRound.');
-		 });
+	// session.call('edu.cmu.ipd.rounds.currentRound', []).then(onDisplayOptions, 
+	// 	 function(err) {
+	// 		console.log('[device]\tFailed to call .rounds.currentRound.');
+	// 	 });
 
+
+    $("#dialog").dialog({
+    	// show: { effect: "slideDown", duration:800 },
+    	close: function() {
+    		progressLoad();
+    	}, 
+    });
 }
 
 
@@ -44,6 +53,8 @@ connection.onopen = function(session){
  * Display the options on device UI.
  */
 var onDisplayOptions = function(args) {
+
+	console.log(args);
 
 	if (args[0] === null) {
 		return;
@@ -152,6 +163,7 @@ var onDisplayOptions = function(args) {
 		$('#pollContainer').attr('answer-body', answerBody);
 
 	}
+	progressCountDown();
 }// end onDisplayOptions
 
 var shortenDisplayName = function(appliedUserName) {
@@ -221,6 +233,45 @@ var addOnClick = function(sessionHandler) {
 			});
 	}
 }
+
+var progressLoad = function() {
+
+	$("#progressbar-5").progressbar({
+		max: 20,
+		value: false,
+		change: function() {
+			if ($("#progressbar-5").progressbar("value")) {
+				$(".progress-label").text($("#progressbar-5").progressbar("value") + " sec");
+			}
+		},
+		// complete: function() {
+		// 	$(".progress-label").text("Submitting Your Answer!");
+		// }
+	});
+	$(".progress-label").css('top', ($('.progress-background').offset().top)*1.01);
+	$(".progress-label").text('Loading...');
+}
+
+var progressCountDown = function () {
+	var val;
+	if ($("#progressbar-5").progressbar("value") === false) {
+		val = 21;
+		$('.ui-progressbar-value.ui-widget-header.ui-corner-left').css('background', '#f6a828');
+	} else {
+		val = $("#progressbar-5").progressbar("value")
+	}
+	$("#progressbar-5").progressbar("value", val-1);
+	if (val === 11) {
+		$('.ui-progressbar-value.ui-widget-header.ui-corner-left').css('background', 'red');
+	}
+	if (val > 1) {
+		setTimeout(progressCountDown, 1000);
+	} else {
+		$('.ui-progressbar-value.ui-widget-header.ui-corner-left').css('background', '#f6a828');
+		$(".progress-label").text('Submitting Your Answer...');
+		$("#progressbar-5").progressbar("value", false);
+	}
+};
 
 connection.open();
 $('#user_name').text("Player: " + shortenDisplayName(window.location.search.split('=')[1]));

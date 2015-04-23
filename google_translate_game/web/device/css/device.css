@@ -54,7 +54,7 @@ body
   {
     width: 100%;
     text-align: center;
-    height: 60%;
+    height: 55vmax;
     margin: 3vmin auto;
     position: relative;
     background-image: url("../../logos/Google-Translate-icon.png");

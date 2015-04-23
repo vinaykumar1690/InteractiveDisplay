@@ -180,7 +180,7 @@ var question = function(session) {
 						// console.log(ret);
 						currBundle = ret;
 
-                                                setTimeout(answer(session, ret), 20*1000);
+                        setTimeout(answer(session, ret), 20*1000);
 
 					}
 				}
