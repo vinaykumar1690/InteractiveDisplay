@@ -17,12 +17,14 @@ var cachedToken    = [];
 
 var onDialog;
 
+var sessionHandler;
 
 
 connection.onopen = function(session){
 
 	console.log('node connected.');
 
+	sessionHandler = session;
 	session.subscribe("edu.cmu.ipd.rounds.newRound", onDisplayOptions).then(
 		function (sub) {
 			console.log('subscribed to topic [.rounds.newRound]');
@@ -37,7 +39,7 @@ connection.onopen = function(session){
 	// 	 function(err) {
 	// 		console.log('[device]\tFailed to call .rounds.currentRound.');
 	// 	 });
-
+	
 
     $("#dialog").dialog({
     	// show: { effect: "slideDown", duration:800 },
@@ -58,69 +60,6 @@ var onDisplayOptions = function(args) {
 
 	if (args[0] === null) {
 		return;
-	}
-
-	if (answerSubmitted !== null && answerLastRound !== null) {
-		//Correct Answer
-		if (answerSubmitted === answerLastRound){
-			var divAlert = document.createElement('div');
-			divAlert.className = 'alert alert-success';
-			divAlert.setAttribute('style', 'margin-top:1.5em');
-
-			var aHref = document.createElement('a');
-			aHref.setAttribute('href', '#');
-			aHref.className = 'close';
-			aHref.setAttribute('data-dismiss', 'alert'),
-			aHref.innerHTML = '&times;';
-
-			var strongTag =  document.createElement('strong');
-			strongTag.innerHTML = 'Congratulations!';
-
-			divAlert.appendChild(aHref);
-			divAlert.appendChild(strongTag);
-			// divAlert.innerHTML = divAlert.innerHTML + '  Your user name is ' + appliedUserName
-			document.getElementById('demo_body').appendChild(divAlert);
-			setTimeout(function() {
-				document.getElementById('demo_body').removeChild(divAlert);
-			}, 5000);
-			answerSubmitted = null;
-			score += 10;
-		} else {
-			//Wrong Answer
-			var divAlert = document.createElement('div');
-		 	divAlert.className = 'alert alert-warning';
-		 	divAlert.setAttribute('style', 'margin-top:1.5em');
-
-		 	var aHref = document.createElement('a');
-		 	aHref.setAttribute('href', '#');
-		 	aHref.className = 'close';
-		 	aHref.setAttribute('data-dismiss', 'alert'),
-		 	aHref.innerHTML = '&times;';
-
-		 	var strongTag =  document.createElement('strong');
-		 	strongTag.innerHTML = 'Sorry!';
-
-		 	divAlert.appendChild(aHref);
-		 	divAlert.appendChild(strongTag);
-		 	divAlert.innerHTML = divAlert.innerHTML + '  The correct answer is ' + $('#pollContainer').attr('answer-body');
-		 	document.getElementById('demo_body').appendChild(divAlert);
-		 	setTimeout(function() {
-				document.getElementById('demo_body').removeChild(divAlert);
-			}, 5000);
-
-			answerSubmitted = null;
-			score = Math.max(0, score - 5);
-		}
-
-		sessionHandler.call('edu.cmu.ipd.users.updateScore', [appliedUserName, score]).then(
-		 	function(res) {
-				console.log('Updated score at the backend.');
-		 	},
-		 	function(err) {
-				console.log('Failed to update score at the backend', err);
-		 	});
-
-		document.getElementById('score').innerHTML = 'Score: ' + score;
 	}
 
 	document.getElementById("A").disabled = false;
@@ -161,9 +100,10 @@ var onDisplayOptions = function(args) {
 			answerBody = 'Red Path';
 		}
 		$('#pollContainer').attr('answer-body', answerBody);
-
 	}
+
 	progressCountDown();
+	
 }// end onDisplayOptions
 
 var shortenDisplayName = function(appliedUserName) {
@@ -237,7 +177,7 @@ var addOnClick = function(sessionHandler) {
 var progressLoad = function() {
 
 	$("#progressbar-5").progressbar({
-		max: 20,
+		max: 26,
 		value: false,
 		change: function() {
 			if ($("#progressbar-5").progressbar("value")) {
@@ -249,18 +189,23 @@ var progressLoad = function() {
 		// }
 	});
 	$(".progress-label").css('top', ($('.progress-background').offset().top)*1.01);
-	$(".progress-label").text('Loading...');
+	$(".progress-label").text('Waiting for new round...');
+
+	document.getElementById("A").disabled = true;
+	document.getElementById("B").disabled = true;
+
 }
 
 var progressCountDown = function () {
 	var val;
 	if ($("#progressbar-5").progressbar("value") === false) {
-		val = 21;
+		val = 27;
 		$('.ui-progressbar-value.ui-widget-header.ui-corner-left').css('background', '#f6a828');
 	} else {
 		val = $("#progressbar-5").progressbar("value")
 	}
 	$("#progressbar-5").progressbar("value", val-1);
+	
 	if (val === 11) {
 		$('.ui-progressbar-value.ui-widget-header.ui-corner-left').css('background', 'red');
 	}
@@ -270,6 +215,73 @@ var progressCountDown = function () {
 		$('.ui-progressbar-value.ui-widget-header.ui-corner-left').css('background', '#f6a828');
 		$(".progress-label").text('Submitting Your Answer...');
 		$("#progressbar-5").progressbar("value", false);
+
+		document.getElementById("A").disabled = true;
+		document.getElementById("B").disabled = true;
+
+
+		if (answerSubmitted !== null && answerLastRound !== null) {
+		//Correct Answer
+		if (answerSubmitted === answerLastRound){
+			var divAlert = document.createElement('div');
+			divAlert.className = 'alert alert-success';
+			divAlert.setAttribute('style', 'margin-top:1.5em');
+
+			var aHref = document.createElement('a');
+			aHref.setAttribute('href', '#');
+			aHref.className = 'close';
+			aHref.setAttribute('data-dismiss', 'alert'),
+			aHref.innerHTML = '&times;';
+
+			var strongTag =  document.createElement('strong');
+			strongTag.innerHTML = 'Congratulations!';
+
+			divAlert.appendChild(aHref);
+			divAlert.appendChild(strongTag);
+			// divAlert.innerHTML = divAlert.innerHTML + '  Your user name is ' + appliedUserName
+			document.getElementById('demo_body').appendChild(divAlert);
+			setTimeout(function() {
+				document.getElementById('demo_body').removeChild(divAlert);
+			}, 5000);
+			answerSubmitted = null;
+			score += 10;
+		} else {
+			//Wrong Answer
+			var divAlert = document.createElement('div');
+		 	divAlert.className = 'alert alert-warning';
+		 	divAlert.setAttribute('style', 'margin-top:1.5em');
+
+		 	var aHref = document.createElement('a');
+		 	aHref.setAttribute('href', '#');
+		 	aHref.className = 'close';
+		 	aHref.setAttribute('data-dismiss', 'alert'),
+		 	aHref.innerHTML = '&times;';
+
+		 	var strongTag =  document.createElement('strong');
+		 	strongTag.innerHTML = 'Sorry!';
+
+		 	divAlert.appendChild(aHref);
+		 	divAlert.appendChild(strongTag);
+		 	divAlert.innerHTML = divAlert.innerHTML + '  The correct answer is ' + $('#pollContainer').attr('answer-body');
+		 	document.getElementById('demo_body').appendChild(divAlert);
+		 	setTimeout(function() {
+				document.getElementById('demo_body').removeChild(divAlert);
+			}, 5000);
+
+			answerSubmitted = null;
+			score = Math.max(0, score - 5);
+		}
+
+		sessionHandler.call('edu.cmu.ipd.users.updateScore', [appliedUserName, score]).then(
+		 	function(res) {
+				console.log('Updated score at the backend.');
+		 	},
+		 	function(err) {
+				console.log('Failed to update score at the backend', err);
+		 	});
+
+		document.getElementById('score').innerHTML = 'Score: ' + score;
+	}
 	}
 };
 
