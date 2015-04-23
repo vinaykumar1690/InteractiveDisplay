@@ -64,26 +64,26 @@ var types_full = [
 ];
 
 var display_names = [
-"Airport", "Amusement Park", "Aquarium", "Art Gallery",
-"ATM", "Bakery", "Bank", "Bar", "Beauty Salon",
-"Bicycle Store", "Book Store", "Bowling Alley", "Bus Station", "Cafe",
-"Campground", "Car Dealer", "Car Rental", "Car Repair", "Car Wash",
-"Casino", "City Hall", "Clothing Store",
-"Convenience Store", "Dentist", "Department Store",
-"Doctor", "Electrician", "Electronics Store", "Embassy",
-"Finance", "Fire Ftation", "Florist", "Food", 
-"Furniture_store", "Gas Station", "Supermarket", "Gym",
-"Hair Care", "Hardware Store", "Home Goods Store",
-"Hospital", "Jewelry Store", "Laundry", 
-"Library", "Locksmith", "Lodging",
-"Meal Delivery", "Meal Takeaway", "Movie Rental", "Movie Theater",
-"Moving Company", "Museum", "Night Club", "Painter", "Park",
-"Parking", "Pet Store", "Pharmacy", "Place Of Worship",
-"Plumber", "Post Office", "Real Estate Agency", "Restaurant",
-"Roofing Contractor", "School", "Shoe Store", "Shopping Mall",
-"SPA", "Stadium", "Storage", "Subway Station",
-"Taxi Stand", "Train Station", "Travel Agency", "University",
-"Veterinary Care", "Zoo"
+"Airports", "Amusement Parks", "Aquariums", "Art Galleries",
+"ATMs", "Bakeries", "Banks", "Bars", "Beauty Salons",
+"Bicycle Stores", "Book Stores", "Bowling Alleys", "Bus Stations", "Cafes",
+"Campgrounds", "Car Dealers", "Car Rental places", "Car Repair Shops", "Car Wash Places",
+"Casinos", "City Halls", "Clothing Stores",
+"Convenience Stores", "Dentists", "Department Stores",
+"Doctors", "Electricians", "Electronics Stores", "Embassies",
+"Finance", "Fire Ftations", "Florists", "Foods", 
+"Furniture_stores", "Gas Stations", "Supermarkets", "Gyms",
+"Hair Care Places", "Hardware Stores", "Home Goods Stores",
+"Hospitals", "Jewelry Stores", "Laundries", 
+"Libraries", "Locksmiths", "Lodgings",
+"Meal Delivery", "Meal Takeawaiy", "Movie Rentals", "Movie Theaters",
+"Moving Companies", "Museums", "Night Clubs", "Painters", "Parks",
+"Parking Places", "Pet Stores", "Pharmacies", "Places Of Worship",
+"Plumbers", "Post Offices", "Real Estate Agencies", "Restaurants",
+"Roofing Contractors", "Schools", "Shoe Stores", "Shopping Malls",
+"SPAs", "Stadiums", "Storages", "Subway Stations",
+"Taxi Stands", "Train Stations", "Travel Agencies", "Universities",
+"Veterinary Cares", "Zoos"
 ]
 
 for (i = 0; i < types_full.length; i++){
