@@ -30,6 +30,7 @@
     font-family: "Arial", cursive, sans-serif; 
     height: 72vh;
     width: 100%;
+    font-size: 1.3em
 }
 #left, #right 
 {
@@ -47,7 +48,7 @@
   margin-top: 10px;
   width: 60%;
   background: white;
-  font-size: 2em;
+  font-size: 4em;
   /* font-family: "Comic Sans MS", cursive, sans-serif; */
   font-family: "Helvetica", cursive, sans-serif;
 }
@@ -55,12 +56,37 @@
   float: right;
 }
 
-div.qr_code {
+/*div.qr_code {
+    position: absolute;
+    width:100%;
+    height:40%;
+    bottom: 0;
+}*/
+
+img.qr_code {
     position: absolute;
     width:100%;
     height:40%;
     bottom: 0;
 }
+div.qr_code {
+    position: absolute;
+    width:100%;
+    height:40%;
+    bottom: 0;
+    /*right: -6%;*/
+    /*left: 10%;*/
+    text-align: center;
+}
+.tinyURL {
+    position: absolute;
+    width:100%;
+    height:40%;
+    bottom: 0.4em;
+    text-align: center;
+    /*font-size: 1.5em;*/
+}
+
 .arrow_left,.arrow_right{
     position: absolute;
     width:30%;
@@ -79,13 +105,6 @@ div.qr_code {
     text-align: center;
     font-size: medium;
     font-weight: bold;
-}
-.tinyURL {
-    position: absolute;
-    width:100%;
-    height:40%;
-    bottom: 0.4em;
-    text-align: center;
 }
 
 img.GoogleLogo {
