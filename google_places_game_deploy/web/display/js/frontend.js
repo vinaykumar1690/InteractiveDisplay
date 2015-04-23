@@ -112,7 +112,7 @@ function showQuestion(args) {
     info1.open(map, marker1);
     info2.open(map, marker2);
 
-    document.getElementById("question").innerHTML = 'More '+ place_type +'s ';
+    document.getElementById("question").innerHTML = 'More '+ place_type ;
     document.getElementById("city1").innerHTML = city1.name;
     document.getElementById("city2").innerHTML = city2.name;
     document.getElementById("vs").innerHTML = "vs.";
