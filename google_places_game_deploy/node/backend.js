@@ -80,27 +80,28 @@ connection.onopen = function(session) {
  */
 var createUser = function(session) {
 	
-	var onCreatedUser = function(token) {
-		var userNameToken = token;
-		return function(appliedUserName) {
-			console.log();
-			
-      session.publish('edu.cmu.ipd.users.onCreatedUser', [userNameToken, appliedUserName], {}, { acknowledge: true}).then(
-				function(publication) {
-					console.log('[backend]: .users.onCreatedUser: user[' + appliedUserName + '] with token[' + userNameToken + '] and published, publication ID is ', publication);
-        },
-        function(error) {
-          console.log('[backend]: .users.onCreatedUser: user[' + appliedUserName + '] with token[' + userNameToken + '], but failed to publish, the error is ', error);
-        });
+    var onCreatedUser = function(token) {
+        var userNameToken = token;
+        return function(appliedUserName) {
+            console.log('[backend]: onCreatedUser: user[' + appliedUserName + '] with token[' + userNameToken + ']' );
 
-      var update = {
-        userName : appliedUserName,
-        action   : "Just Joined",
-      }
-      userBehaviorUpdates.push(update);
+            session.publish('edu.cmu.ipd.users.onCreatedUser', [userNameToken, appliedUserName], {}, { acknowledge: true}).then(
+                function(publication) {
+					console.log('[backend]: .users.onCreatedUser: user[' + appliedUserName + '] with token[' + 
+                        userNameToken + '] and published, publication ID is ', publication);
+                },
+                function(error) {
+                  console.log('[backend]: .users.onCreatedUser: user[' + appliedUserName + '] with token[' + 
+                    userNameToken + '], but failed to publish, the error is ', error);
+                });
 
-		}
-	}
+            var update = {
+                userName : appliedUserName,
+               action   : "Just Joined",
+            }
+            userBehaviorUpdates.push(update);
+        }
+    }
 
 	var userToken = 0;
 	return function (args) {
