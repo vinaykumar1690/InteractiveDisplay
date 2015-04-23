@@ -177,7 +177,7 @@ var addOnClick = function(sessionHandler) {
 var progressLoad = function() {
 
 	$("#progressbar-5").progressbar({
-		max: 26,
+		max: 36,
 		value: false,
 		change: function() {
 			if ($("#progressbar-5").progressbar("value")) {
@@ -199,7 +199,7 @@ var progressLoad = function() {
 var progressCountDown = function () {
 	var val;
 	if ($("#progressbar-5").progressbar("value") === false) {
-		val = 27;
+		val = 37;
 		$('.ui-progressbar-value.ui-widget-header.ui-corner-left').css('background', '#f6a828');
 	} else {
 		val = $("#progressbar-5").progressbar("value")
