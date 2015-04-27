@@ -208,7 +208,7 @@ var update = function(args) {
 
     for (var idx = 0; idx < args.length; idx++) {
         console.log('update', args[idx]); 
-        if (updatesCounter >= 8) {
+        if (updatesCounter >= 7) {
             $('#updates').find('tr').first().remove();
             updatesCounter--;
         }
