@@ -30,7 +30,7 @@
     font-family: "Arial", cursive, sans-serif; 
     height: 72vh;
     width: 100%;
-    font-size: 1.3em
+    font-size: 2.5vmin;
 }
 #left, #right 
 {
@@ -48,7 +48,7 @@
   margin-top: 10px;
   width: 60%;
   background: white;
-  font-size: 4em;
+  font-size: 6vh;
   /* font-family: "Comic Sans MS", cursive, sans-serif; */
   font-family: "Helvetica", cursive, sans-serif;
 }
