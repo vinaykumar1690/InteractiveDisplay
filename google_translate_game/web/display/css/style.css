@@ -84,7 +84,7 @@ div.qr_code {
     height:40%;
     bottom: 0.4em;
     text-align: center;
-    /*font-size: 1.5em;*/
+    font-size: 2.7vmin;
 }
 
 .arrow_left,.arrow_right{
