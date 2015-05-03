@@ -1,0 +1,343 @@
+% This is "sig-alternate.tex" V2.0 May 2012
+% This file should be compiled with V2.5 of "sig-alternate.cls" May 2012
+%
+% This example file demonstrates the use of the 'sig-alternate.cls'
+% V2.5 LaTeX2e document class file. It is for those submitting
+% articles to ACM Conference Proceedings WHO DO NOT WISH TO
+% STRICTLY ADHERE TO THE SIGS (PUBS-BOARD-ENDORSED) STYLE.
+% The 'sig-alternate.cls' file will produce a similar-looking,
+% albeit, 'tighter' paper resulting in, invariably, fewer pages.
+%
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V2.5) produces:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) NO page numbers
+%
+% as against the acm_proc_article-sp.cls file which
+% DOES NOT produce 1) thru' 3) above.
+%
+% Using 'sig-alternate.cls' you have control, however, from within
+% the source .tex file, over both the CopyrightYear
+% (defaulted to 200X) and the ACM Copyright Data
+% (defaulted to X-XXXXX-XX-X/XX/XX).
+% e.g.
+% \CopyrightYear{2007} will cause 2007 to appear in the copyright line.
+% \crdata{0-12345-67-8/90/12} will cause 0-12345-67-8/90/12 to appear in the copyright line.
+%
+% ---------------------------------------------------------------------------------------------------------------
+% This .tex source is an example which *does* use
+% the .bib file (from which the .bbl file % is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission, you *NEED* to 'insert'
+% your .bbl file into your source .tex file so as to provide
+% ONE 'self-contained' source file.
+%
+% ================= IF YOU HAVE QUESTIONS =======================
+% Questions regarding the SIGS styles, SIGS policies and
+% procedures, Conferences etc. should be sent to
+% Adrienne Griscti (griscti@acm.org)
+%
+% Technical questions _only_ to
+% Gerald Murray (murray@hq.acm.org)
+% ===============================================================
+%
+% For tracking purposes - this is V2.0 - May 2012
+
+\documentclass{sig-alternate}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{caption}
+\begin{document}
+%
+% --- Author Metadata here ---
+%\conferenceinfo{WOODSTOCK}{'97 El Paso, Texas USA}
+%\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
+%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
+% --- End of Author Metadata ---
+
+\title{Alternate {\ttlit ACM} SIG Proceedings Paper in LaTeX
+Format\titlenote{(Produces the permission block, and
+copyright information). For use with
+SIG-ALTERNATE.CLS. Supported by ACM.}}
+%
+% You need the command \numberofauthors to handle the 'placement
+% and alignment' of the authors beneath the title.
+%
+% For aesthetic reasons, we recommend 'three authors at a time'
+% i.e. three 'name/affiliation blocks' be placed beneath the title.
+%
+% NOTE: You are NOT restricted in how many 'rows' of
+% "name/affiliations" may appear. We just ask that you restrict
+% the number of 'columns' to three.
+%
+% Because of the available 'opening page real-estate'
+% we ask you to refrain from putting more than six authors
+% (two rows with three columns) beneath the article title.
+% More than six makes the first-page appear very cluttered indeed.
+%
+% Use the \alignauthor commands to handle the names
+% and affiliations for an 'aesthetic maximum' of six authors.
+% Add names, affiliations, addresses for
+% the seventh etc. author(s) as the argument for the
+% \additionalauthors command.
+% These 'additional authors' will be output/set for you
+% without further effort on your part as the last section in
+% the body of your article BEFORE s or any Appendices.
+
+\numberofauthors{8} %  in this sample file, there are a *total*
+% of EIGHT authors. SIX appear on the 'first-page' (for formatting
+% reasons) and the remaining two appear in the \additionalauthors section.
+%
+\author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
+%
+% 1st. author
+\alignauthor
+Geng Fu\titlenote{This author will be graduating soon.}\\
+\affaddr{INI}\\
+\affaddr{Carnegie Mellon University}\\
+\email{gengf@andrew.cmu.edu }
+\alignauthor
+Vinay Kumar Vavili\titlenote{This author will be graduating soon.}\\
+\affaddr{INI}\\
+\affaddr{Carnegie Mellon University}\\
+\email{vvavili@andrew.cmu.edu}
+\alignauthor
+Yalei Song\titlenote{This author still has a lot to suffer.}\\
+\affaddr{ECE}\\
+\affaddr{Carnegie Mellon University}\\
+\email{yaleis@andrew.cmu.edu}
+}
+% There's nothing stopping you putting the seventh, eighth, etc.
+% author on the opening page (as the 'third row') but we ask,
+% for aesthetic reasons that you place these 'additional authors'
+% in the \additional authors block, viz.
+\additionalauthors{Additional authors: John Smith (The Th{\o}rv{\"a}ld Group,
+email: {\texttt{jsmith@affiliation.org}}) and Julius P.~Kumquat
+(The Kumquat Consortium, email: {\texttt{jpkumquat@consortium.net}}).}
+\date{30 July 1999}
+% Just remember to make sure that the TOTAL number of authors
+% is the number that will appear on the first page PLUS the
+% number that will appear in the \additionalauthors section.
+
+\maketitle
+% A category with the (minimum) three required fields
+%\category{H.4}{Information Systems Applications}{Miscellaneous}
+%A category including the fourth, optional field follows...
+%\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
+
+%\terms{Theory}
+
+%\keywords{ACM proceedings, \LaTeX, text tagging}
+
+\section{Introduction}
+Public displays are ubiquitous. They can be seen in many public locations including malls, schools, and coffee shops. Public displays share these common characteristics:
+\begin{itemize}
+	\item They appear in public places (as mentioned above)
+	\item Their locations are usually fixed (not portable)
+	\item They are usually large in size
+	\item People pass by or gather around the display
+	\item There are limited interfaces. Keyboards, touch screens are usually not provided
+	\item No internal memory available (it is just a screen)
+\end{itemize}
+
+With those characteristics, public displays are often being used as a screen to display content. It could be static content like posters, images and Ads; or it could be dynamics content like news channels, trends or music videos. However, public displays are not necessarily aware of its surroundings. Most importantly, displays don't respond to the presence of people. In other words, public displays are not interactive. For instance, a public display in a mall could show music videos of Justin Bieber all day long, even though none of the people in the mall is a Belieber\footnote{A huge fan of Justin Bieber}.
+
+\section{Objectives}
+The objectives of this project are to make public displays interactive. We set different 
+scenarios, such as cocktail parties where people mostly mingle with others; or a coffee 
+shop where people standing in line waiting to order. Specifically, we hope to achieve two 
+goals. First, we would like to encourage interaction between people and display, and 
+also to make displays and people aware of each other's presence. Second, we would 
+like to foster interaction between people and encourage discussion.
+
+In order to engage people, we started with designing an application that should attract 
+people's attention. Many ideas were emerged, such as developing games or tools that 
+will allow people to participate in activities. We believe that game is an efficient way to 
+gather people's attention in a short period of time, hopefully in a pleasant way also.
+
+The objectives of the game are very simple. It allows people to interact with display and 
+promote interaction between people quickly. Since we set up our game in scenarios like 
+cocktail parties and coffee shops, where people are usually occupied, we want to make 
+sure that players can join the anytime. Moreover, players shall not feel obligated to stay in 
+the game; she/he should be able to leave the game anytime. In additional, the game 
+should not be too intellectual or difficult to play.
+
+We conducted a series of brainstorming and came up with several game ideas, such as 
+action game (e.g., darts, basketball), gambling game (e.g., roulette), word puzzle game 
+and trivia game. We later realized that action requires too much commitment to the game 
+and space for movement, which doesn?t suit our scenarios; puzzle game involves too 
+much intelligence and it is time consuming; whereas gambling game is basically random 
+guess. As a result, developing trivia game(s) was a favorable idea.
+
+We conducted a series of brainstorming and came up with several game ideas, such 
+as action game (e.g., darts, basketball), gambling game (e.g., roulette), word puzzle game 
+and trivia game. We later realized that action requires too much commitment to the game 
+and space for movement, which doesn?t suit our scenarios; puzzle game involves too much 
+intelligence and it is time consuming; whereas gambling game is basically random guess. 
+As a result, developing trivia game(s) was a favorable idea.
+
+\section{Game Ideas}
+To generate a ?sourceful? question pool for trivia game, we utilized Google APIs, which 
+provide ample useful information.
+
+\subsection{Battle of Cities}
+Google radar search (part of Google Places APIs) provides number of a certain type of places 
+(e.g., restaurant, bakery) in a given area. With this information we can develop a trivia game 
+that is based on numbers of places in different cities. Here is a sample questions: Which city 
+has more bars, New York City or Shanghai?
+
+We select more than 10 high-profile cities in both the eastern and western atmosphere and 
+80 place types to generate questions.
+
+\subsection{Translator Dilemma}
+Google translate game idea was emerged when browsing a website called 
+Translation-telephone, which is similar as the traditional ?Telephone? game, 
+ where people pass a message around a circle and see how it turns out at the end [1. Reference 
+ the website]. In the translation-telephone, a message gets translated to random languages and 
+ back to original language.
+
+We thought it is an interesting and wanted to develop a game based on it. Google Translate ? one of the most widely used translate engine, is a great tool to use in this game. In the same way as translation-telephone, we select random collection of languages and use Google translate API to generate translations. In addition, we have two collections (paths) of languages and provide one final translation. In the end, players will get to choose which path the final translation is coming from.
+
+\section{Preliminary Design}
+\begin{figure}
+	\includegraphics[width=\linewidth]{preliminary_design.png}
+	%\includepdf{preliminary_design.png}
+	\caption{Preliminary Design}
+	\label{fig:predesign}
+\end{figure}
+
+\section{Design Guidelines}
+Table \ref{table:design_guidlines_summary} summarizes the design guidelines we hope will help in the design of games for interactive public displays.
+
+\begin{table}[c]
+	%\captionsetup{justification=centering}
+	\caption{Design Guidelines Summary}
+	\label{table:design_guidlines_summary}
+	\begin{tabular*}{1\textwidth}{c | l}
+ 		\hline
+		Aspect & Lesson\\ \hline
+  		\multirow{4}{*}{Content} & The questions should be intuitive or easy to understand\\
+ 			& The answers should be correct or logical\\
+ 			& They are usually large in size\\
+ 			& People pass by or gather around the display\\ \hline
+		\multirow{4}{*}{Player Perception} & Attention span of users is limited. The timing between rounds of games has to be reasonable
+\\
+ 			& Make sure the player knows the status of the game at all times\\
+ 			& Players should be motivated\\ \hline	
+	\end{tabular*}
+\end{table}
+
+The design guidelines were formulated based on user feedback and results from a user study that was conducted as part of the live deployment. We also used the results of the user study to evaluate if we met the objectives of the game. The study responses were scale responses scaled from 1 to 10. We normalized the scaled responses to standard\cite{wp:standard_score_wiki}. In simple terms, the percentage calculated from the z-score represents the percentage of responses that are greater than or equal to the benchmark selected during the z-score calculation. We have selected a benchmark of 8 for the scale from 1 - 10. 
+
+
+{\textbf{
+``The questions should be intuitive or easy to understand''\\
+``The answers should be correct or logical''
+}
+
+The first question we asked participants was, ``?How easy is it for you to understand the objective of the game?''. 
+Figure \ref{fig:p_easy_understand} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_easy_understand} is the responses for Translator?s Dilemma. 
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{p_easy_understand.png}
+	\caption{Battle of Cities - How easy is it for you to understand the objective of the game?}
+	\label{fig:p_easy_understand}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{t_easy_understand.png}
+	\caption{Translator Dilemma - How easy is it for you to understand the objective of the game?}
+	\label{fig:t_easy_understand}
+\end{figure}
+
+37.98\% of the participants felt that the Battle of Cities game was easy to understand. This was primarily because the question was quick to read and easy to understand. There was higher participation in the game as a consequence.
+Compared to Battle of Cities, only 13.85\% of the participants felt that Translator?s Dilemma game was easy to understand. As mentioned before Translator?s Dilemma game is based on the "Telephone" game. During the user study we noticed that it was very hard for participants to understand the objective of the game as most of them had not played the ``Telephone'' game before. The question text was also long and complex in this case.
+
+The following question we asked participants was, ?Did you discuss with others during the game??. Figure \ref{fig:p_discuss} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_discuss} is the responses for Translator?s Dilemma.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{p_discuss.png}
+	\caption{Battle of Cities - Did you discuss with others during the game?}
+	\label{fig:p_discuss}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{t_discuss.png}
+	\caption{Translator Dilemma - Did you discuss with others during the game?}
+	\label{fig:t_discuss}
+\end{figure}
+
+27.30\% of participants discussed with others during the Battle of Cities game and 22.93\% of the participants discussed with others during the Translator Dilemma game. Knowledge of popular cities is common and there is enough time to discuss after deciding on the answer and therefore there is comparatively higher percentage of participants that discuss during the game. Whereas in the translator?s dilemma game, the knowledge of all languages in the list is highly unlikely. The question is also long and complex and so there is no time discuss the results. 
+
+During the user study we also noticed that all participants were surprised with answers that they thought were fairly obvious. The discrepancy happens as Google Radar search does not enough data to return answers that match user expectations. This causes participants to lose interest in the game. The above observations logically lead us to the following design decisions mentioned previously.
+
+
+\section{Lessons}
+\textbf{Do not underestimates the efforts to implement web page on mobile devices. }
+The challenge of making a fluid UI is to deal with different resolutions of 
+screens. A basic solution is using relative units such as em or percent(\%) 
+instead of pixels(px). However, in deployment we found out that since the 
+dimensions of the screen itself is different, the UI is not consistent across 
+all screens. To handle the problem of different screen dimensions we used 
+viewport, which arranges elements by the actual size of the screen. Users 
+may hold the device in different orientations too. We used CSS media query 
+to detect the orientation of the devices and then display the elements on
+ the screen. Even though we spent a lot efforts in device UI, the UI is not 
+ consistent on old devices.
+ 
+Public display should be self-configurable. Initially, the URL of the backend 
+server was hard-coded to ensure users can connect to backend servers. 
+And the QR code was static. Consequently, when the backend server is 
+deployed in another location, all those static components need to be configured 
+before deployment. A solution to ease deployment is to leverage the information 
+that web browser is aware of where the page is loaded from.
+
+Long-duration deployment discloses bugs. The potential bug isn?t seen until 
+long duration deployment. In deployment, the problems may arise from 
+unreliable dependencies, race conditions between multiple players operating 
+at the same time etc.
+
+Fault-tolerance at public display. In the deployment, we often don?t have the 
+direct control over the public display. The display may lose the connection with 
+the server, in which situation the public display should be able to reconnect to 
+backend server. If bugs are found in the frontend page, the display needs to 
+reload the web page. A script which periodically reloads the web page is helpful 
+in deployment.
+
+Backend server should be publicly addressable. A common mistake in 
+deployment is to deploy the backend server with a private IP address. Due to 
+the NAT problem, only the devices that are in the same network can access the 
+game. Therefore, a public addressable interface is essential to the backend server.
+
+Alternative to allow device to access the game. In the deployment, we assumed 
+that users will scan the QR code to find the game. It turned out that most of devices 
+were not equipped with QR code scanner and players are reluctant to install one. 
+Alternative way such as tiny URL is helpful. 
+
+Carefully choose the place to conduct user study. The place of deployment was in 
+a student common area. Students mostly were in a rush. The unsolicited involvement 
+was low.
+
+\subsection{References}
+Generated by bibtex from your ~.bib file.  Run latex,
+then bibtex, then latex twice (to resolve references)
+to create the ~.bbl file.  Insert that ~.bbl file into
+the .tex source file and comment out
+the command \texttt{{\char'134}sigproc}.
+
+\bibliographystyle{plain}
+\bibliography{sigproc}
+
+\end{document}
