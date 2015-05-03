@@ -203,12 +203,12 @@ We select more than 10 high-profile cities in both the eastern and western atmos
 
 \subsection{Translator Dilemma}
 Google translate game idea was emerged when browsing a website called 
-Translation-telephone, which is similar as the traditional ?Telephone? game, 
+Translation-telephone, which is similar as the traditional ``Telephone'' game, 
  where people pass a message around a circle and see how it turns out at the end [1. Reference 
  the website]. In the translation-telephone, a message gets translated to random languages and 
  back to original language.
 
-We thought it is an interesting and wanted to develop a game based on it. Google Translate ? one of the most widely used translate engine, is a great tool to use in this game. In the same way as translation-telephone, we select random collection of languages and use Google translate API to generate translations. In addition, we have two collections (paths) of languages and provide one final translation. In the end, players will get to choose which path the final translation is coming from.
+We thought it is an interesting and wanted to develop a game based on it. Google Translate is one of the most widely used translate engine, is a great tool to use in this game. In the same way as translation-telephone, we select random collection of languages and use Google translate API to generate translations. In addition, we have two collections (paths) of languages and provide one final translation. In the end, players will get to choose which path the final translation is coming from.
 
 \section{Preliminary Design}
 \begin{figure}
@@ -239,16 +239,15 @@ Table \ref{table:design_guidlines_summary} summarizes the design guidelines we h
 	\end{tabular*}
 \end{table}
 
-The design guidelines were formulated based on user feedback and results from a user study that was conducted as part of the live deployment. We also used the results of the user study to evaluate if we met the objectives of the game. The study responses were scale responses scaled from 1 to 10. We normalized the scaled responses to standard\cite{wp:standard_score_wiki}. In simple terms, the percentage calculated from the z-score represents the percentage of responses that are greater than or equal to the benchmark selected during the z-score calculation. We have selected a benchmark of 8 for the scale from 1 - 10. 
+The design guidelines were formulated based on user feedback and results from a user study that was conducted as part of the live deployment. We also used the results of the user study to evaluate if we met the objectives of the game. The study responses were scale responses scaled from 1 to 10. We normalized the scaled responses to standard\cite{wp:standard_score_wiki}. In simple terms, the percentage calculated from the z-score represents the percentage of responses that are greater than or equal to the benchmark selected during the z-score calculation. We have selected a benchmark of 8 for the scale from 1 - 10.
 
+In the following subsections, we discuss each design guideline and the user study related to the guideline.
 
-{\textbf{
-``The questions should be intuitive or easy to understand''\\
-``The answers should be correct or logical''
-}
+\subsection{The questions should be intuitive or easy to understand;\\
+The answers should be correct or logical}
 
 The first question we asked participants was, ``?How easy is it for you to understand the objective of the game?''. 
-Figure \ref{fig:p_easy_understand} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_easy_understand} is the responses for Translator?s Dilemma. 
+Figure \ref{fig:p_easy_understand} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_easy_understand} is the responses for Translator's Dilemma. 
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{p_easy_understand.png}
@@ -258,12 +257,13 @@ Figure \ref{fig:p_easy_understand} shows the the responses for the game Battle o
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{t_easy_understand.png}
-	\caption{Translator Dilemma - How easy is it for you to understand the objective of the game?}
+	\caption{Translator's Dilemma - How easy is it for you to understand the objective of the game?}
 	\label{fig:t_easy_understand}
 \end{figure}
 
 37.98\% of the participants felt that the Battle of Cities game was easy to understand. This was primarily because the question was quick to read and easy to understand. There was higher participation in the game as a consequence.
-Compared to Battle of Cities, only 13.85\% of the participants felt that Translator?s Dilemma game was easy to understand. As mentioned before Translator?s Dilemma game is based on the "Telephone" game. During the user study we noticed that it was very hard for participants to understand the objective of the game as most of them had not played the ``Telephone'' game before. The question text was also long and complex in this case.
+
+Compared to Battle of Cities, only 13.85\% of the participants felt that Translator's Dilemma game was easy to understand. As mentioned before Translator?s Dilemma game is based on the ``Telephone'' game. During the user study we noticed that it was very hard for participants to understand the objective of the game as most of them had not played the ``Telephone'' game before. The question text was also long and complex in this case.
 
 The following question we asked participants was, ?Did you discuss with others during the game??. Figure \ref{fig:p_discuss} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_discuss} is the responses for Translator?s Dilemma.
 
@@ -275,14 +275,74 @@ The following question we asked participants was, ?Did you discuss with others d
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{t_discuss.png}
-	\caption{Translator Dilemma - Did you discuss with others during the game?}
+	\caption{Translator's Dilemma - Did you discuss with others during the game?}
 	\label{fig:t_discuss}
 \end{figure}
 
-27.30\% of participants discussed with others during the Battle of Cities game and 22.93\% of the participants discussed with others during the Translator Dilemma game. Knowledge of popular cities is common and there is enough time to discuss after deciding on the answer and therefore there is comparatively higher percentage of participants that discuss during the game. Whereas in the translator?s dilemma game, the knowledge of all languages in the list is highly unlikely. The question is also long and complex and so there is no time discuss the results. 
+27.30\% of participants discussed with others during the Battle of Cities game and 22.93\% of the participants discussed with others during the Translator Dilemma game. Knowledge of popular cities is common and there is enough time to discuss after deciding on the answer and therefore there is comparatively higher percentage of participants that discuss during the game. Whereas in the translator's dilemma game, the knowledge of all languages in the list is highly unlikely. The question is also long and complex and so there is no time discuss the results. 
 
 During the user study we also noticed that all participants were surprised with answers that they thought were fairly obvious. The discrepancy happens as Google Radar search does not enough data to return answers that match user expectations. This causes participants to lose interest in the game. The above observations logically lead us to the following design decisions mentioned previously.
 
+\subsection{Strike a balance between guess work and logical thinking}
+We asked the participants, ``How did you choose your answer''. Scale 1 meaning random and scale 10 being logical. Figure \ref{fig:p_random_logical} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_random_logical} is the responses for Translator's Dilemma. 
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{p_random_logical.png}
+	\caption{Battle of Cities - How did you choose your answer?}
+	\label{fig:p_random_logical}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{t_random_logical.png}
+	\caption{Translator's Dilemma - How did you choose your answer?}
+	\label{fig:t_random_logical}
+\end{figure}
+
+21.54\% of the participants in the Battle of Cities game felt that they chose the answer logically. This is mainly because the game itself has cultural and geographical hints that helps users logically guess the number of places of a type in the given locations. 
+
+Only 2.19\% of the participants of Translator's Dilemma game felt that they chose the answers logically. It is highly unlikely that a participant knows all languages that are in the question. The answer is also based on analyzing text rather than comparing numbers.
+
+The above study leads us to believe that there should a good mix of logical thinking and guess work to encourage interaction among participants. 
+
+\subsection{Attention span of users is limited. The timing between rounds of games has to be reasonable}
+During the course of the user-study we observed that the timing between rounds in the game is a very important factor to keep participants engaged to the game. If the time is too long, participants get distracted from the game. If the time is too short, participants do not get time to interact with each other. 
+
+The timing has to be adjusted based on the game too. There is no ``one size, fits all'' solution. For instance, the time for the Translator's Dilemma game was 10 seconds more than that allotted for the Battle of Cities game owing to the difficulty of the Translator's Dilemma game.
+
+\subsection{Make sure the player knows the status of the game at all times}
+We have a dynamic updates sidebar in the game that gets updated in real-time with messages about user activity including ``player joined'', ``player submitted answer'' and ``player changed answer''. We asked participants, ``Did you look at the updates sidebar?''. 68.42\% of the participants of Battle of Cities game and 77.77\% of the participants of Translator's Dilemma game noticed the updates. Both games have a high number which leads us to believe that it is an important feature for interactive displays.
+\begin{figure}
+	\includegraphics[width=\linewidth]{p_influence.png}
+	\caption{Battle of Cities - How much did the updates sidebar influence your answer?}
+	\label{fig:p_influence}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{t_influence.png}
+	\caption{Translator's Dilemma - How much did the updates sidebar influence your answer?}
+	\label{fig:t_influence}
+\end{figure}
+The follow up question asked participants, ``How much did the updates sidebar influence your answer?''. Figure \ref{fig:p_influence} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_influence} is the responses for Translator's Dilemma.
+
+Surprisingly, only 1.47\% and 2.69\% of the participants in Battle of Cities and Translator's Dilemma game were influenced by the updates. This means that the updates bar primarily served as an activity monitor that provides feedback on user actions. The fact that a majority of the users noticed the updates but did not get influenced by it shows that it is very important to let the participant know what is the status of the game at all times.
+
+In our prior design, we did not have a timer on the device that showed the time left in the current round. Lot of the participants were confused about what was happening after they selected their choice. The timer on the device helped alleviate this confusion.
+
+\subsection{Players should be motivated}
+We asked participants, ``Do you want to be on the leaderboard?''. Figure \ref{fig:p_leaderboard} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_leaderboard} is the responses for Translator's Dilemma.
+\begin{figure}
+	\includegraphics[width=\linewidth]{p_leaderboard.png}
+	\caption{Battle of Cities - Do you want to be on the leaderboard?}
+	\label{fig:p_leaderboard}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{t_leaderboard.png}
+	\caption{Translator's Dilemma - Do you want to be on the leaderboard?}
+	\label{fig:t_leaderboard}
+\end{figure}
+
+28.53\% and 22.8\% of the participants from the Battle of Cities and Translator's Dilemma game want to be on the leaderboard respectively. Battle of Cities has comparatively higher number as the game itself is easier and leads to more participation. The difficulty of the Translator's Dilemma game discouraged participation and there was no incentive to be on the leaderboard. This observation leads us to believe that participants should be motivated to participate. Points system and leaderboard encourage participation and motivate players.
 
 \section{Lessons}
 \textbf{Do not underestimates the efforts to implement web page on mobile devices. }
