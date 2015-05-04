@@ -4,48 +4,48 @@ The top-level auxiliary file: public-display.aux
 The style file: plain.bst
 Database file #1: sigproc.bib
 Warning--entry type for "pamela:translation_telephone" isn't style-file defined
---line 12 of file sigproc.bib
+--line 22 of file sigproc.bib
 Warning--entry type for "laerd:standard_score" isn't style-file defined
---line 20 of file sigproc.bib
-You've used 2 entries,
+--line 31 of file sigproc.bib
+You've used 3 entries,
             2118 wiz_defined-function locations,
-            503 strings with 4117 characters,
-and the built_in function-call counts, 406 in all, are:
-= -- 32
-> -- 14
-< -- 0
-+ -- 6
-- -- 4
-* -- 12
-:= -- 71
-add.period$ -- 4
-call.type$ -- 2
-change.case$ -- 8
+            510 strings with 4293 characters,
+and the built_in function-call counts, 824 in all, are:
+= -- 78
+> -- 21
+< -- 1
++ -- 9
+- -- 6
+* -- 34
+:= -- 128
+add.period$ -- 7
+call.type$ -- 3
+change.case$ -- 12
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 14
-empty$ -- 45
-format.name$ -- 4
-if$ -- 85
+cite$ -- 3
+duplicate$ -- 36
+empty$ -- 80
+format.name$ -- 6
+if$ -- 185
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 0
-newline$ -- 11
-num.names$ -- 4
-pop$ -- 16
+int.to.str$ -- 3
+missing$ -- 1
+newline$ -- 16
+num.names$ -- 6
+pop$ -- 20
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 9
 quote$ -- 0
-skip$ -- 20
+skip$ -- 42
 stack$ -- 0
-substring$ -- 10
-swap$ -- 2
-text.length$ -- 0
+substring$ -- 51
+swap$ -- 14
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
+type$ -- 12
 warning$ -- 0
-while$ -- 4
-width$ -- 3
-write$ -- 16
+while$ -- 8
+width$ -- 4
+write$ -- 27
 (There were 2 warnings)

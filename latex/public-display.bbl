@@ -1,5 +1,12 @@
 \begin{thebibliography}{1}
 
+\bibitem{storz:deployment_lessons}
+Oliver~Storz et~al.
+\newblock Public ubiquitous computing systems: Lessons from the e-campus
+  display deployments.
+\newblock {\em IEEE Pervasive Computing}, pages 1536--1268, July-September
+  2006.
+
 \bibitem{pamela:translation_telephone}
 Pamela Fox.
 \newblock Translation telephone.

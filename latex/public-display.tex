@@ -186,9 +186,9 @@ Our goal is to design games that are easy for user to understand; it should be s
 \end{figure*}
 
 \section{User Study}
-In order to evaluate the effectiveness of the games we developed and iterate the design, we conducted user studies. The user study was conducted in a student common on Carnegie Mellon University Silicon Valley campus. The students common is the hub of the building and there were hundreds of people passing by. We deployed here to attract more students to play and therefore obtain more feedback. The game was deployed on XX size Sharp display. A Macbook Pro was connected to the display to render the view in a web browser. A backend end server backed by Node.js, along with a CouchDB, was deployed at an EC2 instance on Amazon Web Service. The web page was loaded from the backend server to the web browser. Figure \ref{us:deployment} is a capture of the deployment. 
+In order to evaluate the effectiveness of the games we developed and iterate the design, we conducted user studies. User studies were conducted in a student common on Carnegie Mellon University, Silicon Valley campus. The students common is the hub of the building and there were hundreds of people passing by each day. We deployed there to attract more students to play and therefore obtain more feedback. The game was deployed on XX size Sharp display. A Macbook Pro was connected to the display to render the view in a web browser. A backend end server backed by Node.js, along with a CouchDB, was deployed at an EC2 instance on Amazon Web Service. The web page was loaded from the backend server to the web browser. Figure \ref{us:deployment} is a capture of the deployment. 
 
-We invited some of students to play the game and there were some unsolicited involvement. After they played the game, we asked them to fill in a survey. The survey  focused on the game design, their behaviors in playing the game and their interaction among other players.
+We invited some of students to play the game and there were some unsolicited involvement. After they played the game, we asked them to fill out a survey. The survey focused on the game design, players' behaviors in playing the game and the interaction between players.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{deploy.jpg}
@@ -331,8 +331,7 @@ We asked participants, ``Do you want to be on the leaderboard?''. Figure \ref{fi
 
 \section{Lessons}
 
-We set up an approximately one-month-long deployment in a common area on campus where many students pass by.
-Deployment was an essential part of our project, and we learned valuable lessons.
+Deployment was an essential part of the project\cite{storz:deployment_lessons}, and we learned valuable lessons.
 In this section, we discuss lessons learned in detail.
 
 \subsection{Do not underestimate the efforts to implement web page on mobile devices}
@@ -389,17 +388,17 @@ was low. Since our games are designed for public locations (e.g., cocktail parti
 With the Interactive Public Display project we have explored some game design ideas and features that will help 
 improve interaction between players and the public display itself. We have learnt various design aspects during 
 the course of the project that have been summarized in this report. We also learnt some valuable lessons from the 
-live deployment that are often underestimated and overlooked. We hope that this report might serve as a guide to 
-designers and developers trying to develop interactive public displays.
+live deployment that are often underestimated and overlooked\cite{storz:deployment_lessons}. We hope that this report might serve as a guide to 
+designers and developers who work with interactive public displays.
 
 \section{Future Work}
-One of the important aspects of our game was the points system and leaderboard. We also want players to be able 
-to join and leave at any time. A player would expect his points to be retrieved when he re joins the game. Our 
-game backend does not maintain profiles for users and hence a players points are not maintained. Developing 
-this feature gives more motivation to play and also allows players to join and leave at any time without having 
+One of the important aspects of our game was the points system and leaderboard. We also want players to be able to join and leave at any time. A player would expect his/her points to be retrieved when 
+he/she re-joins the game. 
+Currently, our game's backend does not maintain profiles for users and hence players' points are not recoreded. Developing this feature gives more motivation to play and also allows players to join 
+and leave the game at any time without having 
 to lose their points.
 
-We would also like to use other features like mobile sensors and multiple networked screens to explore other 
+We would also like to use other technologies like mobile sensors and multiple networked screens to explore other 
 game design ideas that can foster interaction between players.
 
 \bibliographystyle{plain}
