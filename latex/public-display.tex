@@ -129,54 +129,11 @@ Public displays are ubiquitous. They can be seen in many public locations includ
 With those characteristics, public displays are often being used as a screen to display content. It could be static content like posters, images and Ads; or it could be dynamics content like news channels, trends or music videos. However, public displays are not necessarily aware of its surroundings. Most importantly, displays don't respond to the presence of people. In other words, public displays are not interactive. For instance, a public display in a mall could show music videos of Justin Bieber all day long, even though none of the people in the mall is a Belieber\footnote{A huge fan of Justin Bieber.}.
 
 \section{Objectives}
-The objectives of this project are to make public displays interactive. We set different 
-scenarios, such as cocktail parties where people mostly mingle with others; or a coffee 
-shop where people stand in line waiting to order. Specifically, we hope to achieve two 
-goals. First, we would like to encourage interaction between people and display, and 
-also to make displays and people aware of each other's presence. Second, we would 
-like to foster interaction between people and encourage discussion.
+The objectives of this project are to make public displays interactive. The scenario determines the type of interaction. We narrow down to a scenario, that is cocktail parties where people mostly mingle with other as per requested by our sponsor. Specifically, we hope to achieve two goals. First, we would like to encourage interaction between people and display, and also to make displays and people aware of each other's presence. Second, we would like to foster interaction between people and encourage discussion.
 
-In order to engage people, we started with designing an application that attracts 
-people's attention. Many ideas were emerged, such as developing games or tools that 
-will allow people to participate in activities. We believe that game is an efficient way to 
-gather people's attention in a short period of time, hopefully in a pleasant way also.
+In order to engage people, we started with designing an application that attracts people's attention. Many ideas were emerged, such as developing games or tools that will allow people to participate in activities. We believe that game is an efficient way to gather people's attention in a short period of time, hopefully in a pleasant way also.
 
-The objectives of the game are very simple. It allows people to interact with display and 
-promote interaction between people quickly. Since we set up our game in scenarios like 
-cocktail parties and coffee shops, where people are usually occupied, we want to make 
-sure that players can join the game anytime. Moreover, players shall not feel obligated to stay in 
-the game; she/he should be able to leave the game anytime. In additional, the game 
-should not be too intellectual or difficult to play.
-
-We conducted a series of brainstorming and came up with several game ideas, such as 
-action game (e.g., darts, basketball), gambling game (e.g., roulette), word puzzle game 
-and trivia game. We later realized that action requires too much commitment to the game 
-and space for movement, which doesn't suit our scenarios; puzzle game involves too 
-much intelligence and it is time consuming; whereas gambling game is basically random 
-guess. As a result, developing trivia game(s) was a favorable idea.
-
-\section{Game Ideas}
-To ensure an abundant question pool for the trivia game, we utilized Google APIs which 
-provide ample useful information.
-
-\subsection{Battle of Cities}
-Google radar search (part of Google Places API) provides number of a certain type of places 
-(e.g., restaurant, bakery) in a given area. With this information we can develop a trivia game 
-that is based on numbers of places in different cities. Here is a sample question: Which city 
-has more bars, New York City or Shanghai?
-
-We select more than 10 high-profile cities in both the eastern and western atmosphere and 
-80 place types to generate questions.
-
-\subsection{Translator's Dilemma}
-Google translate game idea was emerged when browsing a website called 
-Translation-telephone\cite{pamela:translation_telephone}, which is similar as the traditional ``Telephone'' game where people pass a message around a circle and see how it turns out at the end. In translation-telephone, a message gets translated to random languages and 
- back to the original language.
-
-We thought it was an interesting idea and wanted to develop a game based on it. Google Translate is one of the most widely used translate engine, and it is a great tool to use in this game. In the same way as translation-telephone, we randomly select collections of languages and use Google translate API to generate translations. In addition, we have two collections (paths) of languages and provide one final translation. In the end, players will get to choose which path the final translation is generated from.
-
-\section{Preliminary Design}
-Our goal is to design games that are easy for user to understand; it should be straightforward and easy on the eye. To that end, we came up with a user interface prototype (Figure \ref{fig:pre_design}) that is to be used by both Battle of Cities and Translator's Dilemma. 
+The objectives of the game are very simple. It allows people to interact with display and promote interaction between people quickly. Since we set up our game in scenarios like cocktail parties and coffee shops, where people are usually occupied, we want to make sure that players can join the game anytime. Moreover, players shall not feel obligated to stay in the game; he/she should be able to leave the game anytime without the impact to other players. 
 
 \begin{figure*}
 	\centering
@@ -184,6 +141,26 @@ Our goal is to design games that are easy for user to understand; it should be s
 	\caption{Preliminary Design}
 	\label{fig:pre_design}
 \end{figure*}
+
+\section{Game Ideas}
+We conducted a series of brainstorming and came up with several game ideas, such as action game (e.g., darts, basketball), gambling game (e.g., roulette), word puzzle game and trivia game. We later realized that action requires too much commitment to the game and space for movement, which doesn't suit our scenarios; puzzle game involves too much intelligence and it is time consuming; whereas gambling game is basically random guess. As a result, developing trivia game(s) was a favorable idea.
+
+To ensure an abundant question pool for the trivia game, we utilized Google APIs which 
+provide ample useful information.
+
+\subsection{Battle of Cities}
+Google radar search (part of Google Places API) provides number of a certain type of places (e.g., restaurant, bakery) in a given area. With this information we can develop a trivia game that is based on numbers of places in different cities. Here is a sample question: Which city has more bars, New York City or Shanghai?
+
+We select more than 10 high-profile cities in both the eastern and western atmosphere and 80 place types to generate questions.
+
+\subsection{Translator's Dilemma}
+Translator's Dilemma was emerged when browsing a website called Translation-Telephone\cite{pamela:translation_telephone}, which is similar as the traditional ``Telephone'' game where people pass a message around a circle and see how it turns out at the end. In translation-telephone, a message gets translated to random languages and 
+ back to the original language.
+
+We thought it was an interesting idea and wanted to develop a game based on it. Google Translate is one of the most widely used translate engine, and it is a great tool to use in this game. In the same way as translation-telephone, we randomly select collections of languages and use Google translate API to generate translations. In addition, we have two collections (paths) of languages and provide one final translation. In the end, players will get to choose which path the final translation is generated from.
+
+\section{Preliminary Design}
+Our goal is to design games that are easy for user to understand; it should be straightforward and easy on the eye. To that end, we came up with a user interface prototype (Figure \ref{fig:pre_design}) that is to be used by both Battle of Cities and Translator's Dilemma. 
 
 \section{User Study}
 In order to evaluate the effectiveness of the games we developed and iterate the design, we conducted user studies. User studies were conducted in a student common on Carnegie Mellon University, Silicon Valley campus. The students common is the hub of the building and there were hundreds of people passing by each day. We deployed there to attract more students to play and therefore obtain more feedback. The game was deployed on XX size Sharp display. A Macbook Pro was connected to the display to render the view in a web browser. A backend end server backed by Node.js, along with a CouchDB, was deployed at an EC2 instance on Amazon Web Service. The web page was loaded from the backend server to the web browser. Figure \ref{us:deployment} is a capture of the deployment. 
@@ -219,10 +196,9 @@ Table \ref{table:design_guidlines_summary} summarizes the design guidelines that
 
 The design guidelines were formulated based on user feedback and results from user studies conducted as part of the live deployment. We also used the results of user studies to evaluate whether we met the objectives of the game. The study responses were scaled from 1 to 10. We normalized the scaled responses to standard\cite{laerd:standard_score}. In simple terms, the percentage calculated from the z-score represents the percentage of responses that are greater than or equal to the benchmark selected during the z-score calculation. We have selected a benchmark of 8 for the scale from 1 to 10.
 
-In the following subsections, we discuss each design guideline and the user study related to the guideline.
-
-\subsection{The questions should be intuitive or easy to understand;\\
-The answers should be correct or logical}
+In the following subsections, we discuss each design guideline and the user study related to the guideline.\\
+\textbf{Guideline 1: The questions should be intuitive or easy to understand;\\
+Guideline 2: The answers should be correct or logical}
 
 The first question we asked participants was, ``How easy is it for you to understand the objective of the game?''. 
 Figure \ref{fig:p_easy_understand} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_easy_understand} is the responses for Translator's Dilemma. 
@@ -265,7 +241,7 @@ The question is also long and complex so there is no time to discuss the results
 
 During the user study we also noticed that all participants were surprised with answers that they thought were fairly obvious. The discrepancy happens as Google Radar search does not enough data to return answers that match user expectations. This causes participants to lose interest in the game. The above observations logically lead us to the following design decisions mentioned previously.
 
-\subsection{Strike a balance between guess work and logical thinking}
+\textbf{Guideline 3: Strike a balance between guess work and logical thinking}
 We asked the participants, ``How did you choose your answer''. Scale 1 denotes completely random answer and 10 for logical answer. Figure \ref{fig:p_random_logical} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_random_logical} is the responses for Translator's Dilemma. 
 
 \begin{figure}
@@ -286,12 +262,12 @@ Only 2.19\% of the participants of Translator's Dilemma game felt that they chos
 
 The above study leads us to believe that there should be a good mix of logical thinking and guess work to encourage interaction among participants. 
 
-\subsection{Attention span of users is limited. The timing between rounds of games has to be reasonable}
+\textbf{Guideline 4: Attention span of users is limited. The timing between rounds of games has to be reasonable}
 During the course of the user study we observed that the timing between rounds in the game is a very important factor to keep participants engaged to the game. If the time is too long, participants get distracted from the game. If the time is too short, participants do not get time to interact with each other. 
 
 The timing has to be adjusted based on the game too. There is no ``one size fits all'' solution. For instance, the time for the Translator's Dilemma game was 10 seconds more than that allotted for the Battle of Cities game due to the difficulty of the Translator's Dilemma game.
 
-\subsection{Make sure the player knows the status of the game at all times}
+\textbf{Guideline 5: Make sure the player knows the status of the game at all times}
 We have a dynamic updates sidebar in the game that gets updated in real-time with messages about user activity including ``player joined'', ``player submitted answer'' and ``player changed answer''. We asked participants, ``Did you look at the updates sidebar?''. 68.42\% of the participants of Battle of Cities game and 77.77\% of the participants of Translator's Dilemma game noticed the updates. Both games have a high number which leads us to believe that it is an important feature for interactive displays.
 
 \begin{figure}
@@ -312,7 +288,7 @@ Surprisingly, only 1.47\% and 2.69\% of the participants in Battle of Cities and
 
 In our prior design, we did not have a timer on the device that showed the time left in the current round. Lot of the participants were confused about what was happening after they selected their choice. The timer on the device helped alleviate this confusion.
 
-\subsection{Players should be motivated}
+\textbf{Guideline 6: Players should be motivated}
 We asked participants, ``Do you want to be on the leaderboard?''. Figure \ref{fig:p_leaderboard} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_leaderboard} is the responses for Translator's Dilemma.
 
 \begin{figure}
