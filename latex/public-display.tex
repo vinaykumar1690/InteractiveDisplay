@@ -196,9 +196,11 @@ Table \ref{table:design_guidlines_summary} summarizes the design guidelines that
 
 The design guidelines were formulated based on user feedback and results from user studies conducted as part of the live deployment. We also used the results of user studies to evaluate whether we met the objectives of the game. The study responses were scaled from 1 to 10. We normalized the scaled responses to standard\cite{laerd:standard_score}. In simple terms, the percentage calculated from the z-score represents the percentage of responses that are greater than or equal to the benchmark selected during the z-score calculation. We have selected a benchmark of 8 for the scale from 1 to 10.
 
-In the following subsections, we discuss each design guideline and the user study related to the guideline.\\
-\textbf{Guideline 1: The questions should be intuitive or easy to understand;\\
-Guideline 2: The answers should be correct or logical}
+In the following subsections, we discuss each design guideline and the user study related to the guideline.
+
+\textbf{Guideline 1: The questions should be intuitive or easy to understand.}
+
+\textbf{Guideline 2: The answers should be correct or logical.}
 
 The first question we asked participants was, ``How easy is it for you to understand the objective of the game?''. 
 Figure \ref{fig:p_easy_understand} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_easy_understand} is the responses for Translator's Dilemma. 
@@ -310,7 +312,7 @@ We asked participants, ``Do you want to be on the leaderboard?''. Figure \ref{fi
 Deployment was an essential part of the project\cite{storz:deployment_lessons}, and we learned valuable lessons.
 In this section, we discuss lessons learned in detail.
 
-\textbf{Do not underestimate the efforts to implement web page on mobile devices}\\
+\textbf{Lesson 1: Do not underestimate the efforts to implement web page on mobile devices}\\
 The challenge of making a fluid UI is to deal with different resolutions of 
 screens. A basic solution is using relative units such as em or percentage(\%) 
 instead of pixels(px). However, in deployment we found out that since the 
@@ -322,20 +324,20 @@ to detect the orientation of the devices and then display the elements on
  the screen. Even though we spent a lot efforts on device UI, the UI is not 
  consistent on old devices.
  
-\textbf{Public display should be self-configurable}\\
+\textbf{Lesson 2: Public display should be self-configurable}\\
 Initially, the URL of the backend 
 server was hard-coded to ensure users can connect to backend servers, and QR code was static. Consequently, when the backend server is 
 deployed in another location, all those static components need to be configured 
 before deployment. A solution to ease deployment is to ensure 
 that web browser is aware of where the page is loaded from.
 
-\textbf{Long-duration deployment discloses bugs}\\
+\textbf{Lesson 3: Long-duration deployment discloses bugs}\\
 Many potential bug weren't revealed until 
 long-duration deployment. During deployment, problems may arise from 
 unreliable dependencies, race conditions between multiple players operating 
 at the same time and so on.
 
-\textbf{Fault-tolerance at public display}\\
+\textbf{Lesson 4: Fault-tolerance at public display}\\
 In the deployment, we often don't have
 direct control of the public display. Display may lose connection to
 the server, in which situation the public display should be able to reconnect to 
@@ -343,19 +345,19 @@ backend server. If bugs are found in the frontend page, the display needs to
 reload the web page. A script which periodically reloads the web page is helpful 
 in deployment.
 
-\textbf{Backend server should be publicly addressable}\\
+\textbf{Lesson 5: Backend server should be publicly addressable}\\
 A common mistake in 
 deployment is to deploy the backend server with a private IP address. Due to 
 the NAT problem, only the devices that are in the same network can access the 
 game. Therefore, having a public addressable interface is essential to the backend server.
 
-\textbf{Provide alternative way to allow players to access the game}\\
+\textbf{Lesson 6: Provide alternative way to allow players to access the game}\\
 In the deployment, we assumed 
 that users will scan the QR code to access the game. It turned out that most of devices 
 were not equipped with QR code scanner, and players are reluctant to install one. 
 Alternative ways such as tiny URL is helpful. 
 
-\textbf{Carefully choose the place to conduct user study}\\
+\textbf{Lesson 7: Carefully choose the place to conduct user study}\\
 The place of our deployment was in 
 a student common area. Students mostly were in a rush. Hence, unsolicited involvement 
 was low. Since our games are designed for public locations (e.g., cocktail parties, coffee shops) and we need to measure the interaction among players; in order to conduct user studies effectively, we need a large group of players to play the game simultaneously.
