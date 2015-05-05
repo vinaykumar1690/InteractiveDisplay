@@ -262,12 +262,12 @@ Only 2.19\% of the participants of Translator's Dilemma game felt that they chos
 
 The above study leads us to believe that there should be a good mix of logical thinking and guess work to encourage interaction among participants. 
 
-\textbf{Guideline 4: Attention span of users is limited. The timing between rounds of games has to be reasonable}
+\textbf{Guideline 4: Attention span of users is limited. The timing between rounds of games has to be reasonable.}
 During the course of the user study we observed that the timing between rounds in the game is a very important factor to keep participants engaged to the game. If the time is too long, participants get distracted from the game. If the time is too short, participants do not get time to interact with each other. 
 
 The timing has to be adjusted based on the game too. There is no ``one size fits all'' solution. For instance, the time for the Translator's Dilemma game was 10 seconds more than that allotted for the Battle of Cities game due to the difficulty of the Translator's Dilemma game.
 
-\textbf{Guideline 5: Make sure the player knows the status of the game at all times}
+\textbf{Guideline 5: Make sure the player knows the status of the game at all times.}
 We have a dynamic updates sidebar in the game that gets updated in real-time with messages about user activity including ``player joined'', ``player submitted answer'' and ``player changed answer''. We asked participants, ``Did you look at the updates sidebar?''. 68.42\% of the participants of Battle of Cities game and 77.77\% of the participants of Translator's Dilemma game noticed the updates. Both games have a high number which leads us to believe that it is an important feature for interactive displays.
 
 \begin{figure}
@@ -288,7 +288,7 @@ Surprisingly, only 1.47\% and 2.69\% of the participants in Battle of Cities and
 
 In our prior design, we did not have a timer on the device that showed the time left in the current round. Lot of the participants were confused about what was happening after they selected their choice. The timer on the device helped alleviate this confusion.
 
-\textbf{Guideline 6: Players should be motivated}
+\textbf{Guideline 6: Players should be motivated.}
 During the first deployment we had a static leaderboard on the public display which showed mockup entries. We received feedback from participants that they would love to have the leaderboard implemented. We implemented the leaderboard feature for the subsequent deployment and found that it had a positive impact on participation. 
 
 After adding leaderboard feature, many participants were motivated to play. One of them wanted to remain as the champion "forever" and played 35 rounds of games in a roll. Until now, she is still the best of all the players. We also came across many other motivated participants. For instance some participants asked us why they could not get on the leaderboard even though they had a high score. These observations lead us to believe that points system and leaderboard encourage participation and motivate players.
@@ -298,25 +298,25 @@ After adding leaderboard feature, many participants were motivated to play. One 
 Deployment was an essential part of the project\cite{storz:deployment_lessons}, and we learned valuable lessons.
 In this section, we discuss lessons learned in detail.
 
-\textbf{Lesson 1: Do not underestimate the efforts to implement web page on mobile devices}\\
+\textbf{Lesson 1: Do not underestimate the efforts to implement web page on mobile devices.}\\
 The challenge of making a fluid UI is to deal with different resolutions of screens. A basic solution is using relative units such as em or percentage(\%) instead of pixels(px). However, in deployment we found out that since the dimensions of screens are different, the UI is not consistent across all screens. To handle this problem, we used viewport, which arranges elements by the actual size of the screen. Another problem we observed was users may hold the device in different orientations. Our initial web page on device was designed for vertical screen. When players held devices horizontally, the style didn't fit. We used CSS media query to detect the orientation of the devices and then display the elements on the screen. Even though we spent a lot efforts on device UI, the UI is not consistent on old devices.
  
-\textbf{Lesson 2: Public display should be self-configurable}\\
+\textbf{Lesson 2: Public display should be self-configurable.}\\
 Initially, the URL of the backend server was hard-coded to ensure users can connect to backend servers, and QR code was static. Consequently, when the backend server was deployed in another location, all those static components need to be configured before deployment. A solution to ease deployment is to exploit that web browser is aware of where the page is loaded from.
 
-\textbf{Lesson 3: Long-duration deployment discloses bugs}\\
+\textbf{Lesson 3: Long-duration deployment discloses bugs.}\\
 Many potential bug weren't revealed until long-duration deployment. During deployment, problems may arise from unreliable dependencies, race conditions between multiple players operating at the same time and so on. Starting initial deployment as soon as possible is helpful to disclose bugs.
 
-\textbf{Lesson 4: Fault-tolerance at public display}\\
+\textbf{Lesson 4: Fault-tolerance at public display.}\\
 In the deployment, we often don't have direct control of the public display. Display may lose connection to the server, in which situation the public display should be able to reconnect to backend server. If bugs are fixed, the display needs to reload the web page. A script which periodically reloads the web page is helpful in deployment.
 
-\textbf{Lesson 5: Backend server should be publicly addressable}\\
+\textbf{Lesson 5: Backend server should be publicly addressable.}\\
 A common mistake in deployment is to deploy the backend server with a private IP address. Due to the NAT problem, only the devices that are in the same network can access the game. Therefore, having a public addressable interface is essential to the backend server.
 
-\textbf{Lesson 6: Provide alternative way to allow players to access the game}\\
+\textbf{Lesson 6: Provide alternative way to allow players to access the game.}\\
 In the deployment, we assumed that users will scan the QR code to access the game. It turned out that most of devices were not equipped with QR code scanner, and players are reluctant to install one. Alternative ways such as tiny URL are helpful. 
 
-\textbf{Lesson 7: Carefully choose the place to conduct user study}\\
+\textbf{Lesson 7: Carefully choose the place to conduct user study.}\\
 The place of our deployment was in a student common. Students mostly were in a rush. Hence, unsolicited involvement was low. It is hard for us to measure whether an interactive game helps the interaction between people and the display. On the other hand, we need to measure the interaction among players. Therefore, we need a group of players playing the game at the same time. However, it is hard to have a group of players to play the same time as students showed up from time to time. To address this problem, we chose to do the user study when classes were over. At the same time, we also invited some of our classmates to play the game at the same time. In our case, an ideal place to deployment could be on a campus party.
 
 \section{Conclusions}
