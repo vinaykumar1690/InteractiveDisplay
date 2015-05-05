@@ -51,7 +51,6 @@
 \begin{document}
 
 \title{Interactive Public Display}
-\subtitle{- Mobile and Pervasive Computing}
 %
 % You need the command \numberofauthors to handle the 'placement
 % and alignment' of the authors beneath the title.
@@ -175,11 +174,10 @@ We invited some students to play the game and there were some unsolicited involv
 
 \section{Design Guidelines}
 
-Table \ref{table:design_guidlines_summary} summarizes the design guidelines that we hope will assist the design of games for interactive public displays.
+Table 1 summarizes the design guidelines that we hope will assist the design of games for interactive public displays.
 
 \begin{table*}[ht]
 	%\captionsetup{justification=centering}
-	\label{table:design_guidlines_summary}
 	\begin{tabular*}{1\textwidth}{c | l}
  		\hline
 		Aspect & Lesson\\ \hline
@@ -193,6 +191,7 @@ Table \ref{table:design_guidlines_summary} summarizes the design guidelines that
  			& Players should be motivated\\ \hline	
 	\end{tabular*}
 	\caption{Design Guidelines Summary}
+	\label{table:design_guidlines_summary}
 \end{table*}
 
 The design guidelines were formulated based on user feedback and results from user studies conducted as part of the live deployment. We also used the results of user studies to evaluate whether we met the objectives of the game. The study responses were scaled from 1 to 10. We normalized the scaled responses to standard\cite{laerd:standard_score}. In simple terms, the percentage calculated from the z-score represents the percentage of responses that are greater than or equal to the benchmark selected during the z-score calculation. We have selected a benchmark of 8 for the scale from 1 to 10.
@@ -328,6 +327,9 @@ he/she re-joins the game.
 Currently, our game's backend does not maintain a Cookie for users and hence players' points are not maintained when they return the game. In the user study, we noticed that players often left the game to deal with some tasks and returned back to the game, however they lost their previous points. Developing this feature allows players to join and leave the game at any time without having to lose their points.
 
 We would also like to use other technologies like mobile sensors and multiple networked screens to explore other game design ideas or foster other types of interaction between players.
+
+\section{Acknowledgments}
+We acknowledge the great support and guidance from Professor Pei Zhang during this course (Mobile and Pervasive Computing). We would also like to thank Trevor Pering for his feedback and support during the design process. 
 
 \bibliographystyle{plain}
 \bibliography{sigproc}
