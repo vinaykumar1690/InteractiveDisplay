@@ -162,7 +162,7 @@ We thought it was an interesting idea and wanted to develop a game based on it. 
 Our goal is to design games that are easy for user to understand; it should be straightforward and easy on the eye. To that end, we came up with a user interface prototype (Figure \ref{fig:pre_design}) that is to be used by both Battle of Cities and Translator's Dilemma. 
 
 \section{User Study}
-In order to evaluate the effectiveness of the games we developed and iterate the design, we conducted user studies. User studies were conducted in a student common on Carnegie Mellon University, Silicon Valley campus. The students common is the hub of the building and there were hundreds of people passing by each day. We deployed there to attract more students to play and therefore obtain more feedback. The game was deployed on 65 inch Sharp display. A Macbook Pro was connected to the display to render the view in a web browser. A backend end server backed by Node.js, along with a CouchDB, was deployed at an EC2 instance on Amazon Web Service. The web page was loaded from the backend server to the web browser. Figure \ref{us:deployment} is a capture of the deployment. 
+In order to evaluate the effectiveness of the games we developed and iterate the design, we conducted user studies. User studies were conducted in a student common on Carnegie Mellon University, Silicon Valley campus. The students common is the hub of the building and there were hundreds of people passing by each day. We deployed there to attract more students to play and therefore obtain more feedback. The game was deployed on 65-inch Sharp display. A Macbook Pro was connected to the display to render the view in a web browser. A backend end server backed by Node.js, along with a CouchDB, was deployed at an EC2 instance on Amazon Web Service. The web page was loaded from the backend server to the web browser. Figure \ref{us:deployment} is a capture of the deployment. 
 
 We invited some students to play the game and there were some unsolicited involvement. After they played the game, we asked them to fill out a survey. The survey focused on the game design, participants' behavior and interaction during the game.
 
@@ -203,7 +203,7 @@ In the following subsections, we discuss each design guideline and the user stud
 \textbf{Guideline 2: The answers should be correct or logical.}
 
 The first question we asked participants was, ``How easy is it for you to understand the objective of the game?''. 
-Figure \ref{fig:p_easy_understand} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_easy_understand} is the responses for Translator's Dilemma. 
+Figure \ref{fig:p_easy_understand} shows the responses for the game Battle of Cities and Figure \ref{fig:t_easy_understand} is the responses for Translator's Dilemma. 
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{p_easy_understand.png}
@@ -221,7 +221,7 @@ Figure \ref{fig:p_easy_understand} shows the the responses for the game Battle o
 
 Compared to Battle of Cities, only 13.85\% of the participants felt that Translator's Dilemma game was easy to understand. As mentioned before, Translator's Dilemma game is based on the ``Telephone'' game. During the user study we noticed that it was very hard for participants to understand the objective of the game; most of them had not played the ``Telephone'' game before, or they could not relate Translator's Dilemma to the ``Telephone'' game. The question text was also long and complex in this case. 
 
-The following question we asked participants was, ``Did you discuss with others during the game?''. Figure \ref{fig:p_discuss} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_discuss} is the responses for Translator's Dilemma.
+The following question we asked participants was, ``Did you discuss with others during the game?''. Figure \ref{fig:p_discuss} shows the responses for the game Battle of Cities and Figure \ref{fig:t_discuss} is the responses for Translator's Dilemma.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{p_discuss.png}
@@ -241,7 +241,7 @@ cities is common and the interaction was on how the population, culture or geogr
 During the user study we also noticed that all participants were surprised with answers that they thought were fairly obvious. The discrepancy happens as Google radar search does not have enough data to return answers that match user expectations. This causes participants to lose interest in the game. The above observations logically lead us to the guideline 1 and guideline 2.
 
 \textbf{Guideline 3: Strike a balance between guess work and logical thinking.}
-We asked the participants, ``How did you choose your answer''. Scale 1 denotes completely random answer and 10 for logical answer. Figure \ref{fig:p_random_logical} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_random_logical} is the responses for Translator's Dilemma. 
+We asked the participants, ``How did you choose your answer''. Scale 1 denotes completely random answer and 10 for logical answer. Figure \ref{fig:p_random_logical} shows the responses for the game Battle of Cities and Figure \ref{fig:t_random_logical} is the responses for Translator's Dilemma. 
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{p_random_logical.png}
@@ -281,7 +281,7 @@ We have a dynamic updates sidebar in the game that gets updated in real-time wit
 	\label{fig:t_influence}
 \end{figure}
 
-The follow up question asked participants, ``How much did the updates sidebar influence your answer?''. Figure \ref{fig:p_influence} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_influence} is the responses for Translator's Dilemma.
+The follow up question asked participants, ``How much did the updates sidebar influence your answer?''. Figure \ref{fig:p_influence} shows the responses for the game Battle of Cities and Figure \ref{fig:t_influence} is the responses for Translator's Dilemma.
 
 Surprisingly, only 1.47\% and 2.69\% of the participants in Battle of Cities and Translator's Dilemma game were influenced by the updates. This means that the updates bar primarily served as an activity monitor that provides feedback on user actions. The fact that a majority of the users noticed the updates but did not get influenced by it shows that it is very important to let the participant know the status of the game at all times.
 
