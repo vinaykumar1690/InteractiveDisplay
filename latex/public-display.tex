@@ -163,9 +163,9 @@ We thought it was an interesting idea and wanted to develop a game based on it. 
 Our goal is to design games that are easy for user to understand; it should be straightforward and easy on the eye. To that end, we came up with a user interface prototype (Figure \ref{fig:pre_design}) that is to be used by both Battle of Cities and Translator's Dilemma. 
 
 \section{User Study}
-In order to evaluate the effectiveness of the games we developed and iterate the design, we conducted user studies. User studies were conducted in a student common on Carnegie Mellon University, Silicon Valley campus. The students common is the hub of the building and there were hundreds of people passing by each day. We deployed there to attract more students to play and therefore obtain more feedback. The game was deployed on XX size Sharp display. A Macbook Pro was connected to the display to render the view in a web browser. A backend end server backed by Node.js, along with a CouchDB, was deployed at an EC2 instance on Amazon Web Service. The web page was loaded from the backend server to the web browser. Figure \ref{us:deployment} is a capture of the deployment. 
+In order to evaluate the effectiveness of the games we developed and iterate the design, we conducted user studies. User studies were conducted in a student common on Carnegie Mellon University, Silicon Valley campus. The students common is the hub of the building and there were hundreds of people passing by each day. We deployed there to attract more students to play and therefore obtain more feedback. The game was deployed on 65 inch Sharp display. A Macbook Pro was connected to the display to render the view in a web browser. A backend end server backed by Node.js, along with a CouchDB, was deployed at an EC2 instance on Amazon Web Service. The web page was loaded from the backend server to the web browser. Figure \ref{us:deployment} is a capture of the deployment. 
 
-We invited some of students to play the game and there were some unsolicited involvement. After they played the game, we asked them to fill out a survey. The survey focused on the game design, players' behaviors in playing the game and the interaction between players.
+We invited some students to play the game and there were some unsolicited involvement. After they played the game, we asked them to fill out a survey. The survey focused on the game design, participants' behavior and interaction during the game.
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{deploy.jpg}
@@ -289,21 +289,9 @@ Surprisingly, only 1.47\% and 2.69\% of the participants in Battle of Cities and
 In our prior design, we did not have a timer on the device that showed the time left in the current round. Lot of the participants were confused about what was happening after they selected their choice. The timer on the device helped alleviate this confusion.
 
 \textbf{Guideline 6: Players should be motivated}
-We asked participants, ``Do you want to be on the leaderboard?''. Figure \ref{fig:p_leaderboard} shows the the responses for the game Battle of Cities and Figure \ref{fig:t_leaderboard} is the responses for Translator's Dilemma.
+During the first deployment we had a static leaderboard on the public display which showed mockup entries. We received feedback from participants that they would love to have the leaderboard implemented. We implemented the leaderboard feature for the subsequent deployment and found that it had a positive impact on participation. 
 
-\begin{figure}
-	\includegraphics[width=\linewidth]{p_leaderboard.png}
-	\caption{Battle of Cities - Do you want to be on the leaderboard?}
-	\label{fig:p_leaderboard}
-\end{figure}
-
-\begin{figure}
-	\includegraphics[width=\linewidth]{t_leaderboard.png}
-	\caption{Translator's Dilemma - Do you want to be on the leaderboard?}
-	\label{fig:t_leaderboard}
-\end{figure}
-
-28.53\% and 22.8\% of the participants from the Battle of Cities and Translator's Dilemma game want to be on the leaderboard respectively. Battle of Cities has comparatively higher number as the game itself is easier and leads to more participation. The difficulty of the Translator's Dilemma game discouraged participation and there was no incentive to be on the leaderboard. This observation leads us to believe that participants should be motivated to participate. Points system and leaderboard encourage participation and motivate players.
+After adding leaderboard feature, many participants were motivated to play. One of them wanted to remain as the champion "forever" and played 35 rounds of games in a roll. Until now, she is still the best of all the players. We also came across many other motivated participants. For instance some participants asked us why they could not get on the leaderboard even though they had a high score. These observations lead us to believe that points system and leaderboard encourage participation and motivate players.
 
 \section{Lessons}
 
@@ -337,7 +325,7 @@ With the Interactive Public Display project we have explored some game design id
 \section{Future Work}
 One of the important aspects of our game was the points system and leaderboard. We also want players to be able to join and leave at any time. A player would expect his/her points to be retrieved when 
 he/she re-joins the game. 
-Currently, our game's backend does not maintain a Coockie for users and hence players' points are not maintained when they return the game. In the user study, we noticed that players often left the game to deal with some tasks and returned back to the game, however they lost their previous points. Developing this feature allows players to join and leave the game at any time without having to lose their points.
+Currently, our game's backend does not maintain a Cookie for users and hence players' points are not maintained when they return the game. In the user study, we noticed that players often left the game to deal with some tasks and returned back to the game, however they lost their previous points. Developing this feature allows players to join and leave the game at any time without having to lose their points.
 
 We would also like to use other technologies like mobile sensors and multiple networked screens to explore other game design ideas or foster other types of interaction between players.
 
